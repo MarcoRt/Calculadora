@@ -1,0 +1,35 @@
+.tarjetas-operaciones1 {
+    list-style: none;
+    padding: 10px;
+    margin: 0px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
+    grid-gap: 5rem;
+    width: 90%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.operacion {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem rgba(0, 0, 0, 0.45);
+    padding-bottom: 1rem;
+    background-color: rgba(104, 104, 104, 0.048);
+    overflow: hidden;
+    text-align: center;
+}
+
+.logo-operacion{
+    font-size: 35px;
+}
+
+.tarjetas-operaciones1 a{
+    text-decoration: none;
+    color: black;
+}
+
+.operacion:hover{
+    transform: scale(1.05);
+    background-color: rgba(0, 153, 255, 0.109);
+}

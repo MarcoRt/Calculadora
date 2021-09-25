@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <nav>
+        <ul id="menu-list">
+            <li class="menu-item"><a href="../index" id="selected" class="menu-item-link">¿Qué hacer?</a></li>
+            <li class="menu-item"><a href="../faq" class="menu-item-link">FAQ</a></li>
+            <li class="menu-item"><a href="../contact" class="menu-item-link">Contacto</a></li>
+            <li class="menu-item"><a href="../about" class="menu-item-link">Acerca de</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="titulo-principal">¿Qué puedes hacer?</h1>
+
+    <ul class="seccion-teoria-practica">
+        <a href="../teoria" class="cardlink">
+            <li class="card">
+                <h2>Teoría</h2>
+                <p class="div-link-descripcion">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    At inventore eum blanditiis animi.
+                    Odit obcaecati voluptatum sunt voluptas aliquam eligendi officiis omnis hic itaque,
+                    eum dolores assumenda quis dolor a?</p>
+                <img src="img/book.svg" class="icon">
+            </li>
+        </a>
+        <a href="/practica" class="cardlink">
+            <li class="card">
+                    <h2>Práctica</h2>
+                    <p class="div-link-descripcion">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                        At inventore eum blanditiis animi.
+                        Odit obcaecati voluptatum sunt voluptas aliquam eligendi officiis omnis hic itaque,
+                        eum dolores assumenda quis dolor a?</p>
+                    <img src="img/desktop.svg" class="icon">
+            </li>
+        </a>
+    </ul>
+
+    <footer>
+        <p>Instituto Politécnico Nacional</p>
+    </footer>
+</body>
+</html>

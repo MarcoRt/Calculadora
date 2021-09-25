@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teoria</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/teoria.css' %}">
+</head>
+<body>
+    <nav>
+        <ul id="menu-list">
+            <li class="menu-item"><a href="../index" id="selected" class="menu-item-link">¿Qué hacer?</a></li>
+            <li class="menu-item"><a href="../faq" class="menu-item-link">FAQ</a></li>
+            <li class="menu-item"><a href="../contact" class="menu-item-link">Contacto</a></li>
+            <li class="menu-item"><a href="../about" class="menu-item-link">Acerca de</a></li>
+        </ul>
+    </nav>
+
+    <div id="contenedor"><a href="../index" id="regresar-menu"> ← Regresar a Menú Principal</a></div>
+
+    <h1 class="titulo-principal">Teoria</h1>
+
+    <ul class="tarjetas-operaciones1">
+        <a href="seleccion">
+            <li class="operacion">
+                <p class="logo-operacion">σ</p>
+                <h3>Selección</h3>
+            </li>
+        </a>
+        <a href="proyeccion">
+            <li class="operacion">
+                <p class="logo-operacion">π</p>
+                <h3>Proyección</h3>
+            </li>
+        </a>
+        <a href="conjuntos">
+            <li class="operacion">
+                <p class="logo-operacion">∪</p>
+                <h3>Conjuntos</h3>
+            </li>
+        </a>
+        <a href="productoCartesiano">
+            <li class="operacion">
+                <p class="logo-operacion">X</p>
+                <h3>Producto Cartesiano</h3>
+            </li>
+        </a>
+        <a href="reunion">
+            <li class="operacion">
+                <p class="logo-operacion">⋈</p>
+                <h3>Reunión</h3>
+            </li>
+        </a>
+    </ul>
+
+<footer>
+    <p>Instituto Politécnico Nacional</p>
+</footer>
+
+</body>
+</html>

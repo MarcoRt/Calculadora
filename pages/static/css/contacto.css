@@ -1,0 +1,11 @@
+#lista-contactos{
+    text-align: center;
+}
+
+#lista-contactos ul{
+    list-style: none;
+}
+
+#lista-contactos li{
+    margin: 2em;
+}

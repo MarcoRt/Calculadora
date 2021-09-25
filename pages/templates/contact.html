@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contacto.css' %}">
+</head>
+<body>
+    <nav>
+        <ul id="menu-list">
+            <li class="menu-item"><a href="../index" class="menu-item-link">¿Qué hacer?</a></li>
+            <li class="menu-item"><a href="../faq" class="menu-item-link">FAQ</a></li>
+            <li class="menu-item"><a href="../contact" id="selected" class="menu-item-link">Contacto</a></li>
+            <li class="menu-item"><a href="../about" class="menu-item-link">Acerca de</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="titulo-principal">Contacto</h1>
+
+    <section id="lista-contactos">
+        <ul>
+            <li>
+                <p>Humberto Vázquez Santiago</p>
+                <p>Correo: </p>
+            </li>
+            <li>
+                <p>Marco Antonio Rodríguez Torres</p>
+                <p>Correo: </p>
+            </li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>Instituto Politécnico Nacional</p>
+    </footer>
+</body>
+</html>

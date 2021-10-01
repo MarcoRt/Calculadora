@@ -5,64 +5,79 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Práctica</title>
-    <link rel="stylesheet" href="{% static 'css/general.css' %}">
-    <link rel="stylesheet" href="{% static 'css/practica.css' %}">
+    <title>Teoria</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <ul id="menu-list">
-            <li class="menu-item"><a href="../index" id="selected" class="menu-item-link">¿Qué hacer?</a></li>
-            <li class="menu-item"><a href="../faq" class="menu-item-link">FAQ</a></li>
-            <li class="menu-item"><a href="../contact" class="menu-item-link">Contacto</a></li>
-            <li class="menu-item"><a href="../about" class="menu-item-link">Acerca de</a></li>
-        </ul>
-    </nav>
 
-    <div id="contenedor"><a href="../index" id="regresar-menu"> ← Regresar a Menú Principal</a></div>
+    <header class="header">
+        <!-- BARRA DE NAVEGACION -->
+        <div class="contenedor">
+            <div class="barra">
+                <a class="logo" href="../index">
+                    <h1 class="logo__nombre no-margin centrar-texto">Calculadora<span class="logo__bold"> Relacional</span></h1>
+                </a>
+                <nav class="navegacion">
+                    <a href="../faq" class="navegacion__enlace">FAQ</a>
+                    <a href="../contacto" class="navegacion__enlace">Contacto</a>
+                    <a href="../acerca" class="navegacion__enlace">Acerca de</a>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-    <h1 class="titulo-principal">Práctica</h1>
+    <div class="contenedor contenido-principal">
+        <main class="main">
+            <a class="regreso-menu" href="../index">← Regresar al Menú Principal</a>
+            <h2 class="centrar-texto">Práctica</h2>
+            
+            <div class="herramienta-descripcion">
+                <h3 class="centrar-texto">¿Cómo usar esta herramienta?</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam non eum, velit fugit nobis beatae nisi soluta voluptates pariatur itaque, perspiciatis ducimus quaerat autem illo magni temporibus quas asperiores! Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias ipsam, accusantium magnam dicta ipsa eaque, non maxime exercitationem ullam repellendus cupiditate sunt cumque vero labore laudantium magni deserunt. Nostrum, minus!</p>
+            </div>
 
-    <section id="explicacion-herramienta">
-        <h2>¿Cómo usar esta herramienta?</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem facere quis explicabo saepe quibusdam repellendus voluptas?
-        Ab culpa omnis doloremque molestias eius, dolore qui minus numquam natus. Et, cum ad?</p>
-    </section>
+            <div class="seleccion-archivo">
+                <h3 class="centrar-texto">Arrastra y suelta tu archivo SQL hasta aquí</h3>
+                <button class="seleccion-archivo__boton">Cargar Archivo</button>
+                <h4 class="centrar-texto">O escoge un archivo precargado</h4>
+                <form>
+                    <select class="seleccion-archivo__opciones">
+                        <option value="" selected disabled>Selecciona tu Archivo</option>
+                        <option value="archivo1">Archivo1</option>
+                        <option value="archivo2">Archivo2</option>
+                        <option value="archivo3">Archivo3</option>
+                    </select>
+                </form>
+            </div>
 
-    <section id="seleccionar-archivo">
-        <h2>Arrastra y suelta tu archivo SQL hasta aquí</h2>
-        <button>Cargar Archivo</button>
-        <h3>O escoge un archivo precargado</h3>
-        <form action="">
-            <select name="ejemplos" id="ejemplosPracticos">
-                <option value=""></option>
-                <option value="archivo1">Archivo1</option>
-                <option value="archivo2">Archivo2</option>
-                <option value="archivo3">Archivo3</option>
-            </select>
-        </form>
-    </section>
+            <div class="herramienta-botones">
+                <button class="herramienta-botones__boton" id="seleccion">σ</button>
+                <button class="herramienta-botones__boton" id="proyeccion">π</button>
+                <button class="herramienta-botones__boton" id="reunion">⋈</button>
+                <button class="herramienta-botones__boton" id="producto">X</button>
+                <button class="herramienta-botones__boton" id="union">∪</button>
+                <button class="herramienta-botones__boton" id="interseccion">∩</button>
+                <button class="herramienta-botones__boton" id="diferencia">-</button>
+            </div>
 
-    <section id="escribir-consulta">
-        <ul>
-            <li>σ</li>
-            <li>π</li>
-            <li>⋈</li>
-            <li>X</li>
-            <li>∪</li>
-            <li>∩</li>
-            <li>-</li>
-        </ul>
+            <div class="herramienta-expresion">
+                <p>Escribe tu expresión de álgebra relacional</p>
+                <textarea class="herramienta-expresion__input"></textarea>
+                <button class="enviar-consulta">Enviar Consulta</button>
+            </div>
+        </main>
+    </div>
 
-        <form action="">
-            <label for="expresion">Escribe tu expresión de álgebra relacional</label>
-            <input type="text" id="expresion" name="expresion">
-            <input type="submit" value="Enviar Consulta">
-        </form>
-    </section>
-
-    <footer>
-        <p>Instituto Politécnico Nacional</p>
+    <footer class="footer">
+        <div class="contenedor">
+            <p>Instituto Politécnico Nacional</p>
+        </div>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    
 </body>
 </html>

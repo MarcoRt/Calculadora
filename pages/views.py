@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from .models import Customers
+import logging
 # Create your views here.
 class HomePageView(TemplateView):
     template_name = 'index.html'
@@ -33,3 +35,9 @@ class ReunionPageView(TemplateView):
 
 class PracticaPageView(TemplateView):
     template_name = "practica.html"
+
+def probando(request):
+    for c in Customers.objects.raw("Select * from customers;"):
+        print(c)
+    context = {'nombre':'marco'}
+    return render(request, 'test.html',context)

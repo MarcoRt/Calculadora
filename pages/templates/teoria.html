@@ -6,59 +6,78 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teoria</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/general.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/teoria.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <ul id="menu-list">
-            <li class="menu-item"><a href="../index" id="selected" class="menu-item-link">¿Qué hacer?</a></li>
-            <li class="menu-item"><a href="../faq" class="menu-item-link">FAQ</a></li>
-            <li class="menu-item"><a href="../contact" class="menu-item-link">Contacto</a></li>
-            <li class="menu-item"><a href="../about" class="menu-item-link">Acerca de</a></li>
-        </ul>
-    </nav>
 
-    <div id="contenedor"><a href="../index" id="regresar-menu"> ← Regresar a Menú Principal</a></div>
+    <header class="header">
+        <!-- BARRA DE NAVEGACION -->
+        <div class="contenedor">
+            <div class="barra">
+                <a class="logo" href="../index">
+                    <h1 class="logo__nombre no-margin centrar-texto">Calculadora<span class="logo__bold"> Relacional</span></h1>
+                </a>
+                <nav class="navegacion">
+                    <a href="../faq" class="navegacion__enlace">FAQ</a>
+                    <a href="../contacto" class="navegacion__enlace">Contacto</a>
+                    <a href="../acerca" class="navegacion__enlace">Acerca de</a>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-    <h1 class="titulo-principal">Teoria</h1>
+    <div class="contenedor contenido-principal">
+        <main class="main">
+            <a class="regreso-menu" href="../index">← Regresar al Menú Principal</a>
+            <h2 class="centrar-texto">Teoría</h2>
+            <div class="opciones-operacion">
+                <!-- CUADRO 1 -->
+                <div class="operacion__cuadro">
+                    <a class="operacion__cuadro--enlace" href="../teoria/seleccion">
+                        <p>σ</p>
+                        <h3>Selección</h3>
+                    </a>
+                </div>
+                <!-- CUADRO 2 -->
+                <div class="operacion__cuadro">
+                    <a class="operacion__cuadro--enlace" href="../teoria/proyeccion">
+                        <p>π</p>
+                        <h3>Proyección</h3>
+                    </a>
+                </div>
+                <!-- CUADRO 3 -->
+                <div class="operacion__cuadro">
+                    <a class="operacion__cuadro--enlace" href="../teoria/conjuntos">
+                        <p>∪</p>
+                        <h3>Conjuntos</h3>
+                    </a>
+                </div>
+                <!-- CUADRO 4 -->
+                <div class="operacion__cuadro">
+                    <a class="operacion__cuadro--enlace" href="../teoria/producto">
+                        <p>X</p>
+                        <h3>Producto Cartesiano</h3>
+                    </a>
+                </div>
+                <!-- CUADRO 5 -->
+                <div class="operacion__cuadro">
+                    <a class="operacion__cuadro--enlace" href="../teoria/reunion">
+                        <p>⋈</p>
+                        <h3>Reunión</h3>
+                    </a>
+                </div>
 
-    <ul class="tarjetas-operaciones1">
-        <a href="seleccion">
-            <li class="operacion">
-                <p class="logo-operacion">σ</p>
-                <h3>Selección</h3>
-            </li>
-        </a>
-        <a href="proyeccion">
-            <li class="operacion">
-                <p class="logo-operacion">π</p>
-                <h3>Proyección</h3>
-            </li>
-        </a>
-        <a href="conjuntos">
-            <li class="operacion">
-                <p class="logo-operacion">∪</p>
-                <h3>Conjuntos</h3>
-            </li>
-        </a>
-        <a href="productoCartesiano">
-            <li class="operacion">
-                <p class="logo-operacion">X</p>
-                <h3>Producto Cartesiano</h3>
-            </li>
-        </a>
-        <a href="reunion">
-            <li class="operacion">
-                <p class="logo-operacion">⋈</p>
-                <h3>Reunión</h3>
-            </li>
-        </a>
-    </ul>
+            </div>
+        </main>
+    </div>
 
-<footer>
-    <p>Instituto Politécnico Nacional</p>
-</footer>
+    <footer class="footer">
+        <div class="contenedor">
+            <p>Instituto Politécnico Nacional</p>
+        </div>
+    </footer>
 
 </body>
 </html>

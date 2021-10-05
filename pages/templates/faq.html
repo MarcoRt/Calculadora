@@ -5,44 +5,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preguntas frecuentes</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/general.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/faq.css' %}">
+    <title>Preguntas Frecuentes</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <ul id="menu-list">
-            <li class="menu-item"><a href="../index" class="menu-item-link">¿Qué hacer?</a></li>
-            <li class="menu-item"><a href="../faq" id="selected" class="menu-item-link">FAQ</a></li>
-            <li class="menu-item"><a href="../contact" class="menu-item-link">Contacto</a></li>
-            <li class="menu-item"><a href="../about" class="menu-item-link">Acerca de</a></li>
-        </ul>
-    </nav>
 
-    <h1 class="titulo-principal">Preguntas Frecuentes</h1>
+    <header class="header">
+        <!-- BARRA DE NAVEGACION -->
+        <div class="contenedor">
+            <div class="barra">
+                <a class="logo" href="../index">
+                    <h1 class="logo__nombre no-margin centrar-texto">Calculadora<span class="logo__bold"> Relacional</span></h1>
+                </a>
+                <nav class="navegacion">
+                    <a href="../faq" class="navegacion__enlace">FAQ</a>
+                    <a href="../contacto" class="navegacion__enlace">Contacto</a>
+                    <a href="../acerca" class="navegacion__enlace">Acerca de</a>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-    <div id="preguntas-faq">
-        <ul>
-            <li class="pregunta">Pregunta 1</li>
-            <p>Respuesta 1</p>
-            <br>
-            <li class="pregunta">Pregunta 2</li>
-            <p>Respuesta 2</p>
-            <br>
-            <li class="pregunta">Pregunta 3</li>
-            <p>Respuesta 3</p>
-            <br>
-            <li class="pregunta">Pregunta 4</li>
-            <p>Respuesta 4</p>
-            <br>
-            <li class="pregunta">Pregunta 5</li>
-            <p>Respuesta 5</p>
-        </ul>
+    <div class="contenedor contenido-principal">
+        <main class="main">
+            <h2 class="centrar-texto">Preguntas Frecuentes</h2>
+
+            <div class="bloque-faq">
+                <p class="bloque-faq__pregunta">Pregunta 1</p>
+                <p class="respuesta">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi autem et dolorem, illum voluptas ipsam eius a reiciendis fuga quo ea beatae, recusandae id pariatur officiis culpa, mollitia debitis officia.</p>
+                <p class="bloque-faq__pregunta">Pregunta 2</p>
+                <p class="respuesta">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi autem et dolorem, illum voluptas ipsam eius a reiciendis fuga quo ea beatae, recusandae id pariatur officiis culpa, mollitia debitis officia.</p>
+                <p class="bloque-faq__pregunta">Pregunta 3</p>
+                <p class="respuesta">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi autem et dolorem, illum voluptas ipsam eius a reiciendis fuga quo ea beatae, recusandae id pariatur officiis culpa, mollitia debitis officia.</p>
+                <p class="bloque-faq__pregunta">Pregunta 4</p>
+                <p class="respuesta">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi autem et dolorem, illum voluptas ipsam eius a reiciendis fuga quo ea beatae, recusandae id pariatur officiis culpa, mollitia debitis officia.</p>
+                <p class="bloque-faq__pregunta">Pregunta 5</p>
+                <p class="respuesta">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi autem et dolorem, illum voluptas ipsam eius a reiciendis fuga quo ea beatae, recusandae id pariatur officiis culpa, mollitia debitis officia.</p>
+            </div>
+
+        </main>
     </div>
 
-
-    <footer>
-        <p>Instituto Politécnico Nacional</p>
+    <footer class="footer">
+        <div class="contenedor">
+            <p>Instituto Politécnico Nacional</p>
+        </div>
     </footer>
+
 </body>
 </html>

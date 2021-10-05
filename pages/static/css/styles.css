@@ -1,0 +1,330 @@
+:root{
+    --fuenteHeading: 'PT Sans', sans-herif;
+    --fuenteParrafo: 'Open Sans', sans-herif;
+    --primario: #0e44a8;
+    --secundario: rgba(0, 153, 255, 0.109);
+    --gris: #f5f5f5;
+    --blanco: #FFF;
+    --negro: #000;
+    --claro: rgb(241, 222, 189);   
+}
+
+/** Globales **/
+
+html{
+    box-sizing: border-box;
+    font-size: 62.5%; /* 1rem = 10px */
+}
+
+*, *:before, *::after{
+    box-sizing: inherit;
+}
+
+body{
+    font-family: var(--fuenteParrafo);
+    font-size: 1.6rem;
+    line-height: 2;
+}
+
+.contenedor{
+    width: min(90%,120rem);
+    margin: 0 auto;
+}
+
+.regreso-menu{
+    display: inline-block;
+    margin-top: 2rem;
+    font-weight: bold;
+    color: var(--negro);
+    font-size: 2rem;
+}
+
+.regreso-menu:hover{
+    text-decoration: underline;
+}
+
+a{
+    text-decoration: none;
+}
+
+h1,h2,h3,h4{
+    font-family: var(--fuenteHeading);
+}
+
+h1{
+    font-size: 4.8rem;
+}
+
+h2{
+    font-size: 4rem;
+}
+
+h3{
+    font-size: 3.2rem;
+}
+
+h4{
+    font-size: 2.8rem;
+}
+
+img{
+    display: block;
+    margin: 1rem auto;
+    max-width: 10%;
+}
+
+/** Utilidades **/
+
+.no-margin{
+    margin: 0;
+}
+
+.no-padding{
+    padding: 0;
+}
+
+.centrar-texto{
+    text-align: center;
+}
+
+/** Header **/
+
+.header{
+    background-color: var(--primario);
+}
+
+@media (min-width: 768px) {
+    .barra{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }    
+}
+
+.logo{
+    color: var(--blanco);
+}
+
+.logo__nombre{
+    font-weight: normal;
+}
+
+.logo__bold{
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+    .navegacion{
+        display: flex;
+        gap: 3rem;
+    }
+}
+
+.navegacion__enlace{
+    display: block;
+    text-align: center;
+    font-size: 1.8rem;
+    color: white;
+}
+
+.navegacion__enlace:hover{
+    transform: scale(1.2);
+}
+
+/** Main **/
+
+.contenido-principal{
+    margin-bottom: 10rem;
+}
+
+.main h2{
+    color: var(--primario);
+}
+
+.opciones-acciones{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.opciones__cuadro{
+    width: 50%;
+    background-color: var(--gris);
+    border-radius: 1rem;
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+}
+
+.opciones__cuadro:hover{
+    transform: scale(1.05);
+    background-color: var(--secundario);
+}
+
+.opciones__cuadro--enlace{
+    color: var(--negro);
+    text-align: center;
+}
+
+.opciones__cuadro--enlace:hover{
+    color: var(--negro);
+}
+
+.opciones__cuadro h3{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.opciones__cuadro p{
+    margin: 0 3rem;
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color:var(--gris);
+    height: 5rem;
+    font-weight: bold;
+}
+
+/** FAQ **/
+
+.bloque-faq__pregunta{
+    font-size: 3rem;
+    text-align: center;
+}
+
+/** CONTACTO **/
+
+.bloque-contacto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 5rem;
+}
+
+.bloque-contacto__datos--nombre{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/** ACERCA DE **/
+.about-descripcion{
+    text-align: center;
+}
+
+/** TEORIA **/
+
+@media (min-width: 950px) {
+    .opciones-operacion{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 3rem;
+    }   
+}
+
+.operacion__cuadro{
+    text-align: center;
+    background-color: var(--gris);
+    border-radius: 1rem;
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+}
+
+.operacion__cuadro--enlace{
+    color: var(--negro);
+}
+
+.operacion__cuadro:hover{
+    transform: scale(1.05);
+    background-color: var(--secundario);
+}
+
+.operacion__cuadro--enlace p{
+    font-size: 5rem;
+    margin: -2rem 0;
+}
+
+.operacion__cuadro--enlace h3{
+    line-height: 2;
+    font-size: 3rem;
+    margin: 0 0;
+}
+
+.icono-operacion{
+    margin: -10rem 0 -5rem 0;
+    font-size: 15rem;
+    font-weight: bold;
+}
+
+/** PRACTICA **/
+.seleccion-archivo{
+    border: 0.3rem dotted var(--negro) ;
+    background-color: var(--claro);
+    border-radius: 2rem;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.seleccion-archivo h3{
+    margin: 1rem 0;
+}
+
+.seleccion-archivo h4{
+    margin: 1rem 0;
+}
+
+.seleccion-archivo__boton{
+    display: block;
+    margin: 1rem auto;
+    cursor: pointer;
+}
+
+.seleccion-archivo__opciones{
+    display: block;
+    margin: 1rem auto 2rem auto;
+}
+
+.herramienta-botones{
+    margin-top: 3rem;
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+}
+
+.herramienta-botones__boton{
+    width: 7rem;
+    height: 7rem;
+    font-weight: bold;
+    font-size: 3rem;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+
+.herramienta-botones__boton:hover{
+    transform: scale(1.1);
+}
+
+.herramienta-expresion{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.herramienta-expresion form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.herramienta-expresion__input{
+    width: 70rem;
+    height: 7rem;
+    font-size: 3.5rem;
+    text-align: center;
+    padding: 1rem 0;
+}

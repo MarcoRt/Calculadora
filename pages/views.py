@@ -33,3 +33,9 @@ class ReunionPageView(TemplateView):
 
 class PracticaPageView(TemplateView):
     template_name = "practica.html"
+
+class EjemplosPageView(TemplateView):
+    template_name = "ejemplos.html"
+
+class SintaxisPageView(TemplateView):
+    template_name = "sintaxis.html"

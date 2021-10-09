@@ -2,14 +2,16 @@ from django.urls import path
 from .views import (HomePageView,
     FAQPageView,
     AboutPageView,
-    ContactPageView,
+    ContactPageView, SintaxisPageView,
     TeoriaPageView,
     SeleccionPageView,
     ProyeccionPageView,
     ConjuntosPageView,
     ProductoCartesianoPageView,
     ReunionPageView,
-    PracticaPageView
+    PracticaPageView,
+    EjemplosPageView,
+    SintaxisPageView
     )
 urlpatterns = [
     path('faq/',FAQPageView.as_view(),name='faq'),
@@ -24,4 +26,6 @@ urlpatterns = [
     path('teoria/producto/',ProductoCartesianoPageView.as_view(),name='teoria-producto'),
     path('teoria/reunion/',ReunionPageView.as_view(),name='teoria-reunion'),
     path('practica/',PracticaPageView.as_view(),name='practica'),
+    path('ejemplos/',EjemplosPageView.as_view(),name='ejemplos'),
+    path('sintaxis/',SintaxisPageView.as_view(),name='sintaxis'),
 ]

@@ -334,3 +334,10 @@ img{
     font-weight: bold;
     text-decoration: underline;
 }
+
+
+
+td{
+    border: 1px solid black;
+    padding: 0.5rem;
+}

@@ -12,13 +12,13 @@ const enviarConsulta    = document.querySelector(".enviar-consulta")
 const expresion = document.querySelector(".herramienta-expresion__input");
 
 // Expresiones de Operaciones
-const expresionSeleccion    = 'σ()';
-const expresionProyeccion   = 'π()';
-const expresionReunion      = '⋈()';
-const expresionProducto     = 'X';
-const expresionUnion        = '∪';
-const expresionInterseccion = '∩';
-const expresionDiferencia   = '-';
+const expresionSeleccion    = 'σ(condicion)(Relacion)';
+const expresionProyeccion   = 'π(condicion)(Relacion)';
+const expresionReunion      = '(Relacion1)⋈(condicion)(Relacion2)';
+const expresionProducto     = '(Relacion1)X(Relacion2)';
+const expresionUnion        = '(Relacion1)∪(Relacion2)';
+const expresionInterseccion = '(Relacion1)∩(Relacion2)';
+const expresionDiferencia   = '(Relacion1)-(Relacion2)';
 
 // Funciones de botones de operaciones
 $(botonSeleccion).on('click', function () {

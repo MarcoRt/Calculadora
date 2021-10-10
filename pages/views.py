@@ -22,14 +22,17 @@ class SeleccionPageView(TemplateView):
 class ProyeccionPageView(TemplateView):
     template_name = "teoria-proyeccion.html"
 
-class ConjuntosPageView(TemplateView):
-    template_name = "teoria-conjuntos.html"
+class UnionPageView(TemplateView):
+    template_name = "teoria-union.html"
 
 class ProductoCartesianoPageView(TemplateView):
     template_name = "teoria-producto.html"
 
 class ReunionPageView(TemplateView):
     template_name = "teoria-reunion.html"
+
+class DiferenciaPageView(TemplateView):
+    template_name = "teoria-diferencia.html"    
 
 class PracticaPageView(TemplateView):
     template_name = "practica.html"

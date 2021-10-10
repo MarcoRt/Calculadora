@@ -6,12 +6,13 @@ from .views import (HomePageView,
     TeoriaPageView,
     SeleccionPageView,
     ProyeccionPageView,
-    ConjuntosPageView,
+    UnionPageView,
     ProductoCartesianoPageView,
     ReunionPageView,
     PracticaPageView,
     EjemplosPageView,
-    SintaxisPageView
+    SintaxisPageView,
+    DiferenciaPageView
     )
 urlpatterns = [
     path('faq/',FAQPageView.as_view(),name='faq'),
@@ -22,9 +23,10 @@ urlpatterns = [
     path('teoria/',TeoriaPageView.as_view(),name='teoria'),
     path('teoria/seleccion/',SeleccionPageView.as_view(),name='teoria-seleccion'),
     path('teoria/proyeccion/',ProyeccionPageView.as_view(),name='teoria-proyeccion'),
-    path('teoria/conjuntos/',ConjuntosPageView.as_view(),name='teoria-conjuntos'),
+    path('teoria/union/',UnionPageView.as_view(),name='teoria-union'),
     path('teoria/producto/',ProductoCartesianoPageView.as_view(),name='teoria-producto'),
     path('teoria/reunion/',ReunionPageView.as_view(),name='teoria-reunion'),
+    path('teoria/diferencia/',DiferenciaPageView.as_view(),name='teoria-diferencia'),
     path('practica/',PracticaPageView.as_view(),name='practica'),
     path('ejemplos/',EjemplosPageView.as_view(),name='ejemplos'),
     path('sintaxis/',SintaxisPageView.as_view(),name='sintaxis'),

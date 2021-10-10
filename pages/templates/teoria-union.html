@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sintáxis</title>
+    <title>Teoría - Unión</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -20,9 +20,9 @@
                     <h1 class="logo__nombre no-margin centrar-texto">Calculadora<span class="logo__bold"> Relacional</span></h1>
                 </a>
                 <nav class="navegacion">
-                    <a href="../faq" class="navegacion__enlace">FAQ</a>
-                    <a href="../contacto" class="navegacion__enlace">Contacto</a>
-                    <a href="../acerca" class="navegacion__enlace">Acerca de</a>
+                    <a href="../../faq" class="navegacion__enlace">FAQ</a>
+                    <a href="../../contacto" class="navegacion__enlace">Contacto</a>
+                    <a href="../../acerca" class="navegacion__enlace">Acerca de</a>
                 </nav>
             </div>
         </div>
@@ -30,10 +30,12 @@
 
     <div class="contenedor contenido-principal">
         <main class="main">
-            <a class="regreso-menu" href="../practica">← Regresar a Práctica</a>
-            <h2 class="centrar-texto">Sintáxis a Seguir</h2>
-            
-            
+            <a class="regreso-menu" href="../../teoria">← Regresar al Menú de Teoría</a>
+            <h2 class="centrar-texto">Unión</h2>
+            <p class="icono-operacion centrar-texto">∪</p>
+            <p class="descripcion-teoria">Al ser una operación binaria, opera sobre dos relaciones, siendo estas sus únicos argumentos. Como resultado se obtiene una relación que contiene todas las tuplas que aparecen en una o en las dos relaciones especificadas. La sintaxis correcta de una unión es la siguiente:</p>
+            <p>$$Relaci\acute{o}n1 \cup Relaci\acute{o}n2$$</p>
+            <h3 class="centrar-texto">Ejemplo</h3>
         </main>
     </div>
 
@@ -42,6 +44,8 @@
             <p>Instituto Politécnico Nacional</p>
         </div>
     </footer>
-    
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </body>
 </html>

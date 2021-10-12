@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+      <!-- BARRA DE NAVEGACION -->
+      <div class="contenedor">
+          <div class="barra">
+              <a class="logo" href="../index">
+                  <h1 class="logo__nombre no-margin centrar-texto">Calculadora<span class="logo__bold"> Relacional</span></h1>
+              </a>
+              <nav class="navegacion">
+                  <a href="../../faq" class="navegacion__enlace">FAQ</a>
+                  <a href="../../contacto" class="navegacion__enlace">Contacto</a>
+                  <a href="../../acerca" class="navegacion__enlace">Acerca de</a>
+              </nav>
+          </div>
+      </div>
+  </header>
+  <footer class="footer">
+      <div class="contenedor">
+          <p>Instituto Politécnico Nacional</p>
+      </div>
+  </footer>
+
+</body>
+</html>

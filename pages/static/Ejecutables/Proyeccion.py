@@ -8,7 +8,9 @@ class Proyeccion:
         consulta = consulta.replace("PI","SELECT ")
         consulta = consulta.replace("("," from (")
         consulta = consulta+";"
-        #print(consulta)
+        if("EQUIS" in consulta):
+            consulta = consulta.replace("EQUIS",",")
+        #print("1" + consulta)
         return consulta
     #Traduce consultas con sentencias de proyeción y diferencia
     def pi_diferencia(self, consulta):
@@ -18,14 +20,14 @@ class Proyeccion:
         primera_sentencia = self.reemplazar_pi(primera_sentencia)
         primera_sentencia = primera_sentencia.replace(";","")
         segunda_sentencia = self.reemplazar_pi(segunda_sentencia)
-        #print(primera_sentencia + " MINUS " + segunda_sentencia)
+        #print("2" + primera_sentencia + " MINUS " + segunda_sentencia)
         return (primera_sentencia + " MINUS " + segunda_sentencia)
     #Analiza si la sentencia tiene sentencias de proyección y selección o sentencias proyección y más de una selección
     def ProyeccionYSeleccion(self, consulta):
         if(len(findall("SE",consulta)) == 1):
-            self.SeleccionSimple(consulta)
+            return self.SeleccionSimple(consulta)
         elif(len(findall("SE",consulta))>1):
-            self.SeleccionMultiple(consulta)
+            return self.SeleccionMultiple(consulta)
     #Traduce consultas con una sola sentencia de selección
     def SeleccionSimple(self,consulta):
         consulta = consulta.replace("PI","select ")
@@ -35,7 +37,7 @@ class Proyeccion:
         nombre_cond = consulta[consulta.find("SE"):consulta.find("(")]
         nombre_cond = nombre_cond.replace("SE"," where ")
         tabla = consulta[consulta.find("("):]
-        #print(nombre_sel+" from "+tabla+nombre_cond+";")
+        #print("3" + nombre_sel+" from "+tabla+nombre_cond+";")
         return(nombre_sel+" from "+tabla+nombre_cond+";")
     #Traduce consultas con más de una sentencia de selección
     def SeleccionMultiple(self, consulta):
@@ -61,5 +63,5 @@ class Proyeccion:
         tablas = tablas.replace("SE","")
         if("EQUIS" in tablas):
             tablas = tablas.replace("EQUIS",",")
-        #print(nombre_proyeccion+" from "+tablas +" where "+selecciones+";")
+        #print("4" + nombre_proyeccion+" from "+tablas +" where "+selecciones+";")
         return(nombre_proyeccion+" from "+tablas +" where "+selecciones+";")

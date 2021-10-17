@@ -11,21 +11,26 @@ if __name__ == "__main__":
     path = str(Path().absolute())
     print(path)
     nombre_archivo = sys.argv[1]
-    print("Nombre del archivo ",nombre_archivo)
-    system("/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/compilar.sh")
-    archivo_entrada = "<" + path+"/pages/static/Ejecutables/Archivos_consulta/%s" % nombre_archivo
-    archivo_entrada = "SE importe<120 (TABLA EQUIS TABLA2 EQUIS TABLA3)"
-    cmd = subprocess.run(["./pages/static/Ejecutables/a.out"],input=archivo_entrada, capture_output=True, text=True)
+
+    #print("Nombre del archivo ",nombre_archivo)
+    #system("/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/compilar.sh")
+    archivo_entrada = open(path+"/pages/static/Ejecutables/Archivos_consulta/%s" % nombre_archivo)
+    cadena_entrada = archivo_entrada.readline()
+    #print("Cadena entrada", cadena_entrada)
+    cmd = subprocess.run(["./pages/static/Ejecutables/a.out"],input=cadena_entrada, capture_output=True, text=True)
     archivo_consulta = str(cmd.stdout)
-    abecedario = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMÑOPQRSTUVWXYZ"
+    #print("Archivo consulta:",archivo_consulta, archivo_consulta.find("\n"))
+    archivo_consulta = archivo_consulta[archivo_consulta.find("\n")+1:]
+    abecedario = "()abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMÑOPQRSTUVWXYZ="
+    archivo_consulta = archivo_consulta.replace(" ",'')
     for i in archivo_consulta:
         if i in abecedario:
             archivo_consulta = archivo_consulta.replace(i,'')
-    #print(archivo_consulta)
+    print(archivo_consulta)
     archivo = open(path+"/pages/static/Ejecutables/Archivos_consulta/%s" % archivo_consulta)
     consulta = archivo.readline()
     archivo.close()
-    print("Valor original: ",consulta)
+    #print("Valor original: ",consulta)
     pro = Proyeccion.Proyeccion()
     sel = Seleccion.Seleccion()
     if("PI" in consulta and "SE" not in consulta and "-" not in consulta):
@@ -38,6 +43,7 @@ if __name__ == "__main__":
         consulta_sql = sel.reemplazar_minus(consulta)
     if("PI" in consulta and "SE" in consulta):
         consulta_sql = pro.ProyeccionYSeleccion(consulta)
+    #print(consulta_sql)
     archivo = open(path+'/pages/static/Ejecutables/Archivos_consulta/%s' % nombre_archivo, "w")
     archivo.write(consulta_sql)
     archivo.close()

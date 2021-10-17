@@ -13,6 +13,7 @@
 %token <texto> ENTERO
 %token <texto> SIGNO
 %token <texto> COMA
+%token <texto> PUNTO
 %token <texto> PAR_IZQ
 %token <texto> PAR_DER
 %token <texto> IDENTIFICADOR
@@ -42,6 +43,7 @@ exp: CADENA { $$ = $1;}
 	| ENTERO {$$ = $1;}
 	| SIGNO {$$ = $1;}
 	| exp COMA exp {$$ = strcat($1,strcat($2,$3));}
+	| exp PUNTO exp {$$ = strcat($1,strcat($2,$3));}
 	| exp IDENTIFICADOR exp {$$ = strcat($1,strcat($2,$3));}
 	| exp SIGNO exp {$$ = strcat($1,strcat($2,$3));;}
 	| exp CONJUNCION exp {$$ = strcat($1,strcat($2,$3));}

@@ -38,7 +38,9 @@ yylval.texto = (char *) strdup(yytext);
 yylval.texto = (char *) strdup(yytext);
   return (COMA);}
 
-
+  "." {//printf("Punto\n");
+  yylval.texto = (char *) strdup(yytext);
+    return (PUNTO);}
   "^" {//printf("Y\n");
   yylval.texto = (char *) strdup(yytext);
     return (CONJUNCION);}

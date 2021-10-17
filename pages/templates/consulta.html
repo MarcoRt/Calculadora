@@ -15,7 +15,7 @@
       <!-- BARRA DE NAVEGACION -->
       <div class="contenedor">
           <div class="barra">
-              <a class="logo" href="../index">
+              <a class="logo" href="../../index">
                   <h1 class="logo__nombre no-margin centrar-texto">Calculadora<span class="logo__bold"> Relacional</span></h1>
               </a>
               <nav class="navegacion">
@@ -26,6 +26,20 @@
           </div>
       </div>
   </header>
+  <table border = "1" cellpadding = "5" cellspacing = "5">
+    {%for columna in columnas%}
+    {% for i in columna%}
+    <td>{{i}}</td>
+    {% endfor %}
+    {% endfor %}
+    {% for consulta in tu_consulta %}
+      <tr>
+        {% for i in consulta %}
+        <td>{{i}}</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
   <footer class="footer">
       <div class="contenedor">
           <p>Instituto Politécnico Nacional</p>

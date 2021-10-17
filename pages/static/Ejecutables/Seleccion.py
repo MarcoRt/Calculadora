@@ -15,9 +15,8 @@ class Seleccion:
             aux = consulta[inicio:]
         consulta = consulta.replace(aux,"\0")
         aux = aux.replace("EQUIS",",")
-        consulta = "select * from "+aux+"("+consulta+")"
-        consulta = consulta+";"
-        #print(consulta)
+        consulta = "select * from "+aux+consulta+";"
+        #consulta = consulta+";"
         return consulta
     #Traduce las consultas con sentencias que tienen selección y diferencia
     def reemplazar_minus(self, consulta):
@@ -27,5 +26,5 @@ class Seleccion:
         primera_sentencia = self.reemplazar_se(primera_sentencia)
         primera_sentencia = primera_sentencia.replace(";","")
         segunda_sentencia = self.reemplazar_se(segunda_sentencia)
-        #print(primera_sentencia + " MINUS " + segunda_sentencia)
+        print(primera_sentencia + " MINUS " + segunda_sentencia)
         return (primera_sentencia + " MINUS " + segunda_sentencia)

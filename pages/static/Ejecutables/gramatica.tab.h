@@ -54,11 +54,12 @@ extern int yydebug;
     ENTERO = 260,
     SIGNO = 261,
     COMA = 262,
-    PAR_IZQ = 263,
-    PAR_DER = 264,
-    IDENTIFICADOR = 265,
-    CONJUNCION = 266,
-    DISYUNCION = 267
+    PUNTO = 263,
+    PAR_IZQ = 264,
+    PAR_DER = 265,
+    IDENTIFICADOR = 266,
+    CONJUNCION = 267,
+    DISYUNCION = 268
   };
 #endif
 
@@ -72,7 +73,7 @@ union YYSTYPE
 	float deci;
   char *texto;
 
-#line 76 "gramatica.tab.h"
+#line 77 "gramatica.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

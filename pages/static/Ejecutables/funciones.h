@@ -25,6 +25,6 @@ int Recibir_cadena_analizador(char *string)
   else{
     fwrite(oracion,n,1,consulta);
     fclose(consulta);
-    printf("%d",numero);
+    printf("\n%d",numero);
   }
 }

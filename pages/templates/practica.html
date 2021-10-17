@@ -32,7 +32,7 @@
         <main class="main">
             <a class="regreso-menu" href="../index">← Regresar al Menú Principal</a>
             <h2 class="centrar-texto">Práctica</h2>
-            
+
             <div class="herramienta-descripcion">
                 <h3 class="centrar-texto">¿Cómo usar esta herramienta?</h3>
                 <p>Puedes cargar tu propia base de datos relacional o elegir uno de los ejemplos que ya tenemos precargados. Para revisar la sintáxis a seguir en caso de subir tu propio archivo, haz click <a class="enlace-texto" href="../sintaxis">aqui</a>. Para revisar la estructura de los ejemplos precargados, haz click <a class="enlace-texto" href="../ejemplos">aqui</a>.</p>
@@ -51,7 +51,6 @@
                     </select>
                 </form>
             </div>
-
             <div class="herramienta-botones">
                 <button class="herramienta-botones__boton" id="seleccion">σ</button>
                 <button class="herramienta-botones__boton" id="proyeccion">π</button>
@@ -61,12 +60,14 @@
                 <button class="herramienta-botones__boton" id="interseccion">∩</button>
                 <button class="herramienta-botones__boton" id="diferencia">-</button>
             </div>
-
+            <form action='/practica/consulta/' method='POST'>
+              {% csrf_token %}
             <div class="herramienta-expresion">
                 <p>Escribe tu expresión de álgebra relacional</p>
-                <textarea class="herramienta-expresion__input"></textarea>
-                <button class="enviar-consulta">Enviar Consulta</button>
+                <input id='consulta' class="herramienta-expresion__input" type='text' name="tu_consulta">
+                <button type="submit" formtarget="_blank" class="enviar-consulta">Enviar consulta</button>
             </div>
+          </form>
         </main>
     </div>
 

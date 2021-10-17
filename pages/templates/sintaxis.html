@@ -5,21 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <title>Sintáxis</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <header class="header">
         <!-- BARRA DE NAVEGACION -->
         <div class="contenedor">
             <div class="barra">
-                <!-- LOGO -->
                 <a class="logo" href="../index">
                     <h1 class="logo__nombre no-margin centrar-texto">Calculadora<span class="logo__bold"> Relacional</span></h1>
                 </a>
-                <!-- ENLACES -->
                 <nav class="navegacion">
                     <a href="../faq" class="navegacion__enlace">FAQ</a>
                     <a href="../contacto" class="navegacion__enlace">Contacto</a>
@@ -31,26 +30,10 @@
 
     <div class="contenedor contenido-principal">
         <main class="main">
-            <h2 class="centrar-texto">¿Qué puedes hacer?</h2>
+            <a class="regreso-menu" href="../practica">← Regresar a Práctica</a>
+            <h2 class="centrar-texto">Sintáxis a Seguir</h2>
             
-            <div class="opciones-acciones">
-                <!-- CUADRO 1 -->
-                <div class="opciones__cuadro">
-                    <a class="opciones__cuadro--enlace" href="../teoria">
-                        <h3>Teoría</h3>
-                        <p>Revisa las bases teóricas sobre las diferentes operaciones de álgebra relacional.</p>
-                        <img src="{% static 'img/book.svg' %}" alt="icono teoría">
-                    </a>
-                </div>
-                <!-- CUADRO 2 -->
-                <div class="opciones__cuadro">
-                    <a class="opciones__cuadro--enlace" href="../practica">
-                        <h3>Práctica</h3>
-                        <p>Utiliza nuestra herramienta para ejecutar sentencias de álgebra relacional.</p>
-                        <img src="{% static 'img/desktop.svg' %}" alt="icono teoría">
-                    </a>
-                </div>
-            </div>
+            
         </main>
     </div>
 
@@ -59,6 +42,6 @@
             <p>Instituto Politécnico Nacional</p>
         </div>
     </footer>
-
+    
 </body>
 </html>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teoría - Selección</title>
+    <title>Teoria - Diferencia</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -31,13 +31,12 @@
     <div class="contenedor contenido-principal">
         <main class="main">
             <a class="regreso-menu" href="../../teoria">← Regresar al Menú de Teoría</a>
-            <h2 class="centrar-texto">Selección</h2>
-            <p class="icono-operacion centrar-texto">σ</p>
-            <p class="descripcion-teoria">La operación de selección selecciona tuplas que cumplen con una condición dada. El símbolo que representa a la selección es sigma minúscula. La condición se representa como un subíndice de sigma. La relación sobre la que se opera se representa entre paréntesis a continuación de sigma. La sintaxis correcta de una selección sobre una relación sería la siguiente:</p>
-            <p>$$ \sigma_{(Condici\acute{o}n)}(Relaci\acute{o}n) $$</p>
-            <p>Las condiciones que se pueden presentar usan los operadores de comparación como: $$=, \neq, \leq, <, > o \geq$$Además, se puede hacer uso de las operaciones lógicas como conjunción, disyunción y negación.</p>
+            <h2 class="centrar-texto">Diferencia</h2>
+            <p class="icono-operacion centrar-texto">-</p>
+            <p class="descripcion-teoria">Al igual que la operación de unión, la operación de diferencia es binaria y opera sobre dos relaciones. Se denota por el símbolo de sustracción (-). Se obtiene como resultado una relación que contiene todas las tuplas que aparecen en la primera relación, pero no en la segunda de las dos relaciones especificadas. La sintaxis correcta de la diferencia es la siguiente:</p>
+            <p>$$Relaci\acute{o}n1 - Relaci\acute{o}n2$$</p>
+            <p>Como en la operación de unión, en la operación de diferencia las relaciones también deben de ser compatibles.</p>
             <h3 class="centrar-texto">Ejemplo</h3>
-            <p></p>
         </main>
     </div>
 
@@ -46,7 +45,7 @@
             <p>Instituto Politécnico Nacional</p>
         </div>
     </footer>
-
+    
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </body>

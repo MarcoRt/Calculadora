@@ -153,6 +153,7 @@ img{
     background-color: var(--gris);
     border-radius: 1rem;
     box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+    font-size: 2rem;
 }
 
 .opciones__cuadro:hover{
@@ -324,7 +325,20 @@ img{
 .herramienta-expresion__input{
     width: 70rem;
     height: 7rem;
-    font-size: 3.5rem;
+    font-size: 2rem;
     text-align: center;
     padding: 1rem 0;
+}
+
+.enlace-texto{
+    color: var(--primario);
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+
+
+td{
+    border: 1px solid black;
+    padding: 0.5rem;
 }

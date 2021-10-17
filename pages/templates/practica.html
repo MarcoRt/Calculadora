@@ -35,11 +35,12 @@
 
             <div class="herramienta-descripcion">
                 <h3 class="centrar-texto">¿Cómo usar esta herramienta?</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam non eum, velit fugit nobis beatae nisi soluta voluptates pariatur itaque, perspiciatis ducimus quaerat autem illo magni temporibus quas asperiores! Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias ipsam, accusantium magnam dicta ipsa eaque, non maxime exercitationem ullam repellendus cupiditate sunt cumque vero labore laudantium magni deserunt. Nostrum, minus!</p>
+                <p>Puedes cargar tu propia base de datos relacional o elegir uno de los ejemplos que ya tenemos precargados. Para revisar la sintáxis a seguir en caso de subir tu propio archivo, haz click <a class="enlace-texto" href="../sintaxis">aqui</a>. Para revisar la estructura de los ejemplos precargados, haz click <a class="enlace-texto" href="../ejemplos">aqui</a>.</p>
+                <p>Escribe tu expresión de álgebra relacional, existe un botón para cada una de las operaciones que la herramienta soporta. Finalmente envía tu consulta y el resultado será una tabla con los registros que cumplan con tu expresión.</p>
             </div>
 
             <div class="seleccion-archivo">
-                <h3 class="centrar-texto">Arrastra y suelta tu archivo SQL hasta aquí</h3>
+                <h3 class="centrar-texto">Carga tu propia base de datos</h3>
                 <button class="seleccion-archivo__boton">Cargar Archivo</button>
                 <h4 class="centrar-texto">O escoge un archivo precargado</h4>
                 <form>
@@ -47,7 +48,6 @@
                         <option value="" selected disabled>Selecciona tu Archivo</option>
                         <option value="archivo1">Archivo1</option>
                         <option value="archivo2">Archivo2</option>
-                        <option value="archivo3">Archivo3</option>
                     </select>
                 </form>
             </div>
@@ -81,6 +81,5 @@
     <script src="{% static 'js/scripts.js' %}"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
 </body>
 </html>

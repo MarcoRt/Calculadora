@@ -26,4 +26,6 @@ urlpatterns = [
     path('teoria/reunion/',ReunionPageView.as_view(),name='teoria-reunion'),
     path('practica/',PracticaPageView.as_view(),name='practica'),
     path('practica/consulta/',views.ConsultaPageView,name='consulta'),
+    path('ejemplos/',EjemplosPageView.as_view(),name='ejemplos'),
+    path('sintaxis/',SintaxisPageView.as_view(),name='sintaxis'),
 ]

@@ -1,4 +1,5 @@
 from os import system
+import os.path, time
 from pathlib import Path
 from django.shortcuts import render
 from django.views.generic import TemplateView
@@ -6,12 +7,26 @@ from django.http import HttpResponseNotFound
 from datetime import datetime
 from time import sleep
 import subprocess
+from django.core.files.storage import FileSystemStorage
+
 # Create your views here.
+def getNombreDeArchivos():
+    path = str(Path().absolute())
+    path = path + "/pages/static/media"
+    system("ls %s > %s/lista_de_archivos " % (path,path))
+    lista_de_archivos = open("%s/lista_de_archivos" % path, "r")
+    lista_de_archivos = lista_de_archivos.readlines()
+    lista_de_archivos_para_mostrar = []
+    for archivo in lista_de_archivos:
+        lista_de_archivos_para_mostrar.append(archivo.replace(".sql\n",""))
+    aux = lista_de_archivos_para_mostrar.index("lista_de_archivos\n")
+    lista_de_archivos_para_mostrar.pop(aux)
+    return lista_de_archivos_para_mostrar
+
 def getNombreDeColumnas(cadena):
     aux = cadena.find("(")
     cadena = cadena[aux+1:]
     cadena = cadena.replace(")","")
-    print(cadena)
     if(chr(88) in cadena):
         cadena = cadena.split(chr(88))
         columnas = []
@@ -20,8 +35,22 @@ def getNombreDeColumnas(cadena):
         cadena = columnas
     else:
         cadena = Realizar_consultas("select COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % cadena)
-    return cadena
+    resultado = []
+    for i in cadena:
+        for y in i:
+            resultado.append(y)
+    return resultado
+
 def getNombreDeColumna(cadena):
+    if(cadena.count("(") > 1):
+        aux = cadena.index("(")
+        cadena_lista = list(cadena)
+        cadena_lista[aux] = ""
+        cadena = "".join(cadena_lista)
+        if(cadena[-1] == ")"):
+            cadena_lista = list(cadena)
+            cadena_lista[-1] = ""
+            cadena = "".join(cadena_lista)
     if(chr(960) in cadena):
         inicio = cadena.find(chr(960))
         final = cadena.find("(")
@@ -44,11 +73,10 @@ def ejecutarAnalizador(cadena):
     archivo = open(path+'/pages/static/Ejecutables/Archivos_consulta/%s' % nombre_archivo, "r")
     consulta_sql = archivo.readline()
     archivo.close()
-    print(consulta_sql)
-    resultados = Realizar_consultas(consulta_sql)
-    #print(resultados)
-    if(ejecucion_correcta == 0):
-        system("rm "+path+"/pages/static/Ejecutables/Archivos_consulta/%s" % nombre_archivo)
+    resultados = []
+    if consulta_sql != 'null':
+        resultados = Realizar_consultas(consulta_sql)
+    system("rm "+path+"/pages/static/Ejecutables/Archivos_consulta/%s" % nombre_archivo)
     return resultados
 
 def getConsultaParaAnalizador(cadena):
@@ -85,13 +113,40 @@ def Realizar_consultas(cadena):
         resultados.append(list(row))
         row = cursor.fetchone()
     return resultados
+def SubirArchivoPageView(request):
+    context = {}
+    uploaded_file = request.FILES['document']
+    if(uploaded_file.size > 2621440 or uploaded_file.content_type != "application/sql"):
+        context["success"] = False
+        context["successmsg"] = "Error al subir archivo."
+    else:
+        context["success"] = True
+        context["successmsg"] = "El archivo se subió correctamente."
+        fs = FileSystemStorage()
+        fs.save(uploaded_file.name, uploaded_file)
+    context["lista_de_archivos"] = getNombreDeArchivos()
+    return render(request,'practica.html',context)
 
 def ConsultaPageView(request):
     context = {}
-    if(request.POST):
+    columnas = []
+    if request.method == 'POST':
         aux = request.POST['tu_consulta']
-        context['columnas'] = getNombreDeColumna(aux)
-        context['tu_consulta'] = getConsultaParaAnalizador(aux)
+        columnas = getNombreDeColumna(aux)
+        if(len(columnas) > 1):
+            context['columnas'] = columnas
+            context['columna'] = ""
+            context["consulta_vacia"] = ""
+        else:
+            context['columna'] = columnas
+            context['columnas'] = ""
+            context["consulta_vacia"] = ""
+        tu_consulta = getConsultaParaAnalizador(aux)
+        if(len(tu_consulta) == 0):
+            context['tu_consulta'] = ""
+            context["consulta_vacia"] = "Error en la consulta."
+        else:
+            context['tu_consulta'] = tu_consulta
         return render(request,'consulta.html',context)
     else:
         return HttpResponseNotFound('<h1>Page not found</h1>')
@@ -126,7 +181,7 @@ class ReunionPageView(TemplateView):
     template_name = "teoria-reunion.html"
 
 class DiferenciaPageView(TemplateView):
-    template_name = "teoria-diferencia.html"    
+    template_name = "teoria-diferencia.html"
 
 class PracticaPageView(TemplateView):
     template_name = "practica.html"

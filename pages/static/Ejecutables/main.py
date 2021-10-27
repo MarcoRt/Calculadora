@@ -33,6 +33,7 @@ if __name__ == "__main__":
     #print("Valor original: ",consulta)
     pro = Proyeccion.Proyeccion()
     sel = Seleccion.Seleccion()
+    consulta_sql = "null"
     if("PI" in consulta and "SE" not in consulta and "-" not in consulta):
         consulta_sql = pro.reemplazar_pi(consulta)
     if("PI" in consulta and "SE" not in consulta and "-" in consulta):

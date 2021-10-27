@@ -9,6 +9,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -16,13 +19,13 @@
         <!-- BARRA DE NAVEGACION -->
         <div class="contenedor">
             <div class="barra">
-                <a class="logo" href="../index">
+                <a class="logo" href="../../index">
                     <h1 class="logo__nombre no-margin centrar-texto">Calculadora<span class="logo__bold"> Relacional</span></h1>
                 </a>
                 <nav class="navegacion">
-                    <a href="../faq" class="navegacion__enlace">FAQ</a>
-                    <a href="../contacto" class="navegacion__enlace">Contacto</a>
-                    <a href="../acerca" class="navegacion__enlace">Acerca de</a>
+                    <a href="../../faq" class="navegacion__enlace">FAQ</a>
+                    <a href="../../contacto" class="navegacion__enlace">Contacto</a>
+                    <a href="../../acerca" class="navegacion__enlace">Acerca de</a>
                 </nav>
             </div>
         </div>
@@ -30,9 +33,20 @@
 
     <div class="contenedor contenido-principal">
         <main class="main">
-            <a class="regreso-menu" href="../index">← Regresar al Menú Principal</a>
+            <a class="regreso-menu" href="../../index">← Regresar al Menú Principal</a>
             <h2 class="centrar-texto">Práctica</h2>
-
+            {% if success == True %}
+            <ul class="alert alert-success alert-dismissible">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong>{{ successmsg }}</strong>
+            </ul>
+            {% endif %}
+            {% if success == False %}
+            <ul class="alert alert-danger alert-dismissible">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong>{{ successmsg }}</strong>
+            </ul>
+            {% endif %}
             <div class="herramienta-descripcion">
                 <h3 class="centrar-texto">¿Cómo usar esta herramienta?</h3>
                 <p>Puedes cargar tu propia base de datos relacional o elegir uno de los ejemplos que ya tenemos precargados. Para revisar la sintáxis a seguir en caso de subir tu propio archivo, haz click <a class="enlace-texto" href="../sintaxis">aqui</a>. Para revisar la estructura de los ejemplos precargados, haz click <a class="enlace-texto" href="../ejemplos">aqui</a>.</p>
@@ -41,13 +55,18 @@
 
             <div class="seleccion-archivo">
                 <h3 class="centrar-texto">Carga tu propia base de datos</h3>
-                <button class="seleccion-archivo__boton">Cargar Archivo</button>
+                <form action='/practica/subir-archivo/' method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input type="file" name="document">
+                <button type = "submit">Cargar Archivo</button>
+              </form>
                 <h4 class="centrar-texto">O escoge un archivo precargado</h4>
                 <form>
                     <select class="seleccion-archivo__opciones">
                         <option value="" selected disabled>Selecciona tu Archivo</option>
-                        <option value="archivo1">Archivo1</option>
-                        <option value="archivo2">Archivo2</option>
+                        {% for archivo in lista_de_archivos %}
+                        <option value="{{archivo}}">{{archivo}}</option>
+                        {% endfor %}
                     </select>
                 </form>
             </div>

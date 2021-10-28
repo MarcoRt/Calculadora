@@ -52,18 +52,19 @@
                 </form>
             </div>
             <div class="herramienta-botones">
-                <button class="herramienta-botones__boton" id="seleccion">σ</button>
-                <button class="herramienta-botones__boton" id="proyeccion">π</button>
-                <button class="herramienta-botones__boton" id="reunion">⋈</button>
-                <button class="herramienta-botones__boton" id="producto">X</button>
-                <button class="herramienta-botones__boton" id="union">∪</button>
-                <button class="herramienta-botones__boton" id="interseccion">∩</button>
-                <button class="herramienta-botones__boton" id="diferencia">-</button>
+                <button class="herramienta-botones__boton" id="seleccion" title="Seleccion">σ</button>
+                <button class="herramienta-botones__boton" id="proyeccion" title="Proyeccion">π</button>
+                <button class="herramienta-botones__boton" id="producto" title="Producto Cartesiano">X</button>
+                <button class="herramienta-botones__boton" id="union" title="Union">∪</button>
+                <!-- <button class="herramienta-botones__boton" id="interseccion" title="Interseccion">∩</button> -->
+                <button class="herramienta-botones__boton" id="diferencia" title="Diferencia">-</button>
             </div>
             <form action='/practica/consulta/' method='POST'>
               {% csrf_token %}
             <div class="herramienta-expresion">
                 <p>Escribe tu expresión de álgebra relacional</p>
+                <textarea class="herramienta-expresion__input" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
+                <button class="borrar-consulta" id="borrar-consulta">Borrar Consulta</button>
                 <input id='consulta' class="herramienta-expresion__input" type='text' name="tu_consulta">
                 <button type="submit" formtarget="_blank" class="enviar-consulta">Enviar consulta</button>
             </div>

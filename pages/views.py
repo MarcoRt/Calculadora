@@ -6,11 +6,21 @@ from django.views.generic import TemplateView
 from django.http import HttpResponseNotFound
 from datetime import datetime
 from time import sleep
-import subprocess
+from string import ascii_letters, digits
+#import subprocess
+from random import choice
 from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
-def getNombreDeArchivos():
+def getClaveDeUsuario():
+    letters = digits
+    clave_usuario = ''.join(choice(letters) for i in range(5))
+    letters = ascii_letters
+    clave_usuario += ''.join(choice(letters) for i in range(5))
+    clave_usuario += "@"
+    return clave_usuario
+
+def getNombreDeArchivos(clave_usuario):
     path = str(Path().absolute())
     path = path + "/pages/static/media"
     system("ls %s > %s/lista_de_archivos " % (path,path))
@@ -18,9 +28,9 @@ def getNombreDeArchivos():
     lista_de_archivos = lista_de_archivos.readlines()
     lista_de_archivos_para_mostrar = []
     for archivo in lista_de_archivos:
-        lista_de_archivos_para_mostrar.append(archivo.replace(".sql\n",""))
-    aux = lista_de_archivos_para_mostrar.index("lista_de_archivos\n")
-    lista_de_archivos_para_mostrar.pop(aux)
+        if clave_usuario in archivo:
+            aux = archivo.replace(clave_usuario,"")
+            lista_de_archivos_para_mostrar.append(aux.replace(".sql\n",""))
     return lista_de_archivos_para_mostrar
 
 def getNombreDeColumnas(cadena):
@@ -115,6 +125,7 @@ def Realizar_consultas(cadena):
     return resultados
 def SubirArchivoPageView(request):
     context = {}
+    clave_usuario = getClaveDeUsuario()
     uploaded_file = request.FILES['document']
     if(uploaded_file.size > 2621440 or uploaded_file.content_type != "application/sql"):
         context["success"] = False
@@ -123,8 +134,8 @@ def SubirArchivoPageView(request):
         context["success"] = True
         context["successmsg"] = "El archivo se subió correctamente."
         fs = FileSystemStorage()
-        fs.save(uploaded_file.name, uploaded_file)
-    context["lista_de_archivos"] = getNombreDeArchivos()
+        fs.save(clave_usuario+uploaded_file.name, uploaded_file)
+    context["lista_de_archivos"] = getNombreDeArchivos(clave_usuario)
     return render(request,'practica.html',context)
 
 def ConsultaPageView(request):
@@ -151,6 +162,9 @@ def ConsultaPageView(request):
     else:
         return HttpResponseNotFound('<h1>Page not found</h1>')
 class HomePageView(TemplateView):
+    def ejemplo(request):
+        if request.method == "GET":
+            print(dir(request.session))
     template_name = 'index.html'
 
 class FAQPageView(TemplateView):

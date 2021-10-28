@@ -1,0 +1,28 @@
+CREATE DATABASE trabajo;
+
+CREATE TABLE empleado (
+    EmpleadoID int NOT NULL PRIMARY KEY,
+    FechaNacimiento date NOT NULL,
+    Nombre  varchar(50) NOT NULL,
+    FechaContratacion date NOT NULL
+);
+
+CREATE TABLE Departamento (
+    DepartamentoID int NOT NULL PRIMARY KEY,
+    Nombre varchar(40) NOT NULL UNIQUE KEY
+);
+
+CREATE TABLE dept_emp (
+    EmpleadoID int NOT NULL,
+    DepartamentoID int NOT NULL,
+    FOREIGN KEY (EmpleadoID)  REFERENCES empleado   (EmpleadoID),
+    FOREIGN KEY (DepartamentoID) REFERENCES Departamento (DepartamentoID),
+    PRIMARY KEY (EmpleadoID)
+);
+
+CREATE TABLE SalarioEmpleado (
+    EmpleadoID int NOT NULL,
+    Salario int NOT NULL,
+    FOREIGN KEY (EmpleadoID) REFERENCES empleado (EmpleadoID),
+    PRIMARY KEY (EmpleadoID)
+);

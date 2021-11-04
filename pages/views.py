@@ -7,11 +7,93 @@ from django.http import HttpResponseNotFound
 from datetime import datetime
 from time import sleep
 from string import ascii_letters, digits
-#import subprocess
 from random import choice
 from django.core.files.storage import FileSystemStorage
-
+from django.db import connections, transaction, utils
 # Create your views here.
+def getNombreDeLaBase():
+    bases = ["mytest1","mytest2","mytest3","mytest4",
+    "mytest5","mytest6","mytest7","mytest8","mytest9","mytest10",
+    "mytest11","mytest12","mytest13","mytest14","mytest15","mytest16",
+    "mytest17","mytest18","mytest19","mytest20","mytest21","mytest22",
+    "mytest23","mytest24","mytest25","mytest26","mytest27","mytest28",
+    "mytest29","mytest30","mytest31","mytest32","mytest33","mytest34",
+    "mytest35","mytest36","mytest37","mytest38","mytest39","mytest40"]
+    tiempos = {}
+    for base in bases:
+        cursor = connections[base].cursor()
+        try:
+            cursor.execute("select MAX(ts) from timeDate;")
+            row = cursor.fetchone()
+            aux = str(row[0])
+            aux = aux.replace("datetime.datetime()","")
+            aux = aux.replace(":","")
+            aux = aux.replace("-","")
+            aux = aux.replace(" ","")
+            tiempos[aux] = base
+            #print(row)
+            row = ""
+        except utils.ProgrammingError:
+            pass
+    aux = sorted(tiempos)
+    nombre_bd = tiempos[aux[0]]
+    LimpiarBase(nombre_bd)
+    print("Soy el nombre de la base: ",nombre_bd)
+    return nombre_bd
+
+def ejecutarArchivoSql(NombreDeLaBase,NombreDelArchivo):
+    cursor = connections[NombreDeLaBase].cursor()
+    path = str(Path().absolute())
+    path = path + "/pages/static/media/"
+    file = open(path+"%s" % NombreDelArchivo,"r")
+    script = file.read()
+    #print(script)
+    #script = "create table hola2(lu int);"
+    now = datetime.now()
+    try:
+        cursor.execute("insert into timeDate values(1,'%s');" % (now,))
+        cursor.execute("%s" % script)
+    except utils.ProgrammingError:
+        pass
+    #cursor.execute("%s" % script)
+    #Realizar_consultas(script)
+def getEstadoDeLaBase(NombreDeLaBase):
+    cursor = connections[NombreDeLaBase].cursor()
+    cursor.execute("show tables;")
+    row = cursor.fetchone()
+    resultado = []
+    while row is not None:
+        #print(row)
+        resultado.append(list(row))
+        row = cursor.fetchone()
+    if len(resultado) > 0:
+        return False
+    else:
+        return True
+        '''aux = []
+        for i in resultado:
+            for y in i:
+                aux.append(y)
+        LimpiarBase(NombreDeLaBase,aux)'''
+
+def LimpiarBase(NombreDeLaBase):
+    cursor = connections[NombreDeLaBase].cursor()
+    cursor.execute("show tables;")
+    row = cursor.fetchone()
+    Resultados_Consulta = []
+    while row is not None:
+        #print(row)
+        Resultados_Consulta.append(list(row))
+        row = cursor.fetchone()
+    print(Resultados_Consulta)
+    ListaTablas = []
+    for i in Resultados_Consulta:
+        for y in i:
+            ListaTablas.append(y)
+    ListaTablas.pop(ListaTablas.index("timeDate"))
+    for tabla in ListaTablas:
+        cursor.execute("drop table %s;" % tabla)
+
 def getClaveDeUsuario():
     letters = digits
     clave_usuario = ''.join(choice(letters) for i in range(5))
@@ -113,16 +195,25 @@ def getConsultaParaAnalizador(cadena):
     return ejecutarAnalizador(cadena)
 
 def Realizar_consultas(cadena):
-    from django.db import connection, transaction
+    cursor = connections['mytest2'].cursor()
+    script = "create table hola2 (lu int);"
+    cursor.execute("%s" % script)
+    resultados = []
+    '''from django.db import connection, transaction
     cursor = connection.cursor()
     cursor.execute("%s" % cadena)
     row = cursor.fetchone()
     resultados = []
+    #getEstadoDeLaBase("mytest")
     while row is not None:
         #print(row)
         resultados.append(list(row))
-        row = cursor.fetchone()
+        row = cursor.fetchone()'''
     return resultados
+def SeleccionarArchivoView(request):
+    context= {}
+    return render(request,'practica.html')
+
 def SubirArchivoPageView(request):
     context = {}
     clave_usuario = getClaveDeUsuario()
@@ -134,15 +225,24 @@ def SubirArchivoPageView(request):
         context["success"] = True
         context["successmsg"] = "El archivo se subió correctamente."
         fs = FileSystemStorage()
-        fs.save(clave_usuario+uploaded_file.name, uploaded_file)
+        nombre_archivo = clave_usuario+uploaded_file.name
+        fs.save(nombre_archivo, uploaded_file)
+        #getnombredelabase getnombredelarchivo
+        nombre_db = ""
+        nombre_db = getNombreDeLaBase()
+        #ejecutarArchivoSql(nombre_bd,nombre_archivo)
+        print("Aqui no soy el nombre de la base: ",nombre_db)
+        ejecutarArchivoSql(nombre_db,nombre_archivo)
     context["lista_de_archivos"] = getNombreDeArchivos(clave_usuario)
     return render(request,'practica.html',context)
 
 def ConsultaPageView(request):
     context = {}
     columnas = []
+    #Realizar_consultas("hola")
+
     if request.method == 'POST':
-        aux = request.POST['tu_consulta']
+        '''aux = request.POST['tu_consulta']
         columnas = getNombreDeColumna(aux)
         if(len(columnas) > 1):
             context['columnas'] = columnas
@@ -158,13 +258,13 @@ def ConsultaPageView(request):
             context["consulta_vacia"] = "Error en la consulta."
         else:
             context['tu_consulta'] = tu_consulta
+        #ejecutarArchivoSql("mytest1","39989AqXKX@ejemplo_3.sql")'''
+        #Cambiar aquí donde recibe el nombre de la base
         return render(request,'consulta.html',context)
     else:
         return HttpResponseNotFound('<h1>Page not found</h1>')
+
 class HomePageView(TemplateView):
-    def ejemplo(request):
-        if request.method == "GET":
-            print(dir(request.session))
     template_name = 'index.html'
 
 class FAQPageView(TemplateView):

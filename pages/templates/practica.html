@@ -61,13 +61,15 @@
                 <button type = "submit">Cargar Archivo</button>
               </form>
                 <h4 class="centrar-texto">O escoge un archivo precargado</h4>
-                <form>
-                    <select class="seleccion-archivo__opciones">
-                        <option value="" selected disabled>Selecciona tu Archivo</option>
-                        {% for archivo in lista_de_archivos %}
+                <form class="seleccion-archivo__boton" action="practica/#" method="POST">
+                    <select >
+                      <option value="{{archivo}}">Escuela</option>
+                      <option value="{{archivo}}">La otra</option>
+                      {% for archivo in lista_de_archivos %}
                         <option value="{{archivo}}">{{archivo}}</option>
-                        {% endfor %}
+                      {% endfor %}
                     </select>
+                    <input type="submit" value="Select" name="#">
                 </form>
             </div>
             <div class="herramienta-botones">

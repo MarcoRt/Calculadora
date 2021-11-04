@@ -14,7 +14,8 @@ from .views import (HomePageView,
     EjemplosPageView,
     SintaxisPageView,
     DiferenciaPageView,
-    SubirArchivoPageView
+    SubirArchivoPageView,
+    SeleccionarArchivoView
     )
 urlpatterns = [
     path('faq/',FAQPageView.as_view(),name='faq'),
@@ -32,6 +33,7 @@ urlpatterns = [
     path('practica/',PracticaPageView.as_view(),name='practica'),
     path('practica/consulta/',views.ConsultaPageView,name='consulta'),
     path('practica/subir-archivo/',views.SubirArchivoPageView,name='subir-archivo'),
+    path('practica/#',views.SeleccionarArchivoView,name='seleccionar-archivo'),
     path('ejemplos/',EjemplosPageView.as_view(),name='ejemplos'),
     path('sintaxis/',SintaxisPageView.as_view(),name='sintaxis'),
 ]

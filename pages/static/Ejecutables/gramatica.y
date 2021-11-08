@@ -36,6 +36,7 @@ consulta:     exp	{ $$ = $1;}
 	| IDENTIFICADOR PAR_IZQ exp tabla PAR_DER {$$ = strcat($1,strcat($3,$4));}
 	| IDENTIFICADOR exp tabla {$$ = strcat($1,strcat($2,$3));}
 	| IDENTIFICADOR PAR_IZQ exp PAR_IZQ consulta PAR_DER PAR_DER {$$ = strcat($1,strcat($3,strcat($4,strcat($5,$6))));}
+	| IDENTIFICADOR PAR_IZQ exp PAR_DER PAR_IZQ consulta PAR_DER {$$ = strcat($1,strcat($3,strcat($5,strcat($6,$7))));}
 	| IDENTIFICADOR exp PAR_IZQ consulta PAR_DER {$$ = strcat($1,strcat($2,strcat($3,strcat($4,$5))));}
 	| PAR_IZQ consulta SIGNO consulta PAR_DER {$$ = strcat($2,strcat($3,$4));}
 	| consulta SIGNO consulta {$$ = strcat($1,strcat($2,$3));}

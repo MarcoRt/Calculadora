@@ -28,3 +28,20 @@ class Seleccion:
         segunda_sentencia = self.reemplazar_se(segunda_sentencia)
         print(primera_sentencia + " MINUS " + segunda_sentencia)
         return (primera_sentencia + " MINUS " + segunda_sentencia)
+    def reemplazar_union_interseccion(self, consulta):
+        if "UNION" in consulta:
+            aux = consulta.index("UNION")
+            primera_sentencia = consulta[:aux]
+            segunda_sentencia = consulta[aux+5:]
+            primera_sentencia = self.reemplazar_se(primera_sentencia)
+            primera_sentencia = primera_sentencia.replace(";","")
+            segunda_sentencia = self.reemplazar_se(segunda_sentencia)
+            return primera_sentencia + " UNION " + segunda_sentencia
+        else:
+            aux = consulta.index("INTER")
+            primera_sentencia = consulta[:aux]
+            segunda_sentencia = consulta[aux+5:]
+            primera_sentencia = self.reemplazar_se(primera_sentencia)
+            primera_sentencia = primera_sentencia.replace(";","")
+            segunda_sentencia = self.reemplazar_se(segunda_sentencia)
+            return primera_sentencia + " INTERSECT " + segunda_sentencia

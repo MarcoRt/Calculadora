@@ -31,14 +31,12 @@ def getNombreDeLaBase():
             aux = aux.replace("-","")
             aux = aux.replace(" ","")
             tiempos[aux] = base
-            #print(row)
             row = ""
         except utils.ProgrammingError:
             pass
     aux = sorted(tiempos)
     nombre_bd = tiempos[aux[0]]
     LimpiarBase(nombre_bd)
-    print("Soy el nombre de la base: ",nombre_bd)
     return nombre_bd
 
 def ejecutarArchivoSql(NombreDeLaBase,NombreDelArchivo):
@@ -47,34 +45,24 @@ def ejecutarArchivoSql(NombreDeLaBase,NombreDelArchivo):
     path = path + "/pages/static/media/"
     file = open(path+"%s" % NombreDelArchivo,"r")
     script = file.read()
-    #print(script)
-    #script = "create table hola2(lu int);"
     now = datetime.now()
     try:
         cursor.execute("insert into timeDate values(1,'%s');" % (now,))
         cursor.execute("%s" % script)
     except utils.ProgrammingError:
         pass
-    #cursor.execute("%s" % script)
-    #Realizar_consultas(script)
 def getEstadoDeLaBase(NombreDeLaBase):
     cursor = connections[NombreDeLaBase].cursor()
     cursor.execute("show tables;")
     row = cursor.fetchone()
     resultado = []
     while row is not None:
-        #print(row)
         resultado.append(list(row))
         row = cursor.fetchone()
     if len(resultado) > 0:
         return False
     else:
         return True
-        '''aux = []
-        for i in resultado:
-            for y in i:
-                aux.append(y)
-        LimpiarBase(NombreDeLaBase,aux)'''
 
 def LimpiarBase(NombreDeLaBase):
     cursor = connections[NombreDeLaBase].cursor()
@@ -82,10 +70,8 @@ def LimpiarBase(NombreDeLaBase):
     row = cursor.fetchone()
     Resultados_Consulta = []
     while row is not None:
-        #print(row)
         Resultados_Consulta.append(list(row))
         row = cursor.fetchone()
-    print(Resultados_Consulta)
     ListaTablas = []
     for i in Resultados_Consulta:
         for y in i:
@@ -113,9 +99,11 @@ def getNombreDeArchivos(clave_usuario):
         if clave_usuario in archivo:
             aux = archivo.replace(clave_usuario,"")
             lista_de_archivos_para_mostrar.append(aux.replace(".sql\n",""))
+    lista_de_archivos_para_mostrar.insert(0,"Otra")
+    lista_de_archivos_para_mostrar.insert(0,"Escuela")
     return lista_de_archivos_para_mostrar
 
-def getNombreDeColumnas(cadena):
+def getNombreDeColumnas(cadena, nombre_bd):
     aux = cadena.find("(")
     cadena = cadena[aux+1:]
     cadena = cadena.replace(")","")
@@ -123,17 +111,23 @@ def getNombreDeColumnas(cadena):
         cadena = cadena.split(chr(88))
         columnas = []
         for i in cadena:
-            columnas+= Realizar_consultas("select COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % i)
+            try:
+                columnas+= Realizar_consultas("select COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % i,nombre_bd)
+            except utils.ProgrammingError:
+                pass
         cadena = columnas
     else:
-        cadena = Realizar_consultas("select COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % cadena)
+        try:
+            cadena = Realizar_consultas("select COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % cadena,nombre_bd)
+        except utils.ProgrammingError:
+            pass
     resultado = []
     for i in cadena:
         for y in i:
             resultado.append(y)
     return resultado
 
-def getNombreDeColumna(cadena):
+def getNombreDeColumna(cadena, nombre_bd):
     if(cadena.count("(") > 1):
         aux = cadena.index("(")
         cadena_lista = list(cadena)
@@ -148,14 +142,14 @@ def getNombreDeColumna(cadena):
         final = cadena.find("(")
         cadena = cadena[inicio+1:final]
         cadena = cadena.replace(" ","")
+        cadena = cadena.replace(")","")
         cadena = list(cadena.split(","))
         return cadena
     else:
-        return getNombreDeColumnas(cadena)
+        return getNombreDeColumnas(cadena,nombre_bd)
 
-def ejecutarAnalizador(cadena):
+def ejecutarAnalizador(cadena, nombre_bd):
     path = str(Path().absolute())
-    #print("Ejecutar analizador " + cadena)
     nombre_archivo = str(datetime.now())
     nombre_archivo = nombre_archivo.replace(' ','')
     archivo = open(path+'/pages/static/Ejecutables/Archivos_consulta/%s' % nombre_archivo, "w")
@@ -167,11 +161,11 @@ def ejecutarAnalizador(cadena):
     archivo.close()
     resultados = []
     if consulta_sql != 'null':
-        resultados = Realizar_consultas(consulta_sql)
+        resultados = Realizar_consultas(consulta_sql,nombre_bd)
     system("rm "+path+"/pages/static/Ejecutables/Archivos_consulta/%s" % nombre_archivo)
     return resultados
 
-def getConsultaParaAnalizador(cadena):
+def getConsultaParaAnalizador(cadena, nombre_bd):
     # 8904 ⋈
     # 963 σ
     # 960 π
@@ -187,79 +181,98 @@ def getConsultaParaAnalizador(cadena):
         if("PI  " in cadena):
             cadena = cadena.replace("PI  ","PI ")
     if chr(88) in cadena:
-        cadena = cadena.replace(chr(88),"EQUIS")
+        cadena = cadena.replace(chr(88)," EQUIS ")
     if chr(8746) in cadena:
-        cadena = cadena.replace(chr(8746),"UNION")
+        cadena = cadena.replace(chr(8746)," UNION ")
     if chr(8745) in cadena:
-        cadena = cadena.replace(chr(8745),"REVISAR")
-    return ejecutarAnalizador(cadena)
+        cadena = cadena.replace(chr(8745),"INTER")
+    return ejecutarAnalizador(cadena,nombre_bd)
 
-def Realizar_consultas(cadena):
-    cursor = connections['mytest2'].cursor()
-    script = "create table hola2 (lu int);"
-    cursor.execute("%s" % script)
+def Realizar_consultas(cadena, nombre_bd):
+    cadena = cadena.replace("\x00","")
+    cursor = connections[nombre_bd].cursor()
     resultados = []
-    '''from django.db import connection, transaction
-    cursor = connection.cursor()
-    cursor.execute("%s" % cadena)
+    cursor.execute("%s" % (cadena,))
     row = cursor.fetchone()
-    resultados = []
-    #getEstadoDeLaBase("mytest")
     while row is not None:
-        #print(row)
         resultados.append(list(row))
-        row = cursor.fetchone()'''
+        row = cursor.fetchone()
     return resultados
 def SeleccionarArchivoView(request):
     context= {}
-    return render(request,'practica.html')
+    context["lista_de_archivos"] = {"Escuela","Otra"}
+    if(request.method == 'POST'):
+        nombre_usuario = request.POST.get("nombre_usuario_db",False)
+        nombre_bd = request.POST.get("nombre_bd",False)
+        db_seleccionada = request.POST.get("nombre_bd_2",False)
+        if nombre_usuario != "":
+            context["lista_de_archivos"] = {"Escuela","Otra",nombre_usuario}
+    context["nombre_usuario_db"] = nombre_usuario
+    context["nombre_bd"] = nombre_bd
+    context["nombre_bd_2"] = db_seleccionada
+    return render(request,'practica.html',context)
 
 def SubirArchivoPageView(request):
     context = {}
     clave_usuario = getClaveDeUsuario()
-    uploaded_file = request.FILES['document']
-    if(uploaded_file.size > 2621440 or uploaded_file.content_type != "application/sql"):
+    archivo_arriba = request.POST.get("document",False)
+    if(archivo_arriba == False):
+        uploaded_file = request.FILES['document']
+        if(uploaded_file.size > 2621440 or uploaded_file.content_type != "application/sql"):
+            context["success"] = False
+            context["successmsg"] = "Error al subir archivo."
+        else:
+            context["success"] = True
+            context["successmsg"] = "El archivo se subió correctamente."
+            fs = FileSystemStorage()
+            nombre_archivo = clave_usuario+uploaded_file.name
+            fs.save(nombre_archivo, uploaded_file)
+            nombre_db = ""
+            nombre_db = getNombreDeLaBase()
+            context["nombre_bd"] = nombre_db
+            ejecutarArchivoSql(nombre_db,nombre_archivo)
+    else:
         context["success"] = False
         context["successmsg"] = "Error al subir archivo."
-    else:
-        context["success"] = True
-        context["successmsg"] = "El archivo se subió correctamente."
-        fs = FileSystemStorage()
-        nombre_archivo = clave_usuario+uploaded_file.name
-        fs.save(nombre_archivo, uploaded_file)
-        #getnombredelabase getnombredelarchivo
-        nombre_db = ""
-        nombre_db = getNombreDeLaBase()
-        #ejecutarArchivoSql(nombre_bd,nombre_archivo)
-        print("Aqui no soy el nombre de la base: ",nombre_db)
-        ejecutarArchivoSql(nombre_db,nombre_archivo)
     context["lista_de_archivos"] = getNombreDeArchivos(clave_usuario)
+    nombre_usuario_db = context["lista_de_archivos"]
+    if(len(nombre_usuario_db) > 2):
+        context["nombre_usuario_db"] = nombre_usuario_db[-1]
+
     return render(request,'practica.html',context)
 
 def ConsultaPageView(request):
     context = {}
     columnas = []
-    #Realizar_consultas("hola")
-
     if request.method == 'POST':
-        '''aux = request.POST['tu_consulta']
-        columnas = getNombreDeColumna(aux)
-        if(len(columnas) > 1):
-            context['columnas'] = columnas
-            context['columna'] = ""
-            context["consulta_vacia"] = ""
+        nombre_bd = request.POST.get("nombre_bd",False)
+        nombre_usuario_db = request.POST.get("nombre_usuario_db",False)
+        db_seleccionada = request.POST.get("nombre_bd_2",False)
+        if(db_seleccionada == "" or db_seleccionada=="Escuela"):
+            db_seleccionada = "escuela"
         else:
-            context['columna'] = columnas
-            context['columnas'] = ""
-            context["consulta_vacia"] = ""
-        tu_consulta = getConsultaParaAnalizador(aux)
-        if(len(tu_consulta) == 0):
-            context['tu_consulta'] = ""
+            db_seleccionada = nombre_bd
+        aux = request.POST.get("tu_consulta",False)
+        if(aux == ""):
             context["consulta_vacia"] = "Error en la consulta."
         else:
-            context['tu_consulta'] = tu_consulta
-        #ejecutarArchivoSql("mytest1","39989AqXKX@ejemplo_3.sql")'''
-        #Cambiar aquí donde recibe el nombre de la base
+            columnas = getNombreDeColumna(aux,db_seleccionada)
+            if(len(columnas) > 1):
+                context['columnas'] = columnas
+                context['columna'] = ""
+                context["consulta_vacia"] = ""
+            else:
+                context['columna'] = columnas
+                context['columnas'] = ""
+                context["consulta_vacia"] = ""
+            tu_consulta = getConsultaParaAnalizador(aux,db_seleccionada)
+            if(len(tu_consulta) == 0):
+                context['tu_consulta'] = ""
+                context['columnas'] = ""
+                context['columna'] = ""
+                context["consulta_vacia"] = "Error en la consulta."
+            else:
+                context['tu_consulta'] = tu_consulta
         return render(request,'consulta.html',context)
     else:
         return HttpResponseNotFound('<h1>Page not found</h1>')
@@ -297,8 +310,11 @@ class ReunionPageView(TemplateView):
 class DiferenciaPageView(TemplateView):
     template_name = "teoria-diferencia.html"
 
-class PracticaPageView(TemplateView):
-    template_name = "practica.html"
+def PracticaPageView(request):
+    context = {}
+    context["lista_de_archivos"] = {"Escuela","Otra"}
+    context["clave_usuario"] = ""
+    return render(request,'practica.html',context)
 
 class EjemplosPageView(TemplateView):
     template_name = "ejemplos.html"

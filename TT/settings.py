@@ -77,6 +77,12 @@ WSGI_APPLICATION = 'TT.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
     },
     'escuela':{
         'ENGINE': 'django.db.backends.mysql',
@@ -451,7 +457,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'pages/static/media')
 
 MEDIA_URL = "/pages/static/media/"
 
-DATABASE_ROUTERS = ['routers.db_routers.AuthRouter','routers.db_routers.mytest1_db']
+DATABASE_ROUTERS = ['routers.db_routers.AuthRouter']
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

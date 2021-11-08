@@ -44,6 +44,8 @@ if __name__ == "__main__":
         consulta_sql = sel.reemplazar_minus(consulta)
     if("PI" in consulta and "SE" in consulta):
         consulta_sql = pro.ProyeccionYSeleccion(consulta)
+    if("SE" in consulta and "PI" not in consulta and "UNION" in consulta or "INTER" in consulta):
+        consulta_sql = sel.reemplazar_union_interseccion(consulta)
     #print(consulta_sql)
     archivo = open(path+'/pages/static/Ejecutables/Archivos_consulta/%s' % nombre_archivo, "w")
     archivo.write(consulta_sql)

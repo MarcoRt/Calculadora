@@ -52,7 +52,6 @@
                 <p>Puedes cargar tu propia base de datos relacional o elegir uno de los ejemplos que ya tenemos precargados. Para revisar la sintáxis a seguir en caso de subir tu propio archivo, haz click <a class="enlace-texto" href="../sintaxis">aqui</a>. Para revisar la estructura de los ejemplos precargados, haz click <a class="enlace-texto" href="../ejemplos">aqui</a>.</p>
                 <p>Escribe tu expresión de álgebra relacional, existe un botón para cada una de las operaciones que la herramienta soporta. Finalmente envía tu consulta y el resultado será una tabla con los registros que cumplan con tu expresión.</p>
             </div>
-
             <div class="seleccion-archivo">
                 <h3 class="centrar-texto">Carga tu propia base de datos</h3>
                 <form action='/practica/subir-archivo/' method="post" enctype="multipart/form-data">
@@ -61,15 +60,17 @@
                 <button type = "submit">Cargar Archivo</button>
               </form>
                 <h4 class="centrar-texto">O escoge un archivo precargado</h4>
-                <form class="seleccion-archivo__boton" action="practica/#" method="POST">
-                    <select >
-                      <option value="{{archivo}}">Escuela</option>
-                      <option value="{{archivo}}">La otra</option>
+                <form class="seleccion-archivo__boton" action="../../practica/archivo-seleccion" method="POST">
+                  {% csrf_token %}
+                  <input type="hidden" name="nombre_bd" value="{{nombre_bd}}">
+                  <input type="hidden" name="nombre_usuario_db" value="{{nombre_usuario_db}}">
+                    <select name="nombre_bd_2" >
                       {% for archivo in lista_de_archivos %}
-                        <option value="{{archivo}}">{{archivo}}</option>
+                        <option value="{{archivo}}">
+                          {{archivo}}
                       {% endfor %}
                     </select>
-                    <input type="submit" value="Select" name="#">
+                    <input type="submit" value="Select">
                 </form>
             </div>
             <div class="herramienta-botones">
@@ -86,6 +87,9 @@
             <div class="herramienta-expresion">
                 <p>Escribe tu expresión de álgebra relacional</p>
                 <input id='consulta' class="herramienta-expresion__input" type='text' name="tu_consulta">
+                <input id='usuario' type="hidden" name="nombre_bd" value="{{nombre_bd}}">
+                <input type="hidden" name="nombre_usuario_db" value="{{nombre_usuario_db}}">
+                <input type="hidden" name="nombre_bd_2" value="{{nombre_bd_2}}">
                 <button type="submit" formtarget="_blank" class="enviar-consulta">Enviar consulta</button>
             </div>
           </form>

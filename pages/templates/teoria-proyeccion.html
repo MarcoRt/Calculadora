@@ -35,7 +35,45 @@
             <p class="icono-operacion centrar-texto">π</p>
             <p class="descripcion-teoria">La operación proyección devuelve únicamente los argumentos seleccionados sobre una relación, es decir, actúa como un filtro de las columnas deseadas, eliminando incluso los atributos duplicados. Se denota por la letra griega minúscula pi. Como subíndice de pi, se listan todos los atributos que se desea que aparezcan en la relación de resultado. Su único argumento es la relación sobre la que se actúa, por lo tanto, los atributos que se indican como subíndice deben estar contenidos en dicha relación. La sintaxis correcta de una selección sobre una relación es la siguiente:</p>
             <p>$$\Pi_{(atributos)}(Relaci\acute{o}n)$$</p>
-            <h3 class="centrar-texto">Ejemplo</h3>
+            <div class="ejemplo">
+                <h3 class="centrar-texto">Ejemplo</h3>
+                <p>Dada la siguiente relación:</p>
+                <table>
+                    <tr>
+                        <th>Profesor</th>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Departamento</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Idelfonso Castillo</td>
+                        <td>Ingenieria</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Rafael Donoso</td>
+                        <td>Ingenieria</td>
+                    </tr>
+                </table>
+                <p>$$\Pi_{(Nombre)}(Profesor)$$</p>
+                <table>
+                    <tr>
+                        <th>Resultado</th>
+                    </tr>
+                    <tr>
+                        <th>Nombre</th>
+                    </tr>
+                    <tr>
+                        <td>Idelfonso Castillo</td>
+                    </tr>
+                    <tr>
+                        <td>Rafael Donoso</td>
+                    </tr>
+                </table>
+            </div>
         </main>
     </div>
 

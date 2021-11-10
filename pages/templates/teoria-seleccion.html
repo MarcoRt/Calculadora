@@ -36,8 +36,46 @@
             <p class="descripcion-teoria">La operación de selección selecciona tuplas que cumplen con una condición dada. El símbolo que representa a la selección es sigma minúscula. La condición se representa como un subíndice de sigma. La relación sobre la que se opera se representa entre paréntesis a continuación de sigma. La sintaxis correcta de una selección sobre una relación sería la siguiente:</p>
             <p>$$ \sigma_{(Condici\acute{o}n)}(Relaci\acute{o}n) $$</p>
             <p>Las condiciones que se pueden presentar usan los operadores de comparación como: $$=, \neq, \leq, <, > o \geq$$Además, se puede hacer uso de las operaciones lógicas como conjunción, disyunción y negación.</p>
-            <h3 class="centrar-texto">Ejemplo</h3>
-            <p></p>
+            <div class="ejemplo">
+                <h3 class="centrar-texto">Ejemplo</h3>
+                <p>Dada la siguiente relación:</p>
+                <table>
+                    <tr>
+                        <th>Profesor</th>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Departamento</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Idelfonso Castillo</td>
+                        <td>Ingenieria</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Rafael Donoso</td>
+                        <td>Ingenieria</td>
+                    </tr>
+                </table>
+                <p>$$ \sigma_{(Nombre=''Idelfonso\:Castillo'')}(Profesor) $$</p>
+                <table>
+                    <tr>
+                        <th>Resultado</th>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Departamento</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Idelfonso Castillo</td>
+                        <td>Ingenieria</td>
+                    </tr>
+                </table>
+            </div>
         </main>
     </div>
 

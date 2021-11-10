@@ -36,7 +36,61 @@
             <p class="descripcion-teoria">Al igual que la operación de unión, la operación de diferencia es binaria y opera sobre dos relaciones. Se denota por el símbolo de sustracción (-). Se obtiene como resultado una relación que contiene todas las tuplas que aparecen en la primera relación, pero no en la segunda de las dos relaciones especificadas. La sintaxis correcta de la diferencia es la siguiente:</p>
             <p>$$Relaci\acute{o}n1 - Relaci\acute{o}n2$$</p>
             <p>Como en la operación de unión, en la operación de diferencia las relaciones también deben de ser compatibles.</p>
-            <h3 class="centrar-texto">Ejemplo</h3>
+            <div class="ejemplo">
+                <h3 class="centrar-texto">Ejemplo</h3>
+                <p>Dadas las siguientes relaciones:</p>
+                <table>
+                    <tr>
+                        <th>Profesor1</th>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Departamento</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Idelfonso Castillo</td>
+                        <td>Ingenieria</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Rafael Donoso</td>
+                        <td>Ingenieria</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <th>Profesor2</th>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Departamento</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Idelfonso Castillo</td>
+                        <td>Ingenieria</td>
+                    </tr>
+                </table>
+                <p>$$Profesor1 - Profesor2$$</p>
+                <table>
+                    <tr>
+                        <th>Resultado</th>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Departamento</th>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Rafael Donoso</td>
+                        <td>Ingenieria</td>
+                    </tr>
+                </table>
+            </div>
         </main>
     </div>
 

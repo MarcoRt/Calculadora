@@ -138,12 +138,13 @@ img{
 }
 
 .main h2{
+    margin-top: 1rem;
     color: var(--primario);
 }
 
 .opciones-acciones{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: 3rem;
 }
@@ -325,7 +326,7 @@ img{
 .herramienta-expresion__input{
     width: 70rem;
     height: 7rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-align: center;
     padding: 1rem 0;
 }
@@ -336,9 +337,11 @@ img{
     text-decoration: underline;
 }
 
-
-
 td{
     border: 1px solid black;
     padding: 0.5rem;
+}
+
+.ejemplo table{
+    margin: 0 auto;
 }

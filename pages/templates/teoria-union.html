@@ -35,7 +35,71 @@
             <p class="icono-operacion centrar-texto">∪</p>
             <p class="descripcion-teoria">Al ser una operación binaria, opera sobre dos relaciones, siendo estas sus únicos argumentos. Como resultado se obtiene una relación que contiene todas las tuplas que aparecen en una o en las dos relaciones especificadas. La sintaxis correcta de una unión es la siguiente:</p>
             <p>$$Relaci\acute{o}n1 \cup Relaci\acute{o}n2$$</p>
-            <h3 class="centrar-texto">Ejemplo</h3>
+            <div class="ejemplo">
+                <h3 class="centrar-texto">Ejemplo</h3>
+                <p>Dada la siguiente relación:</p>
+                <table>
+                    <tr>
+                        <th>Profesor_Subordinado</th>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Departamento</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Idelfonso Castillo</td>
+                        <td>Ingenieria</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Rafael Donoso</td>
+                        <td>Ingenieria</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <th>Profesor_Jefe</th>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Departamento</th>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Maria Rosario</td>
+                        <td>Ingenieria</td>
+                    </tr>
+                </table>
+                <p>$$Profesor\_Subordinado \cup Profesor\_Jefe$$</p>
+                <table>
+                    <tr>
+                        <th>Resultado</th>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Departamento</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Idelfonso Castillo</td>
+                        <td>Ingenieria</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Rafael Donoso</td>
+                        <td>Ingenieria</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Maria Rosario</td>
+                        <td>Ingenieria</td>
+                    </tr>
+                </table>
+            </div>
         </main>
     </div>
 

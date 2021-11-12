@@ -35,7 +35,96 @@
             <p class="icono-operacion centrar-texto">X</p>
             <p class="descripcion-teoria">La operación producto cartesiano permite combinar información de dos relaciones, y no es necesario que sean compatibles. Se denota por el símbolo X. Se obtiene como resultado una relación que contiene todas las tuplas posibles que son una combinación de dos tuplas.</p>
             <p>$$Relaci\acute{o}n1 \times Relaci\acute{o}n2$$</p>
-            <h3 class="centrar-texto">Ejemplo</h3>
+            <div class="ejemplo">
+                <h3 class="centrar-texto">Ejemplo</h3>
+                <p>Dadas las siguientes relaciones:</p>
+                <table>
+                    <tr>
+                        <th>Profesor</th>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Departamento</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Idelfonso Castillo</td>
+                        <td>Ingenieria</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Rafael Donoso</td>
+                        <td>Ingenieria</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <th>Alumno</th>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Semestre</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Mario Rodríguez Fuentes</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Esteban Ramírez Torres</td>
+                        <td>2</td>
+                    </tr>
+                </table>
+                <p>$$Profesor1 \times Profesor2$$</p>
+                <table>
+                    <tr>
+                        <th>Resultado</th>
+                    </tr>
+                    <tr>
+                        <th>Profesor.ID</th>
+                        <th>Profesor.Nombre</th>
+                        <th>Profesor.Departamento</th>
+                        <th>Alumno.ID</th>
+                        <th>Alumno.Nombre</th>
+                        <th>Alumno.Semestre</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Idelfonso Castillo</td>
+                        <td>Ingenieria</td>
+                        <td>1</td>
+                        <td>Mario Rodríguez Fuentes</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Rafael Donoso</td>
+                        <td>Ingenieria</td>
+                        <td>1</td>
+                        <td>Mario Rodríguez Fuentes</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Idelfonso Castillo</td>
+                        <td>Ingenieria</td>
+                        <td>2</td>
+                        <td>Esteban Ramírez Torres</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Rafael Donoso</td>
+                        <td>Ingenieria</td>
+                        <td>2</td>
+                        <td>Esteban Ramírez Torres</td>
+                        <td>2</td>
+                    </tr>
+                </table>
+            </div>
         </main>
     </div>
 

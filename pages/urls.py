@@ -10,10 +10,11 @@ from .views import (HomePageView,
     UnionPageView,
     ProductoCartesianoPageView,
     ReunionPageView,
-    PracticaPageView,
     EjemplosPageView,
     SintaxisPageView,
-    DiferenciaPageView
+    DiferenciaPageView,
+    SubirArchivoPageView,
+    SeleccionarArchivoView
     )
 urlpatterns = [
     path('faq/',FAQPageView.as_view(),name='faq'),
@@ -28,8 +29,10 @@ urlpatterns = [
     path('teoria/producto/',ProductoCartesianoPageView.as_view(),name='teoria-producto'),
     path('teoria/reunion/',ReunionPageView.as_view(),name='teoria-reunion'),
     path('teoria/diferencia/',DiferenciaPageView.as_view(),name='teoria-diferencia'),
-    path('practica/',PracticaPageView.as_view(),name='practica'),
+    path('practica/',views.PracticaPageView,name='practica'),
     path('practica/consulta/',views.ConsultaPageView,name='consulta'),
+    path('practica/subir-archivo/',views.SubirArchivoPageView,name='subir-archivo'),
+    path('practica/archivo-seleccion',views.SeleccionarArchivoView,name='seleccionar-archivo'),
     path('ejemplos/',EjemplosPageView.as_view(),name='ejemplos'),
     path('sintaxis/',SintaxisPageView.as_view(),name='sintaxis'),
 ]

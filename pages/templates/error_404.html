@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -26,37 +25,6 @@
           </div>
       </div>
   </header>
-  {% if consulta_vacia%}
-  <center><big><strong>Consulta incorrecta</strong></big></center>
-  {% endif %}
-  {% if columnas %}
-  <table border = "1" cellpadding = "5" cellspacing = "5">
-    {%for columna in columnas%}
-    <td>{{columna}}</td>
-    {% endfor %}
-    {% for consulta in tu_consulta %}
-      <tr>
-        {% for i in consulta %}
-        <td>{{i}}</td>
-        {% endfor %}
-      </tr>
-    {% endfor %}
-    {% endif %}
-    </table>
-    {% if columna %}
-    <table border = "1" cellpadding = "5" cellspacing = "5">
-      {%for i in columna%}
-      <td>{{i}}</td>
-      {% endfor %}
-      {% for consulta in tu_consulta %}
-        <tr>
-          {% for i in consulta %}
-          <td>{{i}}</td>
-          {% endfor %}
-        </tr>
-      {% endfor %}
-  </table>
-  {% endif %}
   <footer class="footer">
       <div class="contenedor">
           <p>Instituto Politécnico Nacional</p>

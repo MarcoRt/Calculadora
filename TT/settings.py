@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -77,7 +78,343 @@ WSGI_APPLICATION = 'TT.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'trabajo':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'trabajo',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'escuela':{
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'escuela',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest1':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest1',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest2':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest2',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest3':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest3',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest4':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest4',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest5':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest5',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest6':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest6',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest7':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest7',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest8':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest8',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest9':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest9',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest10':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest10',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest11':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest11',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest12':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest12',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest13':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest13',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest14':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest14',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest15':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest15',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest16':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest16',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest17':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest17',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest18':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest18',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest19':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest19',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest20':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest20',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest21':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest21',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest22':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest22',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest23':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest23',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest24':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest24',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest25':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest25',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest26':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest26',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest27':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest27',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest28':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest28',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest29':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest29',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest30':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest30',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest31':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest31',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest32':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest32',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest33':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest33',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest34':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest34',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest35':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest35',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest36':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest36',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest37':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest37',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest38':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest38',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest39':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest39',
+        'USER': 'marcort',
+        'PASSWORD': '%Znbf7hUYj6u',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mytest40':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest40',
         'USER': 'marcort',
         'PASSWORD': '%Znbf7hUYj6u',
         'HOST': 'localhost',
@@ -124,6 +461,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/css/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'pages/static/media')
+
+MEDIA_URL = "/pages/static/media/"
+
+DATABASE_ROUTERS = ['routers.db_routers.AuthRouter']
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

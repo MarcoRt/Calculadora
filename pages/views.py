@@ -11,6 +11,17 @@ from random import choice
 from django.core.files.storage import FileSystemStorage
 from django.db import connections, transaction, utils
 # Create your views here.
+#Busca los archivos sql que se han creado y los elimina
+def EliminarArchivo(nombre_archivo):
+    if nombre_archivo != "NULL":
+        path = str(Path().absolute())
+        path = path + "/pages/static/media/" + nombre_archivo
+        print(nombre_archivo)
+        system("rm %s" % (path,))
+    else:
+        print("At least im trying")
+
+# Busca dentro de los registros de la base cual es la que tiene más tiempo sin usar
 def getNombreDeLaBase():
     bases = ["mytest1","mytest2","mytest3","mytest4",
     "mytest5","mytest6","mytest7","mytest8","mytest9","mytest10",
@@ -37,8 +48,10 @@ def getNombreDeLaBase():
     aux = sorted(tiempos)
     nombre_bd = tiempos[aux[0]]
     LimpiarBase(nombre_bd)
+    print("Soy la base asignada: ", nombre_bd)
     return nombre_bd
 
+# Ejecuta el archivo sql que subió el usuario.
 def ejecutarArchivoSql(NombreDeLaBase,NombreDelArchivo):
     cursor = connections[NombreDeLaBase].cursor()
     path = str(Path().absolute())
@@ -46,24 +59,18 @@ def ejecutarArchivoSql(NombreDeLaBase,NombreDelArchivo):
     file = open(path+"%s" % NombreDelArchivo,"r")
     script = file.read()
     now = datetime.now()
+    aux = script.upper()
+    inicio = aux.index("CREATE TABLE")
+    script = script[inicio:]
+    #print(script)
     try:
-        cursor.execute("insert into timeDate values(1,'%s');" % (now,))
+        cursor.execute("insert into timeDate values(1,'%s','%s');" % (now,NombreDelArchivo))
         cursor.execute("%s" % script)
     except utils.ProgrammingError:
         pass
-def getEstadoDeLaBase(NombreDeLaBase):
-    cursor = connections[NombreDeLaBase].cursor()
-    cursor.execute("show tables;")
-    row = cursor.fetchone()
-    resultado = []
-    while row is not None:
-        resultado.append(list(row))
-        row = cursor.fetchone()
-    if len(resultado) > 0:
-        return False
-    else:
-        return True
+    EliminarArchivo(NombreDelArchivo)
 
+# Elimina todas las tablas creadas dentro de la base.
 def LimpiarBase(NombreDeLaBase):
     cursor = connections[NombreDeLaBase].cursor()
     cursor.execute("show tables;")
@@ -79,6 +86,9 @@ def LimpiarBase(NombreDeLaBase):
     ListaTablas.pop(ListaTablas.index("timeDate"))
     for tabla in ListaTablas:
         cursor.execute("drop table %s;" % tabla)
+    #cursor.execute("select nombrearchivo from timeDate;")
+
+# Genera una clave cuando el usuario sube un archivo.
 
 def getClaveDeUsuario():
     letters = digits
@@ -88,6 +98,7 @@ def getClaveDeUsuario():
     clave_usuario += "@"
     return clave_usuario
 
+# Genera la lista de archivos como opción de selección de acuerdo a su usuario.
 def getNombreDeArchivos(clave_usuario):
     path = str(Path().absolute())
     path = path + "/pages/static/media"
@@ -99,10 +110,11 @@ def getNombreDeArchivos(clave_usuario):
         if clave_usuario in archivo:
             aux = archivo.replace(clave_usuario,"")
             lista_de_archivos_para_mostrar.append(aux.replace(".sql\n",""))
-    lista_de_archivos_para_mostrar.insert(0,"Otra")
+    lista_de_archivos_para_mostrar.insert(0,"Trabajo")
     lista_de_archivos_para_mostrar.insert(0,"Escuela")
     return lista_de_archivos_para_mostrar
 
+# Genera el nombre las columnas dentro de la consulta.
 def getNombreDeColumnas(cadena, nombre_bd):
     aux = cadena.find("(")
     cadena = cadena[aux+1:]
@@ -127,6 +139,7 @@ def getNombreDeColumnas(cadena, nombre_bd):
             resultado.append(y)
     return resultado
 
+# Genera el nombre las columna dentro de la consulta.
 def getNombreDeColumna(cadena, nombre_bd):
     if(cadena.count("(") > 1):
         aux = cadena.index("(")
@@ -148,6 +161,7 @@ def getNombreDeColumna(cadena, nombre_bd):
     else:
         return getNombreDeColumnas(cadena,nombre_bd)
 
+# Ejecuta el analizador y regresa la consulta en sql.
 def ejecutarAnalizador(cadena, nombre_bd):
     path = str(Path().absolute())
     nombre_archivo = str(datetime.now())
@@ -165,6 +179,8 @@ def ejecutarAnalizador(cadena, nombre_bd):
     system("rm "+path+"/pages/static/Ejecutables/Archivos_consulta/%s" % nombre_archivo)
     return resultados
 
+# Genera la consulta cambiando los símbolos del navegador a expresiones que reconoce
+# el analizador.
 def getConsultaParaAnalizador(cadena, nombre_bd):
     # 8904 ⋈
     # 963 σ
@@ -188,6 +204,7 @@ def getConsultaParaAnalizador(cadena, nombre_bd):
         cadena = cadena.replace(chr(8745),"INTER")
     return ejecutarAnalizador(cadena,nombre_bd)
 
+# Genera las consultas sql
 def Realizar_consultas(cadena, nombre_bd):
     cadena = cadena.replace("\x00","")
     cursor = connections[nombre_bd].cursor()
@@ -198,20 +215,23 @@ def Realizar_consultas(cadena, nombre_bd):
         resultados.append(list(row))
         row = cursor.fetchone()
     return resultados
+# View que muestra la selección y cambia la selección de la base.
 def SeleccionarArchivoView(request):
     context= {}
-    context["lista_de_archivos"] = {"Escuela","Otra"}
+    context["lista_de_archivos"] = {"Escuela","Trabajo"}
     if(request.method == 'POST'):
         nombre_usuario = request.POST.get("nombre_usuario_db",False)
         nombre_bd = request.POST.get("nombre_bd",False)
         db_seleccionada = request.POST.get("nombre_bd_2",False)
         if nombre_usuario != "":
-            context["lista_de_archivos"] = {"Escuela","Otra",nombre_usuario}
+            context["lista_de_archivos"] = {"Escuela","Trabajo",nombre_usuario}
     context["nombre_usuario_db"] = nombre_usuario
+    print(nombre_usuario)
     context["nombre_bd"] = nombre_bd
     context["nombre_bd_2"] = db_seleccionada
     return render(request,'practica.html',context)
 
+# View que maneja el guardado de los archivos y los prepara para su ejecución.
 def SubirArchivoPageView(request):
     context = {}
     clave_usuario = getClaveDeUsuario()
@@ -240,7 +260,7 @@ def SubirArchivoPageView(request):
         context["nombre_usuario_db"] = nombre_usuario_db[-1]
 
     return render(request,'practica.html',context)
-
+# View que recibe la consulta y la gestiona.
 def ConsultaPageView(request):
     context = {}
     columnas = []
@@ -250,6 +270,8 @@ def ConsultaPageView(request):
         db_seleccionada = request.POST.get("nombre_bd_2",False)
         if(db_seleccionada == "" or db_seleccionada=="Escuela"):
             db_seleccionada = "escuela"
+        elif(db_seleccionada == "Trabajo"):
+            db_seleccionada = "trabajo"
         else:
             db_seleccionada = nombre_bd
         aux = request.POST.get("tu_consulta",False)
@@ -276,48 +298,57 @@ def ConsultaPageView(request):
         return render(request,'consulta.html',context)
     else:
         return HttpResponseNotFound('<h1>Page not found</h1>')
-
+# View que genera la pantalla Index
 class HomePageView(TemplateView):
     template_name = 'index.html'
 
+# View que genera la pantalla Faq
 class FAQPageView(TemplateView):
     template_name = "faq.html"
 
+# View que genera la pantalla Acerca
 class AboutPageView(TemplateView):
     template_name = "acerca.html"
 
+# View que genera la pantalla Contacto
 class ContactPageView(TemplateView):
     template_name = "contacto.html"
 
+# View que genera la pantalla Teoria
 class TeoriaPageView(TemplateView):
     template_name = "teoria.html"
 
+# View que genera la pantalla Teoría - Seleccion
 class SeleccionPageView(TemplateView):
     template_name = "teoria-seleccion.html"
 
+# View que genera la pantalla Teoría - Proyeccion
 class ProyeccionPageView(TemplateView):
     template_name = "teoria-proyeccion.html"
-
+# View que genera la pantalla Teoría - Union
 class UnionPageView(TemplateView):
     template_name = "teoria-union.html"
 
+# View que genera la pantalla Teoría - Producto
 class ProductoCartesianoPageView(TemplateView):
     template_name = "teoria-producto.html"
 
+# View que genera la pantalla Teoría - Reunión
 class ReunionPageView(TemplateView):
     template_name = "teoria-reunion.html"
-
+# View que genera la pantalla Teoría - Diferencia
 class DiferenciaPageView(TemplateView):
     template_name = "teoria-diferencia.html"
 
+# View que genera la pantalla Práctica
 def PracticaPageView(request):
     context = {}
-    context["lista_de_archivos"] = {"Escuela","Otra"}
+    context["lista_de_archivos"] = {"Escuela","Trabajo"}
     context["clave_usuario"] = ""
     return render(request,'practica.html',context)
-
+# View que genera la pantalla ejemplos
 class EjemplosPageView(TemplateView):
     template_name = "ejemplos.html"
-
+# View que genera la pantalla sintaxis
 class SintaxisPageView(TemplateView):
     template_name = "sintaxis.html"

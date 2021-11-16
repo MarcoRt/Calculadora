@@ -22,7 +22,7 @@ html{
 
 body{
     font-family: var(--fuenteParrafo);
-    font-size: 1.6rem;
+    font-size: 2rem;
     line-height: 2;
 }
 
@@ -90,6 +90,7 @@ img{
 /** Header **/
 
 .header{
+    height: 10rem;
     background-color: var(--primario);
 }
 
@@ -103,6 +104,17 @@ img{
 
 .logo{
     color: var(--blanco);
+}
+
+.logo-practica{
+    color: var(--blanco);
+    margin-top: 20px;
+}
+
+.logo-practica:hover{
+    color: var(--blanco);
+    margin-top: 20px;
+    text-decoration: none;
 }
 
 .logo__nombre{
@@ -129,6 +141,8 @@ img{
 
 .navegacion__enlace:hover{
     transform: scale(1.2);
+    color: white;
+    text-decoration: none;
 }
 
 /** Main **/
@@ -265,7 +279,7 @@ img{
     border: 0.3rem dotted var(--negro) ;
     background-color: var(--claro);
     border-radius: 2rem;
-    width: 60%;
+    width: 70%;
     margin: 0 auto;
 }
 
@@ -286,6 +300,12 @@ img{
 .seleccion-archivo__opciones{
     display: block;
     margin: 1rem auto 2rem auto;
+}
+
+.subir-archivo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .herramienta-botones{

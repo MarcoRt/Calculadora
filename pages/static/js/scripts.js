@@ -76,3 +76,7 @@ $(botonDiferencia).on('click', function () {
     var textAfter  = v.substring(cursorPos, v.length);
     $(expresion).val(textBefore + expresionDiferencia + textAfter);
 });
+
+$(borrarConsulta).on('click', function () {
+    $(expresion).val('');
+});

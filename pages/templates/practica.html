@@ -6,12 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Práctica</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
 
@@ -19,7 +17,7 @@
         <!-- BARRA DE NAVEGACION -->
         <div class="contenedor">
             <div class="barra">
-                <a class="logo" href="../../index">
+                <a class="logo-practica" href="../../index">
                     <h1 class="logo__nombre no-margin centrar-texto">Calculadora<span class="logo__bold"> Relacional</span></h1>
                 </a>
                 <nav class="navegacion">
@@ -49,17 +47,21 @@
             {% endif %}
             <div class="herramienta-descripcion">
                 <h3 class="centrar-texto">¿Cómo usar esta herramienta?</h3>
-                <p>Puedes cargar tu propia base de datos relacional o elegir uno de los ejemplos que ya tenemos precargados. Para revisar la sintáxis a seguir en caso de subir tu propio archivo, haz click <a class="enlace-texto" href="../sintaxis">aqui</a>. Para revisar la estructura de los ejemplos precargados, haz click <a class="enlace-texto" href="../ejemplos">aqui</a>.</p>
-                <p>Escribe tu expresión de álgebra relacional, existe un botón para cada una de las operaciones que la herramienta soporta. Finalmente envía tu consulta y el resultado será una tabla con los registros que cumplan con tu expresión.</p>
+                <p>Puedes cargar tu propia base de datos relacional o elegir uno de los ejemplos que ya tenemos precargados. Para revisar la estructura de los ejemplos precargados, haz click <a class="enlace-texto" href="../ejemplos">aqui</a>.</p>
+                <p>Para escribir tu expresión de álgebra relacional, existe un botón para cada una de las operaciones que la herramienta soporta. Finalmente envía tu consulta y el resultado será una tabla con los registros que cumplan con tu expresión.</p>
             </div>
             <div class="seleccion-archivo">
-                <h3 class="centrar-texto">Carga tu propia base de datos</h3>
+              <h3 class="centrar-texto">Carga tu propia base de datos</h3>  
+              <div class="subir-archivo">
                 <form action='/practica/subir-archivo/' method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                   <input type="file" name="document">
-                <button type = "submit">Cargar Archivo</button>
-              </form>
-                <h4 class="centrar-texto">O escoge un archivo precargado</h4>
+                  <button type = "submit">Cargar Archivo</button>
+                </form>
+              </div>
+
+              <h4 class="centrar-texto">O escoge un archivo precargado</h4>
+              <div class="subir-archivo">
                 <form class="seleccion-archivo__boton" action="../../practica/archivo-seleccion" method="POST">
                   {% csrf_token %}
                   <input type="hidden" name="nombre_bd" value="{{nombre_bd}}">
@@ -70,15 +72,16 @@
                           {{archivo}}
                       {% endfor %}
                     </select>
-                    <input type="submit" value="Select">
+                    <input type="submit" value="Selecccionar">
                 </form>
+              </div>
             </div>
             <div class="herramienta-botones">
                 <button class="herramienta-botones__boton" id="seleccion">σ</button>
                 <button class="herramienta-botones__boton" id="proyeccion">π</button>
                 <button class="herramienta-botones__boton" id="producto">X</button>
                 <button class="herramienta-botones__boton" id="union">∪</button>
-                <button class="herramienta-botones__boton" id="interseccion">∩</button>
+                <!-- <button class="herramienta-botones__boton" id="interseccion">∩</button> -->
                 <button class="herramienta-botones__boton" id="diferencia">-</button>
             </div>
             <form action='/practica/consulta/' method='POST'>
@@ -89,6 +92,7 @@
                 <input id='usuario' type="hidden" name="nombre_bd" value="{{nombre_bd}}">
                 <input type="hidden" name="nombre_usuario_db" value="{{nombre_usuario_db}}">
                 <input type="hidden" name="nombre_bd_2" value="{{nombre_bd_2}}">
+                <button class="borrar-consulta" id="borrar-consulta">Borrar</button>
                 <button type="submit" formtarget="_blank" class="enviar-consulta">Enviar consulta</button>
             </div>
           </form>
@@ -105,5 +109,7 @@
     <script src="{% static 'js/scripts.js' %}"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

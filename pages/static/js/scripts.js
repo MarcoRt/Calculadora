@@ -1,7 +1,7 @@
 // Botones de Operaciones
 const botonSeleccion    = document.querySelector("#seleccion");
 const botonProyeccion   = document.querySelector("#proyeccion");
-const botonReunion      = document.querySelector("#reunion");
+//const botonReunion      = document.querySelector("#reunion");
 const botonProducto     = document.querySelector("#producto");
 const botonUnion        = document.querySelector("#union");
 const botonInterseccion = document.querySelector("#interseccion");
@@ -14,11 +14,11 @@ const expresion = document.querySelector(".herramienta-expresion__input");
 // Expresiones de Operaciones
 const expresionSeleccion    = 'σ(condicion)(Relacion)';
 const expresionProyeccion   = 'π(condicion)(Relacion)';
-const expresionReunion      = '(Relacion1)⋈(condicion)(Relacion2)';
-const expresionProducto     = '(Relacion1)X(Relacion2)';
-const expresionUnion        = '(Relacion1)∪(Relacion2)';
-const expresionInterseccion = '(Relacion1)∩(Relacion2)';
-const expresionDiferencia   = '(Relacion1)-(Relacion2)';
+//const expresionReunion      = '(Relacion1)⋈(condicion)(Relacion2)';
+const expresionProducto     = 'X';
+const expresionUnion        = '∪';
+const expresionInterseccion = '∩';
+const expresionDiferencia   = '-';
 
 // Funciones de botones de operaciones
 $(botonSeleccion).on('click', function () {
@@ -37,13 +37,13 @@ $(botonProyeccion).on('click', function () {
     $(expresion).val(textBefore + expresionProyeccion + textAfter);
 });
 
-$(botonReunion).on('click', function () {
-    var cursorPos = $(expresion).prop('selectionStart');
-    var v = $(expresion).val();
-    var textBefore = v.substring(0,  cursorPos);
-    var textAfter  = v.substring(cursorPos, v.length);
-    $(expresion).val(textBefore + expresionReunion + textAfter);
-});
+// $(botonReunion).on('click', function () {
+//     var cursorPos = $(expresion).prop('selectionStart');
+//     var v = $(expresion).val();
+//     var textBefore = v.substring(0,  cursorPos);
+//     var textAfter  = v.substring(cursorPos, v.length);
+//     $(expresion).val(textBefore + expresionReunion + textAfter);
+// });
 
 $(botonProducto).on('click', function () {
     var cursorPos = $(expresion).prop('selectionStart');

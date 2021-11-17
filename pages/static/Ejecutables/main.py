@@ -19,6 +19,7 @@ if __name__ == "__main__":
     consulta = "    "
     archivo_entrada = open(path+"/pages/static/Ejecutables/Archivos_consulta/%s" % nombre_archivo)
     cadena_entrada = archivo_entrada.readline()
+    print("Soy la consulta main:", cadena_entrada)
     cmd = subprocess.run(["./pages/static/Ejecutables/a.out"],input=cadena_entrada, capture_output=True, text=True)
     archivo_consulta = str(cmd.stdout)
     archivo_consulta = archivo_consulta[archivo_consulta.find("\n")+1:]
@@ -30,7 +31,6 @@ if __name__ == "__main__":
     archivo = open(path+"/pages/static/Ejecutables/Archivos_consulta/%s" % archivo_consulta)
     consulta = archivo.readline()
     archivo.close()
-    print("Soy la consulta main:", consulta)
 
     #Traduce la consulta en sql
     pro = Proyeccion.Proyeccion()

@@ -189,17 +189,21 @@ def ejecutarAnalizador(cadena, nombre_bd):
     nombre_archivo = str(datetime.now())
     nombre_archivo = nombre_archivo.replace(' ','')
     archivo = open(path+'/pages/static/Ejecutables/Archivos_consulta/%s' % nombre_archivo, "w")
+    print("Soy la cadena que se pone en el documento: ",cadena)
     archivo.write(cadena)
     archivo.close()
     print(nombre_archivo)
     ejecucion_correcta = system("python3 /home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/main.py %s" % nombre_archivo)
     archivo = open(path+'/pages/static/Ejecutables/Archivos_consulta/%s' % nombre_archivo, "r")
     consulta_sql = archivo.readline()
-    #print("Soy la consulta:", consulta_sql)
+    print("Soy la consulta:", consulta_sql)
     archivo.close()
     resultados = []
     if consulta_sql != 'null':
-        resultados = Realizar_consultas(consulta_sql,nombre_bd)
+        try:
+            resultados = Realizar_consultas(consulta_sql,nombre_bd)
+        except (utils.ProgrammingError, utils.OperationalError):
+            pass
     system("rm "+path+"/pages/static/Ejecutables/Archivos_consulta/%s" % nombre_archivo)
     return resultados
 
@@ -212,8 +216,6 @@ def getConsultaParaAnalizador(cadena, nombre_bd):
     # 88 X
     # 8746 ∪
     # 8745 ∩
-    if chr(8904) in cadena:
-        cadena = cadena.replace(chr(8904),"Hola")
     if chr(963) in cadena:
         cadena = cadena.replace(chr(963),"SE ")
     if chr(960) in cadena:
@@ -226,6 +228,7 @@ def getConsultaParaAnalizador(cadena, nombre_bd):
         cadena = cadena.replace(chr(8746)," UNION ")
     if chr(8745) in cadena:
         cadena = cadena.replace(chr(8745),"INTER")
+
     return ejecutarAnalizador(cadena,nombre_bd)
 
 # Genera las consultas sql

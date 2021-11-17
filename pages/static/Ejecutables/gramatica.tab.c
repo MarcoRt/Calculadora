@@ -1356,79 +1356,79 @@ yyreduce:
     {
   case 5:
 #line 32 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                  {printf("Hola 1");Recibir_cadena_analizador((yyvsp[-1].texto));}
+                  {Recibir_cadena_analizador((yyvsp[-1].texto));}
 #line 1361 "gramatica.tab.c"
     break;
 
   case 6:
 #line 33 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-             {printf("Hola 2"); Recibir_cadena_analizador((yyvsp[0].texto));}
+             { Recibir_cadena_analizador((yyvsp[0].texto));}
 #line 1367 "gramatica.tab.c"
     break;
 
   case 7:
 #line 35 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                        {printf("Hola 43"); (yyval.texto) = (yyvsp[0].texto);}
+                        {(yyval.texto) = (yyvsp[0].texto);}
 #line 1373 "gramatica.tab.c"
     break;
 
   case 8:
 #line 36 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                                  {printf("Hola 3"); (yyval.texto) = strcat((yyvsp[-4].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)));}
+                                                  { (yyval.texto) = strcat((yyvsp[-4].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)));}
 #line 1379 "gramatica.tab.c"
     break;
 
   case 9:
 #line 37 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                  {printf("Hola 4"); (yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
+                                  { (yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
 #line 1385 "gramatica.tab.c"
     break;
 
   case 10:
 #line 38 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                                                     {printf("Hola 5");(yyval.texto) = strcat((yyvsp[-6].texto),strcat((yyvsp[-4].texto),strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)))));}
+                                                                     {(yyval.texto) = strcat((yyvsp[-6].texto),strcat((yyvsp[-4].texto),strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)))));}
 #line 1391 "gramatica.tab.c"
     break;
 
   case 11:
 #line 39 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                                                     {printf("Hola 6");(yyval.texto) = strcat((yyvsp[-6].texto),strcat((yyvsp[-4].texto),strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)))));}
+                                                                     {(yyval.texto) = strcat((yyvsp[-6].texto),strcat((yyvsp[-4].texto),strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)))));}
 #line 1397 "gramatica.tab.c"
     break;
 
   case 12:
 #line 40 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                                     {printf("Hola 7"); (yyval.texto) = strcat((yyvsp[-4].texto),strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)))));}
+                                                     { (yyval.texto) = strcat((yyvsp[-4].texto),strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)))));}
 #line 1403 "gramatica.tab.c"
     break;
 
   case 13:
 #line 41 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                                  {printf("Hola 8"); (yyval.texto) = strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)));}
+                                                  { (yyval.texto) = strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)));}
 #line 1409 "gramatica.tab.c"
     break;
 
   case 14:
 #line 42 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                  {printf("Hola 9");(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
+                                  {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
 #line 1415 "gramatica.tab.c"
     break;
 
   case 15:
 #line 43 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                                     {printf("Hola 10");(yyval.texto) = strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)));}
+                                                     {(yyval.texto) = strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)));}
 #line 1421 "gramatica.tab.c"
     break;
 
   case 16:
 #line 44 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                     {printf("Hola 11");(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
+                                     {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
 #line 1427 "gramatica.tab.c"
     break;
 
   case 17:
 #line 45 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                   {printf("Hola 13");(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
+                                   {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
 #line 1433 "gramatica.tab.c"
     break;
 

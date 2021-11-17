@@ -9,6 +9,7 @@ const botonDiferencia   = document.querySelector("#diferencia");
 const botonConjuncion   = document.querySelector("#conjuncion");
 const botonDisyuncion   = document.querySelector("#disyuncion");
 const enviarConsulta    = document.querySelector(".enviar-consulta")
+const borrarConsulta    = document.querySelector("#borrar-consulta");
 
 // Textarea de la expresion
 const expresion = document.querySelector(".herramienta-expresion__input");

@@ -16,8 +16,10 @@ if __name__ == "__main__":
     #system("/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/compilar.sh")
 
     #Lee la consulta desde un archivo
+    consulta = "    "
     archivo_entrada = open(path+"/pages/static/Ejecutables/Archivos_consulta/%s" % nombre_archivo)
     cadena_entrada = archivo_entrada.readline()
+    print("Soy la consulta main:", cadena_entrada)
     cmd = subprocess.run(["./pages/static/Ejecutables/a.out"],input=cadena_entrada, capture_output=True, text=True)
     archivo_consulta = str(cmd.stdout)
     archivo_consulta = archivo_consulta[archivo_consulta.find("\n")+1:]
@@ -46,6 +48,11 @@ if __name__ == "__main__":
         consulta_sql = pro.ProyeccionYSeleccion(consulta)
     if("SE" in consulta and "PI" not in consulta and "UNION" in consulta or "INTER" in consulta):
         consulta_sql = sel.reemplazar_union_interseccion(consulta)
+    if("SE" not in consulta and "PI" not in consulta and "UNION" in consulta):
+        consulta_sql = pro.UnionTablas(consulta)
+    if("SE" not in consulta and "PI" not in consulta and "INTER" in consulta):
+        consulta_sql = sel.reemplazar_union_interseccion(consulta)
+    print("Soy la consulta:", consulta_sql)
 
     #Lee la consulta en sql desde el archivo y elimina el archivo.
     archivo = open(path+'/pages/static/Ejecutables/Archivos_consulta/%s' % nombre_archivo, "w")

@@ -4,8 +4,8 @@
 %}
 DIGITO [0-9]+
 IDENTIFICADOR [P][I]|[S][E]
-SIGNO [=]|[<]|[>]|[<][=]|[>][=]|[!][=]|[/]|[-]|[+]|[U][N][I][O][N]|[E][Q][U][I][S]|[D][I][F][E][R][E][N][T][E]
-VARIABLE ["]*[a-zA-Z]+[0-9_]*["]*
+SIGNO [=]|[<]|[>]|[<][=]|[>][=]|[!][=]|[/]|[-]|[+]|[U][N][I][O][N]|[E][Q][U][I][S]|[D][I][F][E][R][E][N][T][E]|[I][N][T][E][R]
+VARIABLE ["]*[a-zA-Z]+[0-9_]*[a-zA-Z]*["]*
 %%
 {DIGITO} {//printf("Digito %s\n",yytext);
 yylval.texto = (char *) strdup(yytext);

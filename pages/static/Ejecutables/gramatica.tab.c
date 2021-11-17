@@ -1362,25 +1362,25 @@ yyreduce:
 
   case 6:
 #line 33 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-             {Recibir_cadena_analizador((yyvsp[0].texto));}
+             { Recibir_cadena_analizador((yyvsp[0].texto));}
 #line 1367 "gramatica.tab.c"
     break;
 
   case 7:
 #line 35 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                        { (yyval.texto) = (yyvsp[0].texto);}
+                        {(yyval.texto) = (yyvsp[0].texto);}
 #line 1373 "gramatica.tab.c"
     break;
 
   case 8:
 #line 36 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                                  {(yyval.texto) = strcat((yyvsp[-4].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)));}
+                                                  { (yyval.texto) = strcat((yyvsp[-4].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)));}
 #line 1379 "gramatica.tab.c"
     break;
 
   case 9:
 #line 37 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                  {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
+                                  { (yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
 #line 1385 "gramatica.tab.c"
     break;
 
@@ -1398,13 +1398,13 @@ yyreduce:
 
   case 12:
 #line 40 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                                     {(yyval.texto) = strcat((yyvsp[-4].texto),strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)))));}
+                                                     { (yyval.texto) = strcat((yyvsp[-4].texto),strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)))));}
 #line 1403 "gramatica.tab.c"
     break;
 
   case 13:
 #line 41 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                                  {(yyval.texto) = strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)));}
+                                                  { (yyval.texto) = strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)));}
 #line 1409 "gramatica.tab.c"
     break;
 

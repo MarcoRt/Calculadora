@@ -18,8 +18,6 @@ def EliminarArchivo(nombre_archivo):
         path = path + "/pages/static/media/" + nombre_archivo
         print(nombre_archivo)
         system("rm %s" % (path,))
-    else:
-        print("At least im trying")
 
 # Busca dentro de los registros de la base cual es la que tiene más tiempo sin usar
 def getNombreDeLaBase():
@@ -68,7 +66,7 @@ def ejecutarArchivoSql(NombreDeLaBase,NombreDelArchivo):
         cursor.execute("%s" % script)
     except utils.ProgrammingError:
         pass
-    EliminarArchivo(NombreDelArchivo)
+    #EliminarArchivo(NombreDelArchivo)
 
 # Elimina todas las tablas creadas dentro de la base.
 def LimpiarBase(NombreDeLaBase):
@@ -116,12 +114,36 @@ def getNombreDeArchivos(clave_usuario):
 
 # Genera el nombre las columnas dentro de la consulta.
 def getNombreDeColumnas(cadena, nombre_bd):
+    print("Get nombre de columnas: ", cadena)
+    columnas = []
+    resultado = []
+    # 8746 ∪
+    # 8745 ∩
+    if(chr(8746) in cadena):
+        columnas = cadena.split(chr(8746))
+        aux = []
+        aux = Realizar_consultas("select COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % columnas[0],nombre_bd)
+        for i in aux:
+            for y in i:
+                resultado.append(y)
+        aux = set(resultado)
+        aux = list(aux)
+        resultado = aux
+    if(chr(8745) in cadena):
+        columnas = cadena.split(chr(8745))
+        aux = []
+        aux = Realizar_consultas("select COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % columnas[0],nombre_bd)
+        for i in aux:
+            for y in i:
+                resultado.append(y)
+        aux = set(resultado)
+        aux = list(aux)
+        resultado = aux
     aux = cadena.find("(")
     cadena = cadena[aux+1:]
     cadena = cadena.replace(")","")
     if(chr(88) in cadena):
         cadena = cadena.split(chr(88))
-        columnas = []
         for i in cadena:
             try:
                 columnas+= Realizar_consultas("select COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % i,nombre_bd)
@@ -133,7 +155,6 @@ def getNombreDeColumnas(cadena, nombre_bd):
             cadena = Realizar_consultas("select COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % cadena,nombre_bd)
         except utils.ProgrammingError:
             pass
-    resultado = []
     for i in cadena:
         for y in i:
             resultado.append(y)
@@ -157,6 +178,7 @@ def getNombreDeColumna(cadena, nombre_bd):
         cadena = cadena.replace(" ","")
         cadena = cadena.replace(")","")
         cadena = list(cadena.split(","))
+        print("SOY LA CADENA QUE SE ESTÁ RETORNANDO: ", cadena)
         return cadena
     else:
         return getNombreDeColumnas(cadena,nombre_bd)
@@ -167,15 +189,21 @@ def ejecutarAnalizador(cadena, nombre_bd):
     nombre_archivo = str(datetime.now())
     nombre_archivo = nombre_archivo.replace(' ','')
     archivo = open(path+'/pages/static/Ejecutables/Archivos_consulta/%s' % nombre_archivo, "w")
+    print("Soy la cadena que se pone en el documento: ",cadena)
     archivo.write(cadena)
     archivo.close()
+    print(nombre_archivo)
     ejecucion_correcta = system("python3 /home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/main.py %s" % nombre_archivo)
     archivo = open(path+'/pages/static/Ejecutables/Archivos_consulta/%s' % nombre_archivo, "r")
     consulta_sql = archivo.readline()
+    print("Soy la consulta:", consulta_sql)
     archivo.close()
     resultados = []
     if consulta_sql != 'null':
-        resultados = Realizar_consultas(consulta_sql,nombre_bd)
+        try:
+            resultados = Realizar_consultas(consulta_sql,nombre_bd)
+        except (utils.ProgrammingError, utils.OperationalError):
+            pass
     system("rm "+path+"/pages/static/Ejecutables/Archivos_consulta/%s" % nombre_archivo)
     return resultados
 
@@ -188,8 +216,6 @@ def getConsultaParaAnalizador(cadena, nombre_bd):
     # 88 X
     # 8746 ∪
     # 8745 ∩
-    if chr(8904) in cadena:
-        cadena = cadena.replace(chr(8904),"Hola")
     if chr(963) in cadena:
         cadena = cadena.replace(chr(963),"SE ")
     if chr(960) in cadena:
@@ -202,6 +228,7 @@ def getConsultaParaAnalizador(cadena, nombre_bd):
         cadena = cadena.replace(chr(8746)," UNION ")
     if chr(8745) in cadena:
         cadena = cadena.replace(chr(8745),"INTER")
+
     return ejecutarAnalizador(cadena,nombre_bd)
 
 # Genera las consultas sql
@@ -275,10 +302,12 @@ def ConsultaPageView(request):
         else:
             db_seleccionada = nombre_bd
         aux = request.POST.get("tu_consulta",False)
+        print("consulta como aux: ", aux)
         if(aux == ""):
             context["consulta_vacia"] = "Error en la consulta."
         else:
             columnas = getNombreDeColumna(aux,db_seleccionada)
+            print("columnas: ",columnas)
             if(len(columnas) > 1):
                 context['columnas'] = columnas
                 context['columna'] = ""

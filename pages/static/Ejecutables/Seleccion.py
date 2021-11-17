@@ -44,4 +44,4 @@ class Seleccion:
             primera_sentencia = self.reemplazar_se(primera_sentencia)
             primera_sentencia = primera_sentencia.replace(";","")
             segunda_sentencia = self.reemplazar_se(segunda_sentencia)
-            return primera_sentencia + " INTERSECT " + segunda_sentencia
+            return primera_sentencia + " INTERSECT " + segunda_sentencia +";"

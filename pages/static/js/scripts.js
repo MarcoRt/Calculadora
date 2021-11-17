@@ -7,6 +7,7 @@ const botonUnion        = document.querySelector("#union");
 const botonInterseccion = document.querySelector("#interseccion");
 const botonDiferencia   = document.querySelector("#diferencia");
 const enviarConsulta    = document.querySelector(".enviar-consulta")
+const borrarConsulta    = document.querySelector("#borrar-consulta");
 
 // Textarea de la expresion
 const expresion = document.querySelector(".herramienta-expresion__input");
@@ -75,4 +76,8 @@ $(botonDiferencia).on('click', function () {
     var textBefore = v.substring(0,  cursorPos);
     var textAfter  = v.substring(cursorPos, v.length);
     $(expresion).val(textBefore + expresionDiferencia + textAfter);
+});
+
+$(borrarConsulta).on('click', function () {
+    $(expresion).val('');
 });

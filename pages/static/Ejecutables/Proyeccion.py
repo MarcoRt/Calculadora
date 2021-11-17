@@ -65,3 +65,20 @@ class Proyeccion:
             tablas = tablas.replace("EQUIS",",")
         #print("4" + nombre_proyeccion+" from "+tablas +" where "+selecciones+";")
         return(nombre_proyeccion+" from "+tablas +" where "+selecciones+";")
+
+    def UnionTablas(self, consulta):
+        if "UNION" in consulta:
+            tablas = []
+            tablas = consulta.split("UNION")
+            print("Soy las tablas: ",tablas)
+            sentencia = ""
+            contador = 0
+            for tabla in tablas:
+                if contador==0:
+                    sentencia= "select * from " + tabla
+                    contador=1
+                else:
+                    sentencia+= " UNION ALL select * from " + tabla
+            sentencia = sentencia+";"
+        print("Soy la sentencia: ",sentencia)
+        return sentencia

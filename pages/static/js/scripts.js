@@ -4,8 +4,10 @@ const botonProyeccion   = document.querySelector("#proyeccion");
 //const botonReunion      = document.querySelector("#reunion");
 const botonProducto     = document.querySelector("#producto");
 const botonUnion        = document.querySelector("#union");
-const botonInterseccion = document.querySelector("#interseccion");
+// const botonInterseccion = document.querySelector("#interseccion");
 const botonDiferencia   = document.querySelector("#diferencia");
+const botonConjuncion   = document.querySelector("#conjuncion");
+const botonDisyuncion   = document.querySelector("#disyuncion");
 const enviarConsulta    = document.querySelector(".enviar-consulta")
 
 // Textarea de la expresion
@@ -17,8 +19,10 @@ const expresionProyeccion   = 'π(condicion)(Relacion)';
 //const expresionReunion      = '(Relacion1)⋈(condicion)(Relacion2)';
 const expresionProducto     = 'X';
 const expresionUnion        = '∪';
-const expresionInterseccion = '∩';
+// const expresionInterseccion = '∩';
 const expresionDiferencia   = '-';
+const expresionConjuncion   = '∧';
+const expresionDisyuncion   = '∨';
 
 // Funciones de botones de operaciones
 $(botonSeleccion).on('click', function () {
@@ -61,13 +65,13 @@ $(botonUnion).on('click', function () {
     $(expresion).val(textBefore + expresionUnion + textAfter);
 });
 
-$(botonInterseccion).on('click', function () {
-    var cursorPos = $(expresion).prop('selectionStart');
-    var v = $(expresion).val();
-    var textBefore = v.substring(0,  cursorPos);
-    var textAfter  = v.substring(cursorPos, v.length);
-    $(expresion).val(textBefore + expresionInterseccion + textAfter);
-});
+// $(botonInterseccion).on('click', function () {
+//     var cursorPos = $(expresion).prop('selectionStart');
+//     var v = $(expresion).val();
+//     var textBefore = v.substring(0,  cursorPos);
+//     var textAfter  = v.substring(cursorPos, v.length);
+//     $(expresion).val(textBefore + expresionInterseccion + textAfter);
+// });
 
 $(botonDiferencia).on('click', function () {
     var cursorPos = $(expresion).prop('selectionStart');
@@ -75,6 +79,22 @@ $(botonDiferencia).on('click', function () {
     var textBefore = v.substring(0,  cursorPos);
     var textAfter  = v.substring(cursorPos, v.length);
     $(expresion).val(textBefore + expresionDiferencia + textAfter);
+});
+
+$(botonConjuncion).on('click', function () {
+    var cursorPos = $(expresion).prop('selectionStart');
+    var v = $(expresion).val();
+    var textBefore = v.substring(0,  cursorPos);
+    var textAfter  = v.substring(cursorPos, v.length);
+    $(expresion).val(textBefore + expresionConjuncion + textAfter);
+});
+
+$(botonDisyuncion).on('click', function () {
+    var cursorPos = $(expresion).prop('selectionStart');
+    var v = $(expresion).val();
+    var textBefore = v.substring(0,  cursorPos);
+    var textAfter  = v.substring(cursorPos, v.length);
+    $(expresion).val(textBefore + expresionDisyuncion + textAfter);
 });
 
 $(borrarConsulta).on('click', function () {

@@ -87,16 +87,16 @@
                 <button class="herramienta-botones__boton" id="disyuncion">&or;</button>
             </div>
             <form action='/practica/consulta/' method='POST'>
-              {% csrf_token %}
-            <div class="herramienta-expresion">
-                <p>Escribe tu expresión de álgebra relacional</p>
-                <input id='consulta' class="herramienta-expresion__input" type='text' name="tu_consulta">
-                <input id='usuario' type="hidden" name="nombre_bd" value="{{nombre_bd}}">
-                <input type="hidden" name="nombre_usuario_db" value="{{nombre_usuario_db}}">
-                <input type="hidden" name="nombre_bd_2" value="{{nombre_bd_2}}">
-                <button class="borrar-consulta" id="borrar-consulta">Borrar</button>
-                <button type="submit" formtarget="_blank" class="enviar-consulta">Enviar consulta</button>
-            </div>
+                {% csrf_token %}
+                <div class="herramienta-expresion">
+                    <p>Escribe tu expresión de álgebra relacional</p>
+                    <input id='consulta' class="herramienta-expresion__input" type='text' name="tu_consulta">
+                    <input id='usuario' type="hidden" name="nombre_bd" value="{{nombre_bd}}">
+                    <input type="hidden" name="nombre_usuario_db" value="{{nombre_usuario_db}}">
+                    <input type="hidden" name="nombre_bd_2" value="{{nombre_bd_2}}">
+                    <button class="borrar-consulta" id="borrar-consulta">Borrar</button>
+                    <button type="submit" formtarget="_blank" class="enviar-consulta">Enviar consulta</button>
+                </div>
           </form>
         </main>
     </div>

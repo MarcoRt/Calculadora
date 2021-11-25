@@ -4,8 +4,9 @@
 //Recibe la cadena del analizador semántico y crea un archivo de texto con la sentencia
 int Recibir_cadena_analizador(char *string)
 {
-  int n = 1000;
+  int n = 10000;
   char * oracion = malloc(n * sizeof(char));
+  //printf("%s\n",string);
   strcpy(oracion,string);
   n = strlen(oracion);
   char nombre_archivo [100];
@@ -15,7 +16,7 @@ int Recibir_cadena_analizador(char *string)
   int numero = (rand() % 500000);
   numero = numero * (tm.tm_hour+tm.tm_hour+tm.tm_sec);
   sprintf(nombre_archivo, "%d", numero);
-  char buf[0x100];
+  char buf[0x1000];
   snprintf(buf, sizeof(buf), "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/Archivos_consulta/%s", nombre_archivo);
   FILE *consulta = fopen(buf,"wt");
   if(consulta==NULL)

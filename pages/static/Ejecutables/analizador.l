@@ -5,14 +5,16 @@
 DIGITO [0-9]+
 IDENTIFICADOR [P][I]|[S][E]
 SIGNO [=]|[<]|[>]|[<][=]|[>][=]|[!][=]|[/]|[-]|[+]|[U][N][I][O][N]|[E][Q][U][I][S]|[D][I][F][E][R][E][N][T][E]|[I][N][T][E][R]
-VARIABLE ["]*[a-zA-Z]+[0-9_]*[a-zA-Z]*["]*
+VARIABLE [']*["]*[a-zA-Z]+[0-9_]*[a-zA-Z]*["]*[']*
+VARIABLES ["]+([a-zA-Z]+[0-9_]*[" "][a-zA-Z]+[0-9_]*)*["]+|[']+([a-zA-Z]+[0-9_]*[" "][a-zA-Z]+[0-9_]*)*[']+
+ESPACIO [" "]
 %%
 {DIGITO} {//printf("Digito %s\n",yytext);
 yylval.texto = (char *) strdup(yytext);
 return ENTERO;
 }
 
-{IDENTIFICADOR} {//printf("Identificador\n");
+{IDENTIFICADOR} {printf("Identificador\n");
 yylval.texto = (char *) strdup(yytext);
   return (IDENTIFICADOR);}
 
@@ -54,6 +56,10 @@ yylval.texto = (char *) strdup(yytext);
 return CADENA;
 }
 
+{VARIABLES} {//printf("Cadena\n");
+yylval.texto = (char *) strdup(yytext);
+return CADENAS;
+}
 
 "\n"            {
 		//printf("Salto de linea\n");

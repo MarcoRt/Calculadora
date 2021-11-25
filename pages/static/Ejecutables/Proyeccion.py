@@ -31,12 +31,16 @@ class Proyeccion:
     #Traduce consultas con una sola sentencia de selección
     def SeleccionSimple(self,consulta):
         consulta = consulta.replace("PI","select ")
+        consulta = consulta.replace("^^"," OR ")
+        consulta = consulta.replace("^"," AND ")
         nombre_sel = consulta[:consulta.find("SE")-1]
         consulta = consulta.replace(nombre_sel,"")
         consulta = consulta[1:-1]
         nombre_cond = consulta[consulta.find("SE"):consulta.find("(")]
         nombre_cond = nombre_cond.replace("SE"," where ")
         tabla = consulta[consulta.find("("):]
+        if "EQUIS" in tabla:
+            tabla = tabla.replace("EQUIS",",")
         #print("3" + nombre_sel+" from "+tabla+nombre_cond+";")
         return(nombre_sel+" from "+tabla+nombre_cond+";")
     #Traduce consultas con más de una sentencia de selección

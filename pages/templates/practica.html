@@ -51,7 +51,7 @@
                 <p>Para escribir tu expresión de álgebra relacional, existe un botón para cada una de las operaciones que la herramienta soporta. Finalmente envía tu consulta y el resultado será una tabla con los registros que cumplan con tu expresión.</p>
             </div>
             <div class="seleccion-archivo">
-              <h3 class="centrar-texto">Carga tu propia base de datos</h3>  
+              <h3 class="centrar-texto">Carga tu propia base de datos</h3>
               <div class="subir-archivo">
                 <form action='/practica/subir-archivo/' method="post" enctype="multipart/form-data">
                   {% csrf_token %}
@@ -85,6 +85,7 @@
                 <button class="herramienta-botones__boton" id="diferencia">-</button>
                 <button class="herramienta-botones__boton" id="conjuncion">&and;</button>
                 <button class="herramienta-botones__boton" id="disyuncion">&or;</button>
+                <button class="borrar-consulta" id="borrar-consulta">Borrar</button>
             </div>
             <form action='/practica/consulta/' method='POST'>
                 {% csrf_token %}
@@ -94,7 +95,6 @@
                     <input id='usuario' type="hidden" name="nombre_bd" value="{{nombre_bd}}">
                     <input type="hidden" name="nombre_usuario_db" value="{{nombre_usuario_db}}">
                     <input type="hidden" name="nombre_bd_2" value="{{nombre_bd_2}}">
-                    <button class="borrar-consulta" id="borrar-consulta">Borrar</button>
                     <button type="submit" formtarget="_blank" class="enviar-consulta">Enviar consulta</button>
                 </div>
           </form>

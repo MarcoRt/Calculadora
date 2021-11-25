@@ -15,8 +15,8 @@ const borrarConsulta    = document.querySelector("#borrar-consulta");
 const expresion = document.querySelector(".herramienta-expresion__input");
 
 // Expresiones de Operaciones
-const expresionSeleccion    = 'σ(condicion)(Relacion)';
-const expresionProyeccion   = 'π(condicion)(Relacion)';
+const expresionSeleccion    = 'σ';
+const expresionProyeccion   = 'π';
 //const expresionReunion      = '(Relacion1)⋈(condicion)(Relacion2)';
 const expresionProducto     = 'X';
 const expresionUnion        = '∪';

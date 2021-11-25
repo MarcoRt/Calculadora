@@ -50,16 +50,17 @@ extern int yydebug;
   enum yytokentype
   {
     CADENA = 258,
-    DECIMAL = 259,
-    ENTERO = 260,
-    SIGNO = 261,
-    COMA = 262,
-    PUNTO = 263,
-    PAR_IZQ = 264,
-    PAR_DER = 265,
-    IDENTIFICADOR = 266,
-    CONJUNCION = 267,
-    DISYUNCION = 268
+    CADENAS = 259,
+    DECIMAL = 260,
+    ENTERO = 261,
+    SIGNO = 262,
+    COMA = 263,
+    PUNTO = 264,
+    PAR_IZQ = 265,
+    PAR_DER = 266,
+    IDENTIFICADOR = 267,
+    CONJUNCION = 268,
+    DISYUNCION = 269
   };
 #endif
 
@@ -73,7 +74,7 @@ union YYSTYPE
 	float deci;
   char *texto;
 
-#line 77 "gramatica.tab.h"
+#line 78 "gramatica.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

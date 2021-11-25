@@ -120,16 +120,17 @@ extern int yydebug;
   enum yytokentype
   {
     CADENA = 258,
-    DECIMAL = 259,
-    ENTERO = 260,
-    SIGNO = 261,
-    COMA = 262,
-    PUNTO = 263,
-    PAR_IZQ = 264,
-    PAR_DER = 265,
-    IDENTIFICADOR = 266,
-    CONJUNCION = 267,
-    DISYUNCION = 268
+    CADENAS = 259,
+    DECIMAL = 260,
+    ENTERO = 261,
+    SIGNO = 262,
+    COMA = 263,
+    PUNTO = 264,
+    PAR_IZQ = 265,
+    PAR_DER = 266,
+    IDENTIFICADOR = 267,
+    CONJUNCION = 268,
+    DISYUNCION = 269
   };
 #endif
 
@@ -143,7 +144,7 @@ union YYSTYPE
 	float deci;
   char *texto;
 
-#line 147 "gramatica.tab.c"
+#line 148 "gramatica.tab.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -462,19 +463,19 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  2
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   120
+#define YYLAST   131
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  15
+#define YYNTOKENS  16
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  6
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  28
+#define YYNRULES  29
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  61
+#define YYNSTATES  62
 
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   268
+#define YYMAXUTOK   269
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
@@ -487,7 +488,7 @@ union yyalloc
 static const yytype_int8 yytranslate[] =
 {
        0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-      14,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+      15,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -512,16 +513,16 @@ static const yytype_int8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7,     8,     9,    10,    11,    12,    13
+       5,     6,     7,     8,     9,    10,    11,    12,    13,    14
 };
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    28,    28,    29,    31,    32,    33,    35,    36,    37,
-      38,    39,    40,    41,    42,    43,    44,    45,    47,    48,
-      49,    50,    51,    52,    53,    54,    55,    56,    58
+       0,    29,    29,    30,    32,    33,    34,    36,    37,    38,
+      39,    40,    41,    42,    43,    44,    45,    46,    48,    49,
+      50,    51,    52,    53,    54,    55,    56,    57,    58,    60
 };
 #endif
 
@@ -530,10 +531,10 @@ static const yytype_int8 yyrline[] =
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "$end", "error", "$undefined", "CADENA", "DECIMAL", "ENTERO", "SIGNO",
-  "COMA", "PUNTO", "PAR_IZQ", "PAR_DER", "IDENTIFICADOR", "CONJUNCION",
-  "DISYUNCION", "'\\n'", "$accept", "input", "line", "consulta", "exp",
-  "tabla", YY_NULLPTR
+  "$end", "error", "$undefined", "CADENA", "CADENAS", "DECIMAL", "ENTERO",
+  "SIGNO", "COMA", "PUNTO", "PAR_IZQ", "PAR_DER", "IDENTIFICADOR",
+  "CONJUNCION", "DISYUNCION", "'\\n'", "$accept", "input", "line",
+  "consulta", "exp", "tabla", YY_NULLPTR
 };
 #endif
 
@@ -543,16 +544,16 @@ static const char *const yytname[] =
 static const yytype_int16 yytoknum[] =
 {
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
-     265,   266,   267,   268,    10
+     265,   266,   267,   268,   269,    10
 };
 # endif
 
-#define YYPACT_NINF (-23)
+#define YYPACT_NINF (-25)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
 
-#define YYTABLE_NINF (-28)
+#define YYTABLE_NINF (-29)
 
 #define yytable_value_is_error(Yyn) \
   0
@@ -561,13 +562,13 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-     -23,    48,   -23,   -23,   -23,   114,    69,   109,   -23,   -23,
-      -4,    98,    98,   109,    11,   114,    58,    76,   -23,   114,
-     114,   114,   114,   114,   114,    58,    76,   -23,    82,   114,
-      69,   109,    -3,   -23,    -3,    98,    98,    98,    98,    98,
-      98,    13,    21,    76,    -5,     8,     1,    37,    90,    58,
-     -23,   -23,    50,    76,   -23,   -23,   -23,    16,    67,   -23,
-     -23
+     -25,    48,   -25,   -25,   -25,   -25,   119,    70,   114,   -25,
+     -25,    -4,   102,   102,   114,    11,   119,    58,    80,   -25,
+     119,   119,   119,   119,   119,   119,    58,    80,   -25,    86,
+     119,    70,   114,    -5,   -25,    -5,   102,   102,   102,   102,
+     102,   102,    13,    21,    80,    -6,     8,     1,    68,    94,
+      58,   -25,   -25,    74,    80,   -25,   -25,   -25,    16,   120,
+     -25,   -25
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -575,25 +576,25 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       2,     0,     1,    18,    19,    20,     0,     0,     4,     3,
-       6,     7,    27,     0,     0,     0,     0,     0,     5,     0,
-       0,     0,     0,     0,     0,     0,     0,    17,     0,    20,
-       0,     0,    16,     9,    14,    24,    21,    22,    23,    25,
-      26,     0,     0,     0,     0,     0,    24,     0,     0,     0,
-      15,    13,     0,     0,     8,    12,    28,     0,     0,    10,
-      11
+       2,     0,     1,    18,    19,    20,    21,     0,     0,     4,
+       3,     6,     7,    28,     0,     0,     0,     0,     0,     5,
+       0,     0,     0,     0,     0,     0,     0,     0,    17,     0,
+      21,     0,     0,    16,     9,    14,    25,    22,    23,    24,
+      26,    27,     0,     0,     0,     0,     0,    25,     0,     0,
+       0,    15,    13,     0,     0,     8,    12,    29,     0,     0,
+      10,    11
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -23,   -23,   -23,    -1,    15,   -22
+     -25,   -25,   -25,    -1,    15,   -24
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     1,     9,    32,    11,    33
+      -1,     1,    10,    33,    12,    34
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -601,57 +602,59 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      10,   -27,    17,    17,    53,    14,    45,    19,    20,    21,
-      18,   -27,    22,    23,    24,   -27,    34,    26,    54,    17,
-      12,    27,    16,    50,    41,    42,    59,    17,    25,    47,
-      28,    51,     0,     0,    35,    36,    37,    38,    39,    40,
-       0,     0,    52,    26,    46,    48,    49,    55,     2,     0,
-       0,     3,    58,     4,     5,     0,    17,     6,    48,     7,
-      57,     3,     8,     4,    29,    20,    21,    30,     0,    31,
-      23,    24,     3,    17,     4,     5,     0,    60,     6,     3,
-      13,     4,     5,     0,     0,     6,     0,     7,    19,    20,
-      21,    43,    44,    22,    23,    24,    19,    20,    21,     0,
-      56,    22,    23,    24,    19,    20,    21,     0,     0,    22,
-      23,    24,     3,     0,     4,     5,     0,     3,    15,     4,
-       5
+      11,   -28,    18,    18,    54,    46,    15,     0,    20,    21,
+      22,    19,   -28,    23,    24,    25,   -28,    35,    27,    55,
+      18,    13,    28,    17,    51,    42,    43,    60,    18,    26,
+      48,    29,    52,     0,     0,    36,    37,    38,    39,    40,
+      41,     0,     0,    53,     0,    47,    49,    50,     2,     0,
+       0,     3,     4,    59,     5,     6,     0,     0,     7,    49,
+       8,     3,     4,     9,     5,    30,    21,    22,    31,     0,
+      32,    24,    25,     3,     4,    27,     5,     6,     0,    56,
+       7,    18,    14,     3,     4,    58,     5,     6,     0,     0,
+       7,     0,     8,    20,    21,    22,    44,    45,    23,    24,
+      25,    20,    21,    22,     0,    57,    23,    24,    25,    20,
+      21,    22,     0,     0,    23,    24,    25,     3,     4,     0,
+       5,     6,     3,     4,    16,     5,     6,    18,     0,     0,
+       0,    61
 };
 
 static const yytype_int8 yycheck[] =
 {
-       1,     0,     6,     6,     9,     6,    28,     6,     7,     8,
-      14,    10,    11,    12,    13,    14,    17,     6,    10,     6,
-       5,    10,     7,    10,    25,    26,    10,     6,    13,    30,
-      15,    10,    -1,    -1,    19,    20,    21,    22,    23,    24,
-      -1,    -1,    43,     6,    29,    30,    31,    10,     0,    -1,
-      -1,     3,    53,     5,     6,    -1,     6,     9,    43,    11,
-      10,     3,    14,     5,     6,     7,     8,     9,    -1,    11,
-      12,    13,     3,     6,     5,     6,    -1,    10,     9,     3,
-      11,     5,     6,    -1,    -1,     9,    -1,    11,     6,     7,
-       8,     9,    10,    11,    12,    13,     6,     7,     8,    -1,
-      10,    11,    12,    13,     6,     7,     8,    -1,    -1,    11,
-      12,    13,     3,    -1,     5,     6,    -1,     3,     9,     5,
-       6
+       1,     0,     7,     7,    10,    29,     7,    -1,     7,     8,
+       9,    15,    11,    12,    13,    14,    15,    18,     7,    11,
+       7,     6,    11,     8,    11,    26,    27,    11,     7,    14,
+      31,    16,    11,    -1,    -1,    20,    21,    22,    23,    24,
+      25,    -1,    -1,    44,    -1,    30,    31,    32,     0,    -1,
+      -1,     3,     4,    54,     6,     7,    -1,    -1,    10,    44,
+      12,     3,     4,    15,     6,     7,     8,     9,    10,    -1,
+      12,    13,    14,     3,     4,     7,     6,     7,    -1,    11,
+      10,     7,    12,     3,     4,    11,     6,     7,    -1,    -1,
+      10,    -1,    12,     7,     8,     9,    10,    11,    12,    13,
+      14,     7,     8,     9,    -1,    11,    12,    13,    14,     7,
+       8,     9,    -1,    -1,    12,    13,    14,     3,     4,    -1,
+       6,     7,     3,     4,    10,     6,     7,     7,    -1,    -1,
+      -1,    11
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,    16,     0,     3,     5,     6,     9,    11,    14,    17,
-      18,    19,    19,    11,    18,     9,    19,     6,    14,     6,
-       7,     8,    11,    12,    13,    19,     6,    10,    19,     6,
-       9,    11,    18,    20,    18,    19,    19,    19,    19,    19,
-      19,    18,    18,     9,    10,    20,    19,    18,    19,    19,
-      10,    10,    18,     9,    10,    10,    10,    10,    18,    10,
-      10
+       0,    17,     0,     3,     4,     6,     7,    10,    12,    15,
+      18,    19,    20,    20,    12,    19,    10,    20,     7,    15,
+       7,     8,     9,    12,    13,    14,    20,     7,    11,    20,
+       7,    10,    12,    19,    21,    19,    20,    20,    20,    20,
+      20,    20,    19,    19,    10,    11,    21,    20,    19,    20,
+      20,    11,    11,    19,    10,    11,    11,    11,    11,    19,
+      11,    11
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    15,    16,    16,    17,    17,    17,    18,    18,    18,
-      18,    18,    18,    18,    18,    18,    18,    18,    19,    19,
-      19,    19,    19,    19,    19,    19,    19,    19,    20
+       0,    16,    17,    17,    18,    18,    18,    19,    19,    19,
+      19,    19,    19,    19,    19,    19,    19,    19,    20,    20,
+      20,    20,    20,    20,    20,    20,    20,    20,    20,    21
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
@@ -659,7 +662,7 @@ static const yytype_int8 yyr2[] =
 {
        0,     2,     0,     2,     1,     2,     1,     1,     5,     3,
        7,     7,     5,     5,     3,     5,     3,     3,     1,     1,
-       1,     3,     3,     3,     3,     3,     3,     2,     3
+       1,     1,     3,     3,     3,     3,     3,     3,     2,     3
 };
 
 
@@ -1355,151 +1358,157 @@ yyreduce:
   switch (yyn)
     {
   case 5:
-#line 32 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+#line 33 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
                   {Recibir_cadena_analizador((yyvsp[-1].texto));}
-#line 1361 "gramatica.tab.c"
+#line 1364 "gramatica.tab.c"
     break;
 
   case 6:
-#line 33 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-             { Recibir_cadena_analizador((yyvsp[0].texto));}
-#line 1367 "gramatica.tab.c"
+#line 34 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+             {Recibir_cadena_analizador((yyvsp[0].texto));}
+#line 1370 "gramatica.tab.c"
     break;
 
   case 7:
-#line 35 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                        {(yyval.texto) = (yyvsp[0].texto);}
-#line 1373 "gramatica.tab.c"
+#line 36 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+                        { (yyval.texto) = (yyvsp[0].texto);}
+#line 1376 "gramatica.tab.c"
     break;
 
   case 8:
-#line 36 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                                  { (yyval.texto) = strcat((yyvsp[-4].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)));}
-#line 1379 "gramatica.tab.c"
+#line 37 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+                                                  {(yyval.texto) = strcat((yyvsp[-4].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)));}
+#line 1382 "gramatica.tab.c"
     break;
 
   case 9:
-#line 37 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                  { (yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
-#line 1385 "gramatica.tab.c"
+#line 38 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+                                  {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
+#line 1388 "gramatica.tab.c"
     break;
 
   case 10:
-#line 38 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+#line 39 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
                                                                      {(yyval.texto) = strcat((yyvsp[-6].texto),strcat((yyvsp[-4].texto),strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)))));}
-#line 1391 "gramatica.tab.c"
+#line 1394 "gramatica.tab.c"
     break;
 
   case 11:
-#line 39 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+#line 40 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
                                                                      {(yyval.texto) = strcat((yyvsp[-6].texto),strcat((yyvsp[-4].texto),strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)))));}
-#line 1397 "gramatica.tab.c"
+#line 1400 "gramatica.tab.c"
     break;
 
   case 12:
-#line 40 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                                     { (yyval.texto) = strcat((yyvsp[-4].texto),strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)))));}
-#line 1403 "gramatica.tab.c"
+#line 41 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+                                                     {(yyval.texto) = strcat((yyvsp[-4].texto),strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)))));}
+#line 1406 "gramatica.tab.c"
     break;
 
   case 13:
-#line 41 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                                  { (yyval.texto) = strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)));}
-#line 1409 "gramatica.tab.c"
+#line 42 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+                                                  {(yyval.texto) = strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)));}
+#line 1412 "gramatica.tab.c"
     break;
 
   case 14:
-#line 42 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+#line 43 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
                                   {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
-#line 1415 "gramatica.tab.c"
+#line 1418 "gramatica.tab.c"
     break;
 
   case 15:
-#line 43 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+#line 44 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
                                                      {(yyval.texto) = strcat((yyvsp[-3].texto),strcat((yyvsp[-2].texto),(yyvsp[-1].texto)));}
-#line 1421 "gramatica.tab.c"
+#line 1424 "gramatica.tab.c"
     break;
 
   case 16:
-#line 44 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+#line 45 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
                                      {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
-#line 1427 "gramatica.tab.c"
+#line 1430 "gramatica.tab.c"
     break;
 
   case 17:
-#line 45 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+#line 46 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
                                    {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
-#line 1433 "gramatica.tab.c"
+#line 1436 "gramatica.tab.c"
     break;
 
   case 18:
-#line 47 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+#line 48 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
             { (yyval.texto) = (yyvsp[0].texto);}
-#line 1439 "gramatica.tab.c"
+#line 1442 "gramatica.tab.c"
     break;
 
   case 19:
-#line 48 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                 {(yyval.texto) = (yyvsp[0].texto);}
-#line 1445 "gramatica.tab.c"
+#line 49 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+                  { (yyval.texto) = (yyvsp[0].texto);}
+#line 1448 "gramatica.tab.c"
     break;
 
   case 20:
-#line 49 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                {(yyval.texto) = (yyvsp[0].texto);}
-#line 1451 "gramatica.tab.c"
+#line 50 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+                 {(yyval.texto) = (yyvsp[0].texto);}
+#line 1454 "gramatica.tab.c"
     break;
 
   case 21:
-#line 50 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                       {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
-#line 1457 "gramatica.tab.c"
+#line 51 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+                {(yyval.texto) = (yyvsp[0].texto);}
+#line 1460 "gramatica.tab.c"
     break;
 
   case 22:
-#line 51 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                        {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
-#line 1463 "gramatica.tab.c"
+#line 52 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+                       {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
+#line 1466 "gramatica.tab.c"
     break;
 
   case 23:
-#line 52 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                                {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
-#line 1469 "gramatica.tab.c"
+#line 53 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+                        {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
+#line 1472 "gramatica.tab.c"
     break;
 
   case 24:
-#line 53 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                        {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));;}
-#line 1475 "gramatica.tab.c"
+#line 54 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+                                {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
+#line 1478 "gramatica.tab.c"
     break;
 
   case 25:
-#line 54 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                             {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
-#line 1481 "gramatica.tab.c"
+#line 55 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+                        {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));;}
+#line 1484 "gramatica.tab.c"
     break;
 
   case 26:
-#line 55 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+#line 56 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
                              {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
-#line 1487 "gramatica.tab.c"
+#line 1490 "gramatica.tab.c"
     break;
 
   case 27:
-#line 56 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
-                    {(yyval.texto) = strcat((yyvsp[-1].texto),(yyvsp[0].texto));;}
-#line 1493 "gramatica.tab.c"
+#line 57 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+                             {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
+#line 1496 "gramatica.tab.c"
     break;
 
   case 28:
 #line 58 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+                    {(yyval.texto) = strcat((yyvsp[-1].texto),(yyvsp[0].texto));;}
+#line 1502 "gramatica.tab.c"
+    break;
+
+  case 29:
+#line 60 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
                            {(yyval.texto) = strcat((yyvsp[-2].texto),strcat((yyvsp[-1].texto),(yyvsp[0].texto)));}
-#line 1499 "gramatica.tab.c"
+#line 1508 "gramatica.tab.c"
     break;
 
 
-#line 1503 "gramatica.tab.c"
+#line 1512 "gramatica.tab.c"
 
       default: break;
     }
@@ -1731,7 +1740,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 60 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
+#line 62 "/home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/gramatica.y"
 
   int main() {
     yyparse();

@@ -3,7 +3,7 @@
 #include <string.h>
 %}
 DIGITO [0-9]+
-IDENTIFICADOR [P][I]|[S][E]
+IDENTIFICADOR [P][I][_][1]|[S][E][_][1]
 SIGNO [=]|[<]|[>]|[<][=]|[>][=]|[!][=]|[/]|[-]|[+]|[U][N][I][O][N]|[E][Q][U][I][S]|[D][I][F][E][R][E][N][T][E]|[I][N][T][E][R]
 VARIABLE [']*["]*[a-zA-Z]+[0-9_]*[a-zA-Z]*["]*[']*
 VARIABLES ["]+([a-zA-Z]+[0-9_]*[" "][a-zA-Z]+[0-9_]*)*["]+|[']+([a-zA-Z]+[0-9_]*[" "][a-zA-Z]+[0-9_]*)*[']+
@@ -51,7 +51,7 @@ yylval.texto = (char *) strdup(yytext);
     yylval.texto = (char *) strdup(yytext);
       return (DISYUNCION);}
 
-{VARIABLE} {//printf("Cadena\n");
+{VARIABLE}|{VARIABLE}"_"{VARIABLE} {//printf("Cadena\n");
 yylval.texto = (char *) strdup(yytext);
 return CADENA;
 }

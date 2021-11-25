@@ -209,11 +209,11 @@ def getConsultaParaAnalizador(cadena, nombre_bd):
     # 8743 ∧
     # 8744 ∨
     if chr(963) in cadena:
-        cadena = cadena.replace(chr(963),"SE ")
+        cadena = cadena.replace(chr(963),"SE_1 ")
     if chr(960) in cadena:
-        cadena = cadena.replace(chr(960),"PI ")
-        if("PI  " in cadena):
-            cadena = cadena.replace("PI  ","PI ")
+        cadena = cadena.replace(chr(960),"PI_1 ")
+        if("PI_1  " in cadena):
+            cadena = cadena.replace("PI_1  ","PI_1 ")
     if chr(88) in cadena:
         cadena = cadena.replace(chr(88)," EQUIS ")
     if chr(8746) in cadena:

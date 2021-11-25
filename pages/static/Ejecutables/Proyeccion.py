@@ -5,7 +5,7 @@ class Proyeccion:
         pass
     #Traduce consultas que solo tienen la sentencia de proyección
     def reemplazar_pi(self,consulta):
-        consulta = consulta.replace("PI","SELECT ")
+        consulta = consulta.replace("PI_1","SELECT ")
         consulta = consulta.replace("("," from (")
         consulta = consulta+";"
         if("EQUIS" in consulta):
@@ -24,20 +24,20 @@ class Proyeccion:
         return (primera_sentencia + " MINUS " + segunda_sentencia)
     #Analiza si la sentencia tiene sentencias de proyección y selección o sentencias proyección y más de una selección
     def ProyeccionYSeleccion(self, consulta):
-        if(len(findall("SE",consulta)) == 1):
+        if(len(findall("SE_1",consulta)) == 1):
             return self.SeleccionSimple(consulta)
-        elif(len(findall("SE",consulta))>1):
+        elif(len(findall("SE_1",consulta))>1):
             return self.SeleccionMultiple(consulta)
     #Traduce consultas con una sola sentencia de selección
     def SeleccionSimple(self,consulta):
-        consulta = consulta.replace("PI","select ")
+        consulta = consulta.replace("PI_1","select ")
         consulta = consulta.replace("^^"," OR ")
         consulta = consulta.replace("^"," AND ")
-        nombre_sel = consulta[:consulta.find("SE")-1]
+        nombre_sel = consulta[:consulta.find("SE_1")-1]
         consulta = consulta.replace(nombre_sel,"")
         consulta = consulta[1:-1]
-        nombre_cond = consulta[consulta.find("SE"):consulta.find("(")]
-        nombre_cond = nombre_cond.replace("SE"," where ")
+        nombre_cond = consulta[consulta.find("SE_1"):consulta.find("(")]
+        nombre_cond = nombre_cond.replace("SE_1"," where ")
         tabla = consulta[consulta.find("("):]
         if "EQUIS" in tabla:
             tabla = tabla.replace("EQUIS",",")
@@ -45,18 +45,18 @@ class Proyeccion:
         return(nombre_sel+" from "+tabla+nombre_cond+";")
     #Traduce consultas con más de una sentencia de selección
     def SeleccionMultiple(self, consulta):
-        consulta = consulta.replace("PI","select ")
-        nombre_proyeccion = consulta[:consulta.find("SE")-1]
+        consulta = consulta.replace("PI_1","select ")
+        nombre_proyeccion = consulta[:consulta.find("SE_1")-1]
         consulta = consulta.replace(nombre_proyeccion,"")
         nombre_seleccion = consulta.replace(")","")
-        tablas = consulta[:consulta.find("SE"):-1]
+        tablas = consulta[:consulta.find("SE_1"):-1]
         selecciones = []
         aux = ""
         for i in nombre_seleccion:
             if(i != "("):
                 aux +=i
-            elif("SE" in aux):
-                aux = aux.replace("SE","")
+            elif("SE_1" in aux):
+                aux = aux.replace("SE_1","")
                 selecciones.append(aux)
                 aux = ""
         for i in selecciones:
@@ -64,7 +64,7 @@ class Proyeccion:
         selecciones = " AND ".join(selecciones)
         tablas = consulta.replace("(","")
         tablas = tablas.replace(")","")
-        tablas = tablas.replace("SE","")
+        tablas = tablas.replace("SE_1","")
         if("EQUIS" in tablas):
             tablas = tablas.replace("EQUIS",",")
         #print("4" + nombre_proyeccion+" from "+tablas +" where "+selecciones+";")

@@ -37,21 +37,21 @@ if __name__ == "__main__":
     pro = Proyeccion.Proyeccion()
     sel = Seleccion.Seleccion()
     consulta_sql = "null"
-    if("PI" in consulta and "SE" not in consulta and "-" not in consulta):
+    if("PI_1" in consulta and "SE_1" not in consulta and "-" not in consulta):
         consulta_sql = pro.reemplazar_pi(consulta)
-    if("PI" in consulta and "SE" not in consulta and "-" in consulta):
+    if("PI_1" in consulta and "SE_1" not in consulta and "-" in consulta):
         consulta_sql = pro.pi_diferencia(consulta)
-    if("SE" in consulta and "PI" not in consulta):
+    if("SE_1" in consulta and "PI_1" not in consulta):
         consulta_sql = sel.reemplazar_se(consulta)
-    if("SE" in consulta and "PI" not in consulta and "-" in consulta):
+    if("SE_1" in consulta and "PI_1" not in consulta and "-" in consulta):
         consulta_sql = sel.reemplazar_minus(consulta)
-    if("PI" in consulta and "SE" in consulta and "UNION" not in consulta):
+    if("PI_1" in consulta and "SE_1" in consulta and "UNION" not in consulta):
         consulta_sql = pro.ProyeccionYSeleccion(consulta)
-    if(("SE" in consulta or "PI" in consulta) and ("UNION" in consulta or "INTER" in consulta)):
+    if(("SE_1" in consulta or "PI_1" in consulta) and ("UNION" in consulta or "INTER" in consulta)):
         consulta_sql = sel.reemplazar_union_interseccion(consulta)
-    if("SE" not in consulta and "PI" not in consulta and "UNION" in consulta):
+    if("SE_1" not in consulta and "PI_1" not in consulta and "UNION" in consulta):
         consulta_sql = pro.UnionTablas(consulta)
-    if("SE" not in consulta and "PI" not in consulta and "INTER" in consulta):
+    if("SE_1" not in consulta and "PI_1" not in consulta and "INTER" in consulta):
         consulta_sql = sel.reemplazar_union_interseccion(consulta)
 
     #Lee la consulta en sql desde el archivo y elimina el archivo.

@@ -28,16 +28,16 @@ CREATE TABLE salario_empleado (
 );
 
 INSERT INTO empleado(EmpleadoID,FechaNacimiento,Nombre,FechaContratacion) VALUES
-    (1,1985-05-25,"Rodrigo López Castro",2020-01-07),
-    (2,1986-05-23,"Mario Alberto Martínez Sánchez",2019-05-05),
-    (3,1984-03-14,"Alejandro Santiago Mendoza",2020-07-15),
-    (4,1985-11-12,"Paulina Sánchez Valadez",2017-05-01),
-    (5,1990-06-05,"Lorena Castro Gutierrez",2018-11-22),
-    (6,1992-02-09,"Karen Bustos Brisuela",2020-01-07),
-    (7,1988-10-15,"Daniela Rivera Fuentes",2015-12-06),
-    (8,1991-11-17,"Eduardo Pérez Zambrano",2019-01-25),
-    (9,1994-08-22,"Ana Alcantara Solano",2020-01-07),
-    (10,1990-06-08,"Maria Rojas Vargas",2019-06-22);
+    (1,"1985-05-25","Rodrigo López Castro","2020-01-07"),
+    (2,"1986-05-23","Mario Alberto Martínez Sánchez","2019-05-05"),
+    (3,"1984-03-14","Alejandro Santiago Mendoza","2020-07-15"),
+    (4,"1985-11-12","Paulina Sánchez Valadez","2017-05-01"),
+    (5,"1990-06-05","Lorena Castro Gutierrez","2018-11-22"),
+    (6,"1992-02-09","Karen Bustos Brisuela","2020-01-07"),
+    (7,"1988-10-15","Daniela Rivera Fuentes","2015-12-06"),
+    (8,"1991-11-17","Eduardo Pérez Zambrano","2019-01-25"),
+    (9,"1994-08-22","Ana Alcantara Solano","2020-01-07"),
+    (10,"1990-06-08","Maria Rojas Vargas","2019-06-22");
 
 INSERT INTO Departamento(DepartamentoID,Nombre) VALUES
     (1,"Administracion"),

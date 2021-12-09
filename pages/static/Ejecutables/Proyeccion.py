@@ -3,6 +3,11 @@ class Proyeccion:
     #Constructor vacío
     def __init__(self):
         pass
+    #Traduce consultas que requieren unión sin ninguna especificación
+    def producto_cartesiano(self, consulta):
+        consulta = consulta.replace("EQUIS",",")
+        consulta = "select * from " + consulta + ";"
+        return consulta
     #Traduce consultas que solo tienen la sentencia de proyección
     def reemplazar_pi(self,consulta):
         consulta = consulta.replace("PI_1","SELECT ")
@@ -10,7 +15,6 @@ class Proyeccion:
         consulta = consulta+";"
         if("EQUIS" in consulta):
             consulta = consulta.replace("EQUIS",",")
-        #print("1" + consulta)
         return consulta
     #Traduce consultas con sentencias de proyeción y diferencia
     def pi_diferencia(self, consulta):
@@ -20,7 +24,6 @@ class Proyeccion:
         primera_sentencia = self.reemplazar_pi(primera_sentencia)
         primera_sentencia = primera_sentencia.replace(";","")
         segunda_sentencia = self.reemplazar_pi(segunda_sentencia)
-        #print("2" + primera_sentencia + " MINUS " + segunda_sentencia)
         return (primera_sentencia + " MINUS " + segunda_sentencia)
     #Analiza si la sentencia tiene sentencias de proyección y selección o sentencias proyección y más de una selección
     def ProyeccionYSeleccion(self, consulta):
@@ -41,7 +44,6 @@ class Proyeccion:
         tabla = consulta[consulta.find("("):]
         if "EQUIS" in tabla:
             tabla = tabla.replace("EQUIS",",")
-        #print("3" + nombre_sel+" from "+tabla+nombre_cond+";")
         return(nombre_sel+" from "+tabla+nombre_cond+";")
     #Traduce consultas con más de una sentencia de selección
     def SeleccionMultiple(self, consulta):
@@ -67,14 +69,12 @@ class Proyeccion:
         tablas = tablas.replace("SE_1","")
         if("EQUIS" in tablas):
             tablas = tablas.replace("EQUIS",",")
-        #print("4" + nombre_proyeccion+" from "+tablas +" where "+selecciones+";")
         return(nombre_proyeccion+" from "+tablas +" where "+selecciones+";")
 
     def UnionTablas(self, consulta):
         if "UNION" in consulta:
             tablas = []
             tablas = consulta.split("UNION")
-            print("Soy las tablas: ",tablas)
             sentencia = ""
             contador = 0
             for tabla in tablas:
@@ -84,5 +84,4 @@ class Proyeccion:
                 else:
                     sentencia+= " UNION ALL select * from " + tabla
             sentencia = sentencia+";"
-        print("Soy la sentencia: ",sentencia)
         return sentencia

@@ -27,17 +27,13 @@ class Seleccion:
         primera_sentencia = self.reemplazar_se(primera_sentencia)
         primera_sentencia = primera_sentencia.replace(";","")
         segunda_sentencia = self.reemplazar_se(segunda_sentencia)
-        print(primera_sentencia + " MINUS " + segunda_sentencia)
         return (primera_sentencia + " MINUS " + segunda_sentencia)
     def reemplazar_union_interseccion(self, consulta):
         pro = Proyeccion.Proyeccion()
-        print("CONSULTA: ", consulta)
         if "UNION" in consulta:
             aux = consulta.index("UNION")
             primera_sentencia = consulta[:aux]
             segunda_sentencia = consulta[aux+5:]
-            print("PRIMERA SENTENCIA: ", primera_sentencia)
-            print("SEGUNDA SENTENCIA: ", segunda_sentencia)
             if "PI_1" in primera_sentencia and "SE_1" not in primera_sentencia:
                 primera_sentencia = pro.reemplazar_pi(primera_sentencia)
             elif "PI_1" not in primera_sentencia and "SE_1" in primera_sentencia:
@@ -50,18 +46,36 @@ class Seleccion:
                 segunda_sentencia = self.reemplazar_se(segunda_sentencia)
             elif "PI_1" in segunda_sentencia and "SE_1" in segunda_sentencia:
                 segunda_sentencia = pro.ProyeccionYSeleccion(segunda_sentencia)
-            #primera_sentencia = self.reemplazar_se(primera_sentencia)
             primera_sentencia = primera_sentencia.replace(";","")
-            #segunda_sentencia = self.reemplazar_se(segunda_sentencia)
-            #print("PRIMERA SENTENCIA: ", primera_sentencia)
-            #print("SEGUNDA SENTENCIA: ", segunda_sentencia)
-            #print(primera_sentencia + " UNION " + segunda_sentencia)
             return primera_sentencia + " UNION " + segunda_sentencia
         else:
-            aux = consulta.index("INTER")
+            aux = consulta.index("-")
             primera_sentencia = consulta[:aux]
-            segunda_sentencia = consulta[aux+5:]
-            primera_sentencia = self.reemplazar_se(primera_sentencia)
-            primera_sentencia = primera_sentencia.replace(";","")
-            segunda_sentencia = self.reemplazar_se(segunda_sentencia)
-            return primera_sentencia + " INTERSECT " + segunda_sentencia +";"
+            segunda_sentencia = consulta[aux+1:]
+            if "PI_1" in primera_sentencia and "SE_1" not in primera_sentencia:
+                primera_sentencia = pro.reemplazar_pi(primera_sentencia)
+                inicio = primera_sentencia.index("SELECT")
+                final = primera_sentencia.index("from")
+                aux = primera_sentencia[inicio+7:final]
+                primera_sentencia = primera_sentencia + "where " + aux + " NOT IN "
+            elif "PI_1" not in primera_sentencia and "SE_1" in primera_sentencia:
+                primera_sentencia = self.reemplazar_se(primera_sentencia)
+                primera_sentencia = primera_sentencia.replace(";","")
+                primera_sentencia = primera_sentencia + " NOT IN "
+            elif "PI_1" in primera_sentencia and "SE_1" in primera_sentencia:
+                primera_sentencia = pro.ProyeccionYSeleccion(primera_sentencia)
+                primera_sentencia = primera_sentencia.replace(";","")
+                primera_sentencia = primera_sentencia + " NOT IN "
+            if "PI_1" in segunda_sentencia and "SE_1" not in segunda_sentencia:
+                segunda_sentencia = pro.reemplazar_pi(segunda_sentencia)
+            elif "PI_1" not in segunda_sentencia and "SE_1" in segunda_sentencia:
+                segunda_sentencia = self.reemplazar_se(segunda_sentencia)
+            elif "PI_1" in segunda_sentencia and "SE_1" in segunda_sentencia:
+                segunda_sentencia = pro.ProyeccionYSeleccion(segunda_sentencia)
+            segunda_sentencia = segunda_sentencia.replace(";","")
+            segunda_sentencia = segunda_sentencia.replace("(","")
+            segunda_sentencia = segunda_sentencia.replace(")","")
+            primera_sentencia = primera_sentencia.replace("(","")
+            primera_sentencia = primera_sentencia.replace(")","")
+            return primera_sentencia+"("+segunda_sentencia+");"
+            #return primera_sentencia + " NOT IN " + segunda_sentencia +";"

@@ -78,8 +78,10 @@ def LimpiarBase(NombreDeLaBase):
         for y in i:
             ListaTablas.append(y)
     ListaTablas.pop(ListaTablas.index("timeDate"))
+    cursor.execute("SET FOREIGN_KEY_CHECKS=0;")
     for tabla in ListaTablas:
         cursor.execute("drop table %s;" % tabla)
+    cursor.execute("SET FOREIGN_KEY_CHECKS=1;")
     #cursor.execute("select nombrearchivo from timeDate;")
 
 # Genera una clave cuando el usuario sube un archivo.
@@ -112,8 +114,11 @@ def getNombreDeArchivos(clave_usuario):
 def getNombreDeColumnas(cadena, nombre_bd):
     columnas = []
     resultado = []
+    bandera_set = 1
     # 8746 ∪
     # 8745 ∩
+    if(chr(88) in cadena and (chr(960) not in cadena and chr(963) not in cadena)):
+        bandera_set = 0
     if(chr(8746) in cadena):
         columnas = cadena.split(chr(8746))
         aux = []
@@ -138,6 +143,7 @@ def getNombreDeColumnas(cadena, nombre_bd):
         cadena = cadena.split(chr(88))
         for i in cadena:
             try:
+                i = i.replace(" ","")
                 columnas+= Realizar_consultas("SELECT column_name FROM information_schema.columns WHERE  table_name = '%s' AND table_schema = '%s';" % (i,nombre_bd),nombre_bd)
             except utils.ProgrammingError:
                 pass
@@ -150,13 +156,18 @@ def getNombreDeColumnas(cadena, nombre_bd):
     for i in cadena:
         for y in i:
             resultado.append(y)
-    aux = set(resultado)
-    aux = list(aux)
-    resultado = aux
-    return resultado
-
+    if(bandera_set == 0):
+        return resultado
+    else:
+        aux = set(resultado)
+        aux = list(aux)
+        resultado = aux
+        return resultado
 # Genera el nombre las columna dentro de la consulta.
 def getNombreDeColumna(cadena, nombre_bd):
+    if("-" in cadena):
+        aux = cadena.index("-")
+        cadena = cadena[:aux]
     if(chr(960)+" (" in cadena or chr(960)+"(" in cadena):
         aux = cadena.index("(")
         cadena_lista = list(cadena)

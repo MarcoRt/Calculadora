@@ -45,15 +45,16 @@ if __name__ == "__main__":
         consulta_sql = sel.reemplazar_se(consulta)
     if("SE_1" in consulta and "PI_1" not in consulta and "-" in consulta):
         consulta_sql = sel.reemplazar_minus(consulta)
-    if("PI_1" in consulta and "SE_1" in consulta and "UNION" not in consulta):
+    if("PI_1" in consulta and "SE_1" in consulta and ("UNION" not in consulta or "-" not in consulta)):
         consulta_sql = pro.ProyeccionYSeleccion(consulta)
-    if(("SE_1" in consulta or "PI_1" in consulta) and ("UNION" in consulta or "INTER" in consulta)):
+    if(("SE_1" in consulta or "PI_1" in consulta) and ("UNION" in consulta or "-" in consulta)):
         consulta_sql = sel.reemplazar_union_interseccion(consulta)
     if("SE_1" not in consulta and "PI_1" not in consulta and "UNION" in consulta):
         consulta_sql = pro.UnionTablas(consulta)
     if("SE_1" not in consulta and "PI_1" not in consulta and "INTER" in consulta):
         consulta_sql = sel.reemplazar_union_interseccion(consulta)
-
+    if("SE_1" not in consulta and "PI_1" not in consulta and "EQUIS" in consulta):
+        consulta_sql = pro.producto_cartesiano(consulta)
     #Lee la consulta en sql desde el archivo y elimina el archivo.
     archivo = open(path+'/pages/static/Ejecutables/Archivos_consulta/%s' % nombre_archivo, "w")
     archivo.write(consulta_sql)

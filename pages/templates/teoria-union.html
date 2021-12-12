@@ -33,7 +33,12 @@
             <a class="regreso-menu" href="../../teoria">← Regresar al Menú de Teoría</a>
             <h2 class="centrar-texto">Unión</h2>
             <p class="icono-operacion centrar-texto">∪</p>
-            <p class="descripcion-teoria">Al ser una operación binaria, opera sobre dos relaciones, siendo estas sus únicos argumentos. Como resultado se obtiene una relación que contiene todas las tuplas que aparecen en una o en las dos relaciones especificadas. La sintaxis correcta de una unión es la siguiente:</p>
+            <p class="descripcion-teoria">Al ser una operación binaria, opera sobre dos relaciones, siendo estas sus únicos argumentos. Para que una operación de unión sea válida se deben cumplir 2 condiciones:</p>
+            <ol>
+                <li>Las relaciones deben tener el mismo número de atributos.</li>
+                <li>Los dominios de los atributos i-ésimos de ambas relaciones deben ser iguales para todo i</li>
+            </ol>
+            <p>Como resultado se obtiene una relación que contiene todas las tuplas que aparecen en una o en las dos relaciones sobre las que se opera[1]. La sintaxis correcta de una unión es la siguiente:</p>
             <p>$$Relaci\acute{o}n1 \cup Relaci\acute{o}n2$$</p>
             <div class="ejemplo">
                 <h3 class="centrar-texto">Ejemplo</h3>
@@ -105,7 +110,7 @@
 
     <footer class="footer">
         <div class="contenedor">
-            <p>Instituto Politécnico Nacional</p>
+            [1]A. Silberschatz, H. Korth and S. Sudarshan, Fundamentos de bases de datos, 5th ed. Madrid: McGraw-Hill, 2006.
         </div>
     </footer>
 

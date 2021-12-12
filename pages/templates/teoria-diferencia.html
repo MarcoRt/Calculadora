@@ -33,9 +33,13 @@
             <a class="regreso-menu" href="../../teoria">← Regresar al Menú de Teoría</a>
             <h2 class="centrar-texto">Diferencia</h2>
             <p class="icono-operacion centrar-texto">-</p>
-            <p class="descripcion-teoria">Al igual que la operación de unión, la operación de diferencia es binaria y opera sobre dos relaciones. Se denota por el símbolo de sustracción (-). Se obtiene como resultado una relación que contiene todas las tuplas que aparecen en la primera relación, pero no en la segunda de las dos relaciones especificadas. La sintaxis correcta de la diferencia es la siguiente:</p>
+            <p class="descripcion-teoria">La operación de diferencia es binaria y opera sobre dos relaciones. Se denota por el símbolo de sustracción (-). Para que una operación de unión sea válida se deben cumplir 2 condiciones:</p>
+            <ol>
+                <li>Las relaciones deben tener el mismo número de atributos.</li>
+                <li>Los dominios de los atributos i-ésimos de ambas relaciones deben ser iguales para todo i</li>
+            </ol>
+            <p>Se obtiene como resultado una relación que contiene todas las tuplas que aparecen en la primera relación, pero no en la segunda de las dos relaciones especificadas[1]. La sintaxis correcta de la diferencia es la siguiente:</p>
             <p>$$Relaci\acute{o}n1 - Relaci\acute{o}n2$$</p>
-            <p>Como en la operación de unión, en la operación de diferencia las relaciones también deben de ser compatibles.</p>
             <div class="ejemplo">
                 <h3 class="centrar-texto">Ejemplo</h3>
                 <p>Dadas las siguientes relaciones:</p>
@@ -96,7 +100,7 @@
 
     <footer class="footer">
         <div class="contenedor">
-            <p>Instituto Politécnico Nacional</p>
+            [1]A. Silberschatz, H. Korth and S. Sudarshan, Fundamentos de bases de datos, 5th ed. Madrid: McGraw-Hill, 2006.
         </div>
     </footer>
     

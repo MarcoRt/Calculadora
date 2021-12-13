@@ -16,7 +16,7 @@ class Seleccion:
             aux = consulta[inicio:]
         consulta = consulta.replace(aux,"\0")
         aux = aux.replace("EQUIS",",")
-        consulta = "select * from "+aux+consulta+";"
+        consulta = "SELECT * from "+aux+consulta+";"
         #consulta = consulta+";"
         return consulta
     #Traduce las consultas con sentencias que tienen selección y diferencia
@@ -57,7 +57,7 @@ class Seleccion:
                 inicio = primera_sentencia.index("SELECT")
                 final = primera_sentencia.index("from")
                 aux = primera_sentencia[inicio+7:final]
-                primera_sentencia = primera_sentencia + "where " + aux + " NOT IN "
+                primera_sentencia = primera_sentencia + " WHERE " + aux + " NOT IN "
             elif "PI_1" not in primera_sentencia and "SE_1" in primera_sentencia:
                 primera_sentencia = self.reemplazar_se(primera_sentencia)
                 primera_sentencia = primera_sentencia.replace(";","")
@@ -72,6 +72,7 @@ class Seleccion:
                 segunda_sentencia = self.reemplazar_se(segunda_sentencia)
             elif "PI_1" in segunda_sentencia and "SE_1" in segunda_sentencia:
                 segunda_sentencia = pro.ProyeccionYSeleccion(segunda_sentencia)
+            primera_sentencia = primera_sentencia.replace(";","")
             segunda_sentencia = segunda_sentencia.replace(";","")
             segunda_sentencia = segunda_sentencia.replace("(","")
             segunda_sentencia = segunda_sentencia.replace(")","")

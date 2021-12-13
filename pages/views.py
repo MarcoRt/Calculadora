@@ -11,6 +11,91 @@ from random import choice
 from django.core.files.storage import FileSystemStorage
 from django.db import connections, transaction, utils
 # Create your views here.
+def getVerificacionTipoDeDatoUnion_Campos(primera_sentencia, nombre_bd):
+    inicio = primera_sentencia.index("SELECT")
+    final = primera_sentencia.index("from")
+    resultados = []
+    primera_sentencia = primera_sentencia[inicio+6:final]
+    if("," in primera_sentencia):
+        if("." in primera_sentencia):
+            tablas = primera_sentencia.split(",")
+            for i in tablas:
+                inicio = i.find(".")
+                campo = i[inicio+1:]
+                tabla = i[:inicio]
+                if(" " in campo):
+                    campo = campo.replace(" ","")
+                if(" " in tabla):
+                    tabla = tabla.replace(" ","")
+                tupla = (campo,tabla)
+                resultados.append(tupla)
+    elif("." in primera_sentencia):
+        inicio = primera_sentencia.find(".")
+        campo = primera_sentencia[inicio+1:]
+        tabla = primera_sentencia[:inicio]
+        if(" " in campo):
+            campo = campo.replace(" ","")
+        if(" " in tabla):
+            tabla = tabla.replace(" ","")
+        tupla = (campo,tabla)
+        resultados.append(tupla)
+    aux = []
+    for i in resultados:
+        aux.append(Realizar_consultas("SELECT DATA_TYPE from INFORMATION_SCHEMA.COLUMNS where table_schema = '%s' and table_name='%s' and column_name = '%s';"% (nombre_bd,i[1],i[0]),nombre_bd))
+    return aux
+def getVerificacionTipoDeDato_Sentencia(primera_sentencia,nombre_bd):
+    if ("*" in primera_sentencia):
+        final = len(primera_sentencia)
+        if("WHERE" in primera_sentencia):
+            final = primera_sentencia.index("WHERE")
+        inicio = primera_sentencia.index("from")
+        tablas = primera_sentencia[inicio+4:final]
+        if("(" in tablas):
+            tablas = tablas.replace("(","")
+        if(")" in tablas):
+            tablas = tablas.replace(")","")
+        if(";" in tablas):
+            tablas = tablas.replace(";","")
+        if("," in tablas):
+            tablas = tablas.split(",")
+        if(isinstance(tablas,str)):
+            if(" " in tablas):
+                tablas = tablas.replace(" ","")
+            resultados_primera_sentencia= Realizar_consultas("SELECT DATA_TYPE from INFORMATION_SCHEMA.COLUMNS where table_schema = '%s' and table_name='%s';"% (nombre_bd,tablas),nombre_bd)
+        else:
+            resultados_primera_sentencia = []
+            for i in tablas:
+                resultados_primera_sentencia.append(Realizar_consultas("SELECT DATA_TYPE from INFORMATION_SCHEMA.COLUMNS where table_schema = '%s' and table_name='%s';"% (i,nombre_bd),nombre_bd))
+        return resultados_primera_sentencia
+
+def getVerificacionTipoDeDatoUnion(cadena,nombre_bd):
+    resultados_primera_sentencia = "1"
+    resultados_segunda_sentencia = "2"
+    if("UNION" in cadena):
+        index = cadena.index("UNION")
+        primera_sentencia = cadena[:index]
+        segunda_sentencia = cadena[index+5:]
+        segunda_sentencia = segunda_sentencia.replace("ALL","")
+    else:
+        index = cadena.index("NOT IN")
+        primera_sentencia = cadena[:index]
+        segunda_sentencia = cadena[index+6:]
+    segunda_sentencia = segunda_sentencia.replace(";","")
+    if(primera_sentencia.replace(" ","") == segunda_sentencia.replace(" ","")):
+        return primera_sentencia+";"
+    if ("*" in primera_sentencia):
+        resultados_primera_sentencia = getVerificacionTipoDeDato_Sentencia(primera_sentencia,nombre_bd)
+    else:
+        resultados_primera_sentencia = getVerificacionTipoDeDatoUnion_Campos(primera_sentencia,nombre_bd)
+    if("*" in segunda_sentencia):
+        resultados_segunda_sentencia = getVerificacionTipoDeDato_Sentencia(segunda_sentencia,nombre_bd)
+    else:
+        resultados_segunda_sentencia = getVerificacionTipoDeDatoUnion_Campos(segunda_sentencia,nombre_bd)
+    if(resultados_primera_sentencia == resultados_segunda_sentencia):
+        return cadena
+    else:
+        resultados_primera_sentencia = "NULL"
+        return resultados_primera_sentencia
 #Busca los archivos sql que se han creado y los elimina
 def EliminarArchivo(nombre_archivo):
     if nombre_archivo != "NULL":
@@ -121,11 +206,17 @@ def getNombreDeColumnas(cadena, nombre_bd):
         bandera_set = 0
     if(chr(8746) in cadena):
         columnas = cadena.split(chr(8746))
-        aux = []
-        aux = Realizar_consultas("SELECT column_name FROM information_schema.columns WHERE  table_name = '%s' AND table_schema = '%s';" % (columnas[0],nombre_bd),nombre_bd)
-        for i in aux:
-            for y in i:
-                resultado.append(y)
+        if((chr(963) or chr(960)) not in columnas[0] or (chr(963) or chr(960)) not in columnas[1]):
+            aux = []
+            aux = Realizar_consultas("SELECT column_name FROM information_schema.columns WHERE  table_name = '%s' AND table_schema = '%s';" % (columnas[0],nombre_bd),nombre_bd)
+            for i in aux:
+                for y in i:
+                    resultado.append(y)
+        else:
+            primera_sentencia = columnas[0]
+            segunda_sentencia = columnas[1]
+            if(primera_sentencia == segunda_sentencia):
+                return getNombreDeColumnas(primera_sentencia)
     if(chr(8745) in cadena):
         columnas = cadena.split(chr(8745))
         aux = []
@@ -139,7 +230,7 @@ def getNombreDeColumnas(cadena, nombre_bd):
     aux = cadena.find("(")
     cadena = cadena[aux+1:]
     cadena = cadena.replace(")","")
-    if(chr(88) in cadena):
+    if(chr(88) in cadena and "-" not in cadena):
         cadena = cadena.split(chr(88))
         for i in cadena:
             try:
@@ -167,6 +258,9 @@ def getNombreDeColumnas(cadena, nombre_bd):
 def getNombreDeColumna(cadena, nombre_bd):
     if("-" in cadena):
         aux = cadena.index("-")
+        cadena = cadena[:aux]
+    if(chr(8746) in cadena):
+        aux = cadena.index(chr(8746))
         cadena = cadena[:aux]
     if(chr(960)+" (" in cadena or chr(960)+"(" in cadena):
         aux = cadena.index("(")
@@ -198,6 +292,8 @@ def ejecutarAnalizador(cadena, nombre_bd):
     ejecucion_correcta = system("python3 /home/marco/Documentos/GitHub/Calculadora/pages/static/Ejecutables/main.py %s" % nombre_archivo)
     archivo = open(path+'/pages/static/Ejecutables/Archivos_consulta/%s' % nombre_archivo, "r")
     consulta_sql = archivo.readline()
+    if("UNION" in consulta_sql or "NOT IN" in consulta_sql):
+        consulta_sql = getVerificacionTipoDeDatoUnion(consulta_sql,nombre_bd)
     archivo.close()
     resultados = []
     if consulta_sql != 'null':
@@ -206,6 +302,8 @@ def ejecutarAnalizador(cadena, nombre_bd):
         except (utils.ProgrammingError, utils.OperationalError):
             pass
     system("rm "+path+"/pages/static/Ejecutables/Archivos_consulta/%s" % nombre_archivo)
+    if consulta_sql == "vacio":
+        resultados = ["vacio"]
     return resultados
 
 # Genera la consulta cambiando los símbolos del navegador a expresiones que reconoce
@@ -241,7 +339,8 @@ def getConsultaParaAnalizador(cadena, nombre_bd):
 
 # Genera las consultas sql
 def Realizar_consultas(cadena, nombre_bd):
-    cadena = cadena.replace("\x00","")
+    if("\x00" in cadena):
+        cadena = cadena.replace("\x00","")
     cursor = connections[nombre_bd].cursor()
     resultados = []
     cursor.execute("%s" % (cadena,))
@@ -327,6 +426,11 @@ def ConsultaPageView(request):
                 context['columnas'] = ""
                 context['columna'] = ""
                 context["consulta_vacia"] = "Error en la consulta."
+            elif(tu_consulta[0] == "vacio"):
+                context['tu_consulta'] = ""
+                context['columnas'] = ""
+                context['columna'] = ""
+                context["consulta_vacia"] = "Consulta vacía"
             else:
                 context['tu_consulta'] = tu_consulta
         return render(request,'consulta.html',context)

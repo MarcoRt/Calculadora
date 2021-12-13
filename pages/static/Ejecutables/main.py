@@ -49,7 +49,7 @@ if __name__ == "__main__":
         consulta_sql = pro.ProyeccionYSeleccion(consulta)
     if(("SE_1" in consulta or "PI_1" in consulta) and ("UNION" in consulta or "-" in consulta)):
         consulta_sql = sel.reemplazar_union_interseccion(consulta)
-    if("SE_1" not in consulta and "PI_1" not in consulta and "UNION" in consulta):
+    if("SE_1" not in consulta and "PI_1" not in consulta and ("UNION" in consulta or "-" in consulta)):
         consulta_sql = pro.UnionTablas(consulta)
     if("SE_1" not in consulta and "PI_1" not in consulta and "INTER" in consulta):
         consulta_sql = sel.reemplazar_union_interseccion(consulta)

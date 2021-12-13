@@ -6,7 +6,7 @@ class Proyeccion:
     #Traduce consultas que requieren unión sin ninguna especificación
     def producto_cartesiano(self, consulta):
         consulta = consulta.replace("EQUIS",",")
-        consulta = "select * from " + consulta + ";"
+        consulta = "SELECT * from " + consulta + ";"
         return consulta
     #Traduce consultas que solo tienen la sentencia de proyección
     def reemplazar_pi(self,consulta):
@@ -33,7 +33,7 @@ class Proyeccion:
             return self.SeleccionMultiple(consulta)
     #Traduce consultas con una sola sentencia de selección
     def SeleccionSimple(self,consulta):
-        consulta = consulta.replace("PI_1","select ")
+        consulta = consulta.replace("PI_1","SELECT ")
         consulta = consulta.replace("^^"," OR ")
         consulta = consulta.replace("^"," AND ")
         nombre_sel = consulta[:consulta.find("SE_1")-1]
@@ -47,7 +47,7 @@ class Proyeccion:
         return(nombre_sel+" from "+tabla+nombre_cond+";")
     #Traduce consultas con más de una sentencia de selección
     def SeleccionMultiple(self, consulta):
-        consulta = consulta.replace("PI_1","select ")
+        consulta = consulta.replace("PI_1","SELECT ")
         nombre_proyeccion = consulta[:consulta.find("SE_1")-1]
         consulta = consulta.replace(nombre_proyeccion,"")
         nombre_seleccion = consulta.replace(")","")
@@ -79,9 +79,17 @@ class Proyeccion:
             contador = 0
             for tabla in tablas:
                 if contador==0:
-                    sentencia= "select * from " + tabla
+                    sentencia= "SELECT * from " + tabla
                     contador=1
                 else:
-                    sentencia+= " UNION ALL select * from " + tabla
+                    sentencia+= " UNION ALL SELECT * from " + tabla
             sentencia = sentencia+";"
+        if "-" in consulta:
+            tablas = consulta.split("-")
+            tablas = set(tablas)
+            print(tablas)
+            if len(tablas) == 1:
+                sentencia = "vacio"
+            else:
+                sentencia = 'null'
         return sentencia

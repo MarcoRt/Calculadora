@@ -6,7 +6,20 @@ class Proyeccion:
     #Traduce consultas que requieren unión sin ninguna especificación
     def producto_cartesiano(self, consulta):
         consulta = consulta.replace("EQUIS",",")
-        consulta = "SELECT * from " + consulta + ";"
+        print(consulta)
+        tablas = consulta.split(",")
+        tablas = set(tablas)
+        print(type(tablas))
+        tablas = str(tablas)
+        tablas = tablas.replace("'","")
+        tablas = tablas.replace("{","")
+        print(tablas)
+        if tablas.count("}") == 1:
+            tablas = tablas.replace("}","")
+            consulta = "SELECT * from " + tablas + ";"
+        else:
+            tablas = tablas.replace("}",",")
+            consulta = "SELECT * from " + tablas + ";"
         return consulta
     #Traduce consultas que solo tienen la sentencia de proyección
     def reemplazar_pi(self,consulta):

@@ -202,7 +202,7 @@ def getNombreDeColumnas(cadena, nombre_bd):
     bandera_set = 1
     # 8746 ∪
     # 8745 ∩
-    if(chr(88) in cadena and (chr(960) not in cadena and chr(963) not in cadena)):
+    if(chr(88) in cadena and (chr(960) not in cadena and chr(963) not in cadena and chr(88) not in cadena)):
         bandera_set = 0
     if(chr(8746) in cadena):
         columnas = cadena.split(chr(8746))
